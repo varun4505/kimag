@@ -1,0 +1,75 @@
+export const projects = [
+  {
+    title: "Public Relations & Reputation Management",
+    description: [
+      "Media Relations and Strategic Counsel",
+      "Brand Building and Positioning",
+      "Image Audit Perception Study and Analysis",
+      "Personality Profiling",
+      "Consumer and Industry Relations",
+      "Employee Communications",
+      "Digital PR and Online Reputation Management (ORM)",
+      "Organic SEO",
+    ],
+    link: "https://stripe.com",
+  },
+  {
+    title: "Crisis Management",
+    description: [
+      "Crisis Communication Planning",
+      "24/7 Crisis Response",
+      "Reputation Recovery Strategies",
+      "Media Training and Spokesperson Development",
+      "Stakeholder Communication Management",
+      "Risk Assessment and Mitigation",
+    ],
+    link: "https://netflix.com",
+  },
+  {
+    title: "Financial Communications",
+    description: [
+      "IR/Corporate Website Development",
+      "Investor Relations and Outreach",
+      "Analyst and Fund Manager Relations",
+      "Disclosure Policy and Training",
+      "Corporate Governance Communication",
+      "Earnings Communication",
+    ],
+    link: "https://google.com",
+  },
+  {
+    title: "Digital Media Services",
+    description: [
+      "Social Media Management and Strategy",
+      "Content Creation and Management (Internal & External)",
+      "Digital News Dissemination",
+      "Influencer Marketing",
+      "Digital Campaigns and Engagement",
+      "Social Media Analytics and Reporting",
+    ],
+    link: "https://meta.com",
+  },
+  {
+    title: "Corporate Communications",
+    description: [
+      "Internal Communications Strategy",
+      "Executive Communications",
+      "Corporate Social Responsibility (CSR) Communication",
+      "Event Management and Coordination",
+      "Thought Leadership Development",
+      "Industry Relations",
+    ],
+    link: "https://amazon.com",
+  },
+  {
+    title: "Specialized Services",
+    description: [
+      "Media Training and Workshops",
+      "Market Intelligence and Research",
+      "Creative Services and Content Development",
+      "B2B Communications",
+      "Measurement and Analytics",
+    ],
+    link: "https://microsoft.com",
+  },
+];
