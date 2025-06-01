@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef, JSX } from "react";
+import Image from "next/image";
 import { FaFacebook, FaInstagram, FaEnvelope, FaLinkedinIn } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import { gsap } from "gsap";
@@ -154,14 +155,18 @@ const MainNavbar: React.FC = () => {
             className="flex items-center"
           >
             {isMobile ? (
-              <img 
-                src="logo-small.png" 
-                alt="Ayush Kumar Mobile Logo" 
+              <Image 
+                src="/logo-small.png"
+                alt="Ayush Kumar Mobile Logo"
+                width={40}
+                height={40}
                 className="h-10 w-auto"
               />
             ) : (
-              <img 
-                src="logo-big.png" 
+              <Image 
+                src="/logo-big.png"
+                width={160}
+                height={40}
                 alt="Ayush Kumar Desktop Logo" 
                 className="h-15 w-auto"
               />
