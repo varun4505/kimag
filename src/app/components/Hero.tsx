@@ -185,101 +185,190 @@ const Hero: React.FC = () => {
           transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
         >
           <div className="w-5 h-5 bg-gradient-to-tl from-[#348992]/25 to-[#2d6389]/25 rounded-sm filter drop-shadow-lg"></div>
-        </motion.div>
-      </div>      {/* Main Content */}
-      <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
-        {/* Modern Badge */}
+        </motion.div>      </div>
+
+      {/* Main Content */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
+        {/* Trendy Badge with Animation */}
         <motion.div
-          initial={{ opacity: 0, y: -30, scale: 0.8 }}
+          initial={{ opacity: 0, y: -20, scale: 0.9 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ delay: 0.8, duration: 1, ease: "backOut" }}
-          className="inline-flex items-center px-8 py-3 mb-12 bg-white/70 backdrop-blur-md border border-white/20 rounded-full shadow-xl shadow-[#2d6389]/10"
+          transition={{ delay: 0.5, duration: 0.8, ease: "backOut" }}
+          className="inline-flex items-center px-6 py-2 mb-8 bg-gradient-to-r from-[#2d6389]/10 via-[#348992]/10 to-[#d73c77]/10 backdrop-blur-xl border border-white/30 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group cursor-default"
         >
-          <span className="relative flex h-3 w-3 mr-4">
+          <div className="relative flex h-2 w-2 mr-3">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#348992] opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-3 w-3 bg-[#348992]"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#348992] shadow-sm"></span>
+          </div>
+          <span className="text-[#2d6389] font-semibold text-sm tracking-wider uppercase">
+            Strategic Communications Excellence
           </span>
-          <span className="text-[#2d6389] font-semibold text-base tracking-wide">Strategic Communications Excellence</span>
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+            className="ml-3 text-[#348992]"
+          >
+            ✦
+          </motion.div>
         </motion.div>
 
-        {/* Enhanced Main Title */}
-        <h1 
-          ref={titleRef}
-          className="text-6xl md:text-7xl lg:text-8xl font-black mb-8 leading-[0.9] tracking-tight"
-        >
-          <span className="block text-[#2d6389] mb-4 drop-shadow-sm">Transform</span>
-          <span className="block bg-gradient-to-r from-[#348992] via-[#d73c77] to-[#2d6389] bg-clip-text text-transparent drop-shadow-sm">
-            Your Story
-          </span>
-        </h1>
+        {/* Ultra Modern Main Title */}
+        <div className="relative mb-12">
+          <h1 
+            ref={titleRef}
+            className="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-black leading-[0.85] tracking-tighter mb-6"
+          >
+            <span className="block relative">
+              <span className="absolute inset-0 bg-gradient-to-r from-[#2d6389] via-[#348992] to-[#d73c77] bg-clip-text text-transparent blur-lg opacity-30"></span>
+              <span className="relative text-[#2d6389] drop-shadow-2xl">Transform</span>
+            </span>
+            <span className="block relative mt-2">
+              <span className="bg-gradient-to-r from-[#348992] via-[#d73c77] to-[#2d6389] bg-clip-text text-transparent drop-shadow-2xl animate-pulse">
+                Your Story
+              </span>
+              <div className="absolute -inset-4 bg-gradient-to-r from-[#348992]/20 via-[#d73c77]/20 to-[#2d6389]/20 blur-3xl opacity-60 -z-10"></div>
+            </span>
+          </h1>
+          
+          {/* Floating accent elements */}
+          <motion.div
+            animate={{ rotate: 360, scale: [1, 1.2, 1] }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-[#d73c77]/30 to-[#348992]/30 rounded-full blur-xl"
+          />
+          <motion.div
+            animate={{ rotate: -360, scale: [1, 0.8, 1] }}
+            transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+            className="absolute -bottom-8 -left-8 w-12 h-12 bg-gradient-to-br from-[#2d6389]/40 to-[#348992]/40 rounded-full blur-lg"
+          />
+        </div>
 
-        {/* Enhanced Subtitle */}
-        <p 
-          ref={subtitleRef}
-          className="text-lg md:text-xl lg:text-2xl text-slate-600 mb-12 max-w-4xl mx-auto leading-relaxed font-light"
-        >
-          We craft compelling narratives that <span className="text-[#348992] font-medium">captivate audiences</span>, 
-          build <span className="text-[#d73c77] font-medium">authentic connections</span>, and 
-          drive <span className="text-[#2d6389] font-medium">measurable results</span> through strategic storytelling.
-        </p>
-
-        {/* Enhanced CTA Buttons */}
-        <div ref={ctaRef} className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-32">
+        {/* Enhanced Modern Subtitle */}
+        <div className="relative max-w-5xl mx-auto mb-16">
+          <p 
+            ref={subtitleRef}
+            className="text-xl md:text-2xl lg:text-3xl text-slate-700 leading-relaxed font-light tracking-wide"
+          >
+            We craft <span className="relative inline-block">
+              <span className="text-[#348992] font-semibold bg-gradient-to-r from-[#348992]/20 to-transparent px-2 py-1 rounded-lg">compelling narratives</span>
+            </span> that captivate audiences, build <span className="relative inline-block">
+              <span className="text-[#d73c77] font-semibold bg-gradient-to-r from-[#d73c77]/20 to-transparent px-2 py-1 rounded-lg">authentic connections</span>
+            </span>, and drive <span className="relative inline-block">
+              <span className="text-[#2d6389] font-semibold bg-gradient-to-r from-[#2d6389]/20 to-transparent px-2 py-1 rounded-lg">measurable results</span>
+            </span>
+          </p>
+          
+          {/* Decorative underline */}
+          <motion.div
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ delay: 1.5, duration: 1.2, ease: "easeOut" }}
+            className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-[#348992] via-[#d73c77] to-[#2d6389] rounded-full mt-4"
+          />
+        </div>        {/* Ultra-Modern CTA Buttons */}
+        <div ref={ctaRef} className="flex flex-col sm:flex-row gap-8 justify-center items-center mb-24">
+          {/* Primary CTA - Glass Morphism Style */}
           <motion.button
             whileHover={{ 
-              scale: 1.05, 
-              y: -5,
-              boxShadow: "0 25px 50px rgba(45, 99, 137, 0.4)"
+              scale: 1.02, 
+              y: -8,
+              rotateX: 5,
             }}
-            whileTap={{ scale: 0.95 }}
-            className="group relative px-12 py-4 bg-gradient-to-r from-[#2d6389] via-[#348992] to-[#2d6389] text-white font-bold rounded-full shadow-2xl hover:shadow-3xl transition-all duration-700 text-lg min-w-[240px] overflow-hidden"
+            whileTap={{ scale: 0.98 }}
+            className="group relative px-10 py-5 bg-gradient-to-r from-[#2d6389] via-[#348992] to-[#2d6389] text-white font-bold rounded-2xl shadow-2xl hover:shadow-[#2d6389]/30 transition-all duration-500 text-lg min-w-[280px] overflow-hidden backdrop-blur-sm border border-white/20"
           >
             <span className="relative z-10 flex items-center justify-center">
+              <span className="mr-3">✨</span>
               Explore Our Work
-              <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
+              <motion.svg 
+                className="w-5 h-5 ml-3" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+                whileHover={{ x: 5 }}
+                transition={{ duration: 0.3 }}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </motion.svg>
             </span>
-            <div className="absolute inset-0 bg-gradient-to-r from-[#348992] via-[#d73c77] to-[#348992] opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-[#348992] via-[#d73c77] to-[#348992] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </motion.button>
           
+          {/* Secondary CTA - Neumorphism Style */}
           <motion.button
             whileHover={{ 
-              scale: 1.05, 
-              y: -5,
-              backgroundColor: "rgba(215, 60, 119, 0.1)",
-              borderColor: "#d73c77"
+              scale: 1.02, 
+              y: -8,
+              backgroundColor: "rgba(255, 255, 255, 0.95)",
+              boxShadow: "0 20px 40px rgba(45, 99, 137, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.6)"
             }}
-            whileTap={{ scale: 0.95 }}
-            className="relative px-12 py-4 border-2 border-slate-300 text-slate-700 font-bold rounded-full transition-all duration-500 text-lg min-w-[240px] backdrop-blur-sm bg-white/80 hover:bg-white/90 shadow-lg hover:shadow-xl"
+            whileTap={{ scale: 0.98 }}
+            className="relative px-10 py-5 bg-white/80 backdrop-blur-xl text-[#2d6389] font-bold rounded-2xl transition-all duration-500 text-lg min-w-[280px] shadow-lg hover:shadow-xl border border-white/40 group"
           >
             <span className="flex items-center justify-center">
+              <span className="mr-3">🚀</span>
               Start Your Journey
-              <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <motion.svg 
+                className="w-5 h-5 ml-3" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+                whileHover={{ x: 5 }}
+                transition={{ duration: 0.3 }}
+              >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
+              </motion.svg>
             </span>
-          </motion.button>        </div>
+            <div className="absolute inset-0 bg-gradient-to-r from-[#348992]/10 via-[#d73c77]/10 to-[#2d6389]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
+          </motion.button>
+        </div>
 
-        {/* Enhanced Scroll Indicator */}
+        {/* Stats Bar - Trendy addition */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.8, duration: 1 }}
+          className="flex flex-col md:flex-row gap-8 justify-center items-center mb-16 max-w-4xl mx-auto"
+        >
+          <div className="flex items-center space-x-2 px-6 py-3 bg-white/60 backdrop-blur-md rounded-full border border-white/30 shadow-lg">
+            <div className="w-3 h-3 bg-[#348992] rounded-full animate-pulse"></div>
+            <span className="text-[#2d6389] font-semibold text-sm">500+ Projects</span>
+          </div>
+          <div className="flex items-center space-x-2 px-6 py-3 bg-white/60 backdrop-blur-md rounded-full border border-white/30 shadow-lg">
+            <div className="w-3 h-3 bg-[#d73c77] rounded-full animate-pulse"></div>
+            <span className="text-[#2d6389] font-semibold text-sm">98% Success Rate</span>
+          </div>
+          <div className="flex items-center space-x-2 px-6 py-3 bg-white/60 backdrop-blur-md rounded-full border border-white/30 shadow-lg">
+            <div className="w-3 h-3 bg-[#2d6389] rounded-full animate-pulse"></div>
+            <span className="text-[#2d6389] font-semibold text-sm">10+ Years Experience</span>
+          </div>
+        </motion.div>        {/* Ultra-Modern Scroll Indicator */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 2.5, duration: 1 }}
-          className="absolute bottom-2 left-1/2 transform -translate-x-1/2"
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
         >
-          <div className="flex flex-col items-center text-slate-500">
-            <span className="text-sm font-medium mb-4 tracking-wide">Scroll to explore</span>
+          <div className="flex flex-col items-center text-slate-500 group cursor-pointer">
+            <motion.span 
+              className="text-xs font-medium mb-4 tracking-widest uppercase opacity-70 group-hover:opacity-100 transition-opacity duration-300"
+              animate={{ opacity: [0.7, 1, 0.7] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            >
+              Scroll to explore
+            </motion.span>
             <motion.div
-              animate={{ y: [0, 12, 0] }}
-              transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-              className="w-6 h-10 border-2 border-slate-300 rounded-full flex justify-center bg-white/50 backdrop-blur-sm shadow-lg"
+              animate={{ y: [0, 8, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              className="relative w-6 h-12 border-2 border-slate-300/60 rounded-full flex justify-center bg-white/40 backdrop-blur-md shadow-xl group-hover:shadow-2xl group-hover:border-[#348992]/60 transition-all duration-300"
             >
               <motion.div
-                animate={{ y: [0, 16, 0] }}
-                transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-                className="w-1.5 h-4 bg-gradient-to-b from-[#2d6389] to-[#348992] rounded-full mt-2"
+                animate={{ y: [2, 20, 2], opacity: [1, 0.3, 1] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                className="w-1 h-3 bg-gradient-to-b from-[#2d6389] via-[#348992] to-[#d73c77] rounded-full mt-2 shadow-sm"
               />
+              <div className="absolute inset-0 bg-gradient-to-b from-[#348992]/10 to-[#d73c77]/10 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </motion.div>
           </div>
         </motion.div>
