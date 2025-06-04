@@ -2,6 +2,7 @@
 "use client";
 import React from "react";
 import { BackgroundGradient } from "./BackgroundGradient";
+import Image from "next/image";
 
 
 export type CardData = {
@@ -18,11 +19,11 @@ type GradientCardProps = {
 export function CaseStudiesCard({ data }: GradientCardProps) {
   return (
     <BackgroundGradient className="rounded-[22px] max-w-sm p-4 sm:p-10 bg-white">
-      <img
+      <Image
         src={data.image}
         alt={data.title}
-        height="400"
-        width="400"
+        height={400}
+        width={400}
         className="object-contain"
       />
       <p className="text-base sm:text-xl text-black mt-4 mb-2">

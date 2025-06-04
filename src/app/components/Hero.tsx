@@ -316,29 +316,9 @@ const Hero: React.FC = () => {
               </motion.svg>
             </span>
             <div className="absolute inset-0 bg-gradient-to-r from-[#348992]/10 via-[#d73c77]/10 to-[#2d6389]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
-          </motion.button>
-        </div>
+          </motion.button>        </div>
 
-        {/* Stats Bar - Trendy addition */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.8, duration: 1 }}
-          className="flex flex-col md:flex-row gap-6 justify-center items-center mb-12 max-w-3xl mx-auto"
-        >
-          <div className="flex items-center space-x-2 px-6 py-3 bg-white/60 backdrop-blur-md rounded-full border border-white/30 shadow-lg">
-            <div className="w-3 h-3 bg-[#348992] rounded-full animate-pulse"></div>
-            <span className="text-[#2d6389] font-semibold text-sm">500+ Projects</span>
-          </div>
-          <div className="flex items-center space-x-2 px-6 py-3 bg-white/60 backdrop-blur-md rounded-full border border-white/30 shadow-lg">
-            <div className="w-3 h-3 bg-[#d73c77] rounded-full animate-pulse"></div>
-            <span className="text-[#2d6389] font-semibold text-sm">98% Success Rate</span>
-          </div>
-          <div className="flex items-center space-x-2 px-6 py-3 bg-white/60 backdrop-blur-md rounded-full border border-white/30 shadow-lg">
-            <div className="w-3 h-3 bg-[#2d6389] rounded-full animate-pulse"></div>
-            <span className="text-[#2d6389] font-semibold text-sm">10+ Years Experience</span>
-          </div>
-        </motion.div>        {/* Ultra-Modern Scroll Indicator */}
+        {/* Ultra-Modern Scroll Indicator */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
