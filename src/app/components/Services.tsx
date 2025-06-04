@@ -10,7 +10,7 @@ export const OurServices = ({
 }: {
   items: {
     title: string;
-    description: string | string[];
+    description: string[];
     link: string;
   }[];
   className?: string;
@@ -56,16 +56,12 @@ export const OurServices = ({
               <CardImage />
               <CardTitle>{item.title}</CardTitle>
               <CardDescription>
-                {Array.isArray(item.description) ? (
-                  <ul className="list-disc list-inside space-y-1">
-                    {item.description.map((point, i) => (
-                      <li key={i}>{point}</li>
-                    ))}
-                  </ul>
-                ) : (
-                  <p>{item.description}</p>
-                )}
-              </CardDescription>
+  <ul className="list-disc list-inside space-y-1">
+    {item.description.map((point, i) => (
+      <li key={i}>{point}</li>
+    ))}
+  </ul>
+</CardDescription>
 
             </Card>
           </a>
@@ -144,13 +140,13 @@ export const CardDescription = ({
   children: React.ReactNode;
 }) => {
   return (
-    <div
+    <p
       className={cn(
         "mt-8 text-gray-600 tracking-wide leading-relaxed text-sm",
         className
       )}
     >
       {children}
-    </div>
+    </p>
   );
 };

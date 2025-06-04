@@ -2,12 +2,17 @@
 
 import React, { useEffect, useState } from 'react';
 
-const AboutUs: React.FC = () => {
+const ContactUs: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
+
+  const handleBookAppointment = () => {
+    // This would redirect to your appointment booking page
+    window.open('/appointment', '_blank');
+  };
 
   return (
     <div className="relative min-h-screen overflow-hidden px-5 py-20 mt-5">
@@ -33,31 +38,16 @@ const AboutUs: React.FC = () => {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
           <h1 className="text-5xl md:text-6xl font-bold text-[#2d6389] mb-5 drop-shadow-lg">
-            About Us
+            Contact Us
           </h1>
           <p className="text-xl md:text-2xl text-[#2d6389]/90 font-light">
-            Building Bridges Through Strategic Communication
+            Let&apos;s Start a Conversation That Matters
           </p>
         </div>
 
-        {/* Company Overview */}
-        <div className={`bg-white/95 backdrop-blur-sm p-12 md:p-16 rounded-3xl mb-16 shadow-2xl transition-all duration-1000 delay-200 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-        }`}>
-          <h2 className="text-3xl md:text-4xl font-semibold text-[#2d6389] text-center mb-8">
-            Award-Winning Communications Excellence
-          </h2>
-          <p className="text-lg md:text-xl text-gray-700 text-center leading-relaxed">
-            Konnections IMAG is an award-winning independent multi-disciplinary communications company 
-            offering 360-degree solutions to brands across India. Founded in 2010 and incubated at 
-            NSRCEL Indian Institute of Management, Bangalore, we have evolved into one of India&apos;s 
-            leading integrated marketing communication consultancies.
-          </p>
-        </div>
-
-        {/* Enhanced Mission, Vision, Philosophy Section */}
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
-          {/* Mission Card */}
+        {/* Contact Information Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+          {/* Address Card */}
           <div className={`group relative overflow-hidden transition-all duration-700 delay-300 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
           }`}>
@@ -66,26 +56,29 @@ const AboutUs: React.FC = () => {
               <div className="flex items-center mb-6">
                 <div className="w-12 h-12 bg-gradient-to-br from-[#2d6389] to-[#348992] rounded-full flex items-center justify-center mr-4 shadow-lg">
                   <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
                 </div>
                 <h3 className="text-2xl font-bold text-[#2d6389] group-hover:text-[#348992] transition-colors duration-300">
-                  Our Mission
+                  Address
                 </h3>
               </div>
               <div className="relative">
                 <div className="absolute -left-4 top-0 w-1 h-full bg-gradient-to-b from-[#2d6389] to-[#348992] rounded-full opacity-30" />
                 <p className="text-gray-700 leading-relaxed text-lg font-medium pl-4">
-                  To help brands find their <span className="text-[#2d6389] font-semibold">authentic voice</span>, 
-                  tell <span className="text-[#348992] font-semibold">compelling stories</span>, and build 
-                  meaningful connections with their stakeholders through strategic communication.
+                  <span className="block text-[#2d6389] font-semibold mb-2">Konnections IMAG</span>
+                  123 Communication Street,<br />
+                  Business District,<br />
+                  Bangalore - 560001,<br />
+                  Karnataka, India
                 </p>
               </div>
               <div className="absolute bottom-4 right-4 w-8 h-8 bg-gradient-to-br from-[#2d6389]/20 to-[#348992]/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </div>
           </div>
 
-          {/* Vision Card */}
+          {/* Phone Numbers Card */}
           <div className={`group relative overflow-hidden transition-all duration-700 delay-500 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
           }`}>
@@ -94,27 +87,41 @@ const AboutUs: React.FC = () => {
               <div className="flex items-center mb-6">
                 <div className="w-12 h-12 bg-gradient-to-br from-[#348992] to-[#d73c77] rounded-full flex items-center justify-center mr-4 shadow-lg">
                   <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
                 </div>
                 <h3 className="text-2xl font-bold text-[#348992] group-hover:text-[#d73c77] transition-colors duration-300">
-                  Our Vision
+                  Phone
                 </h3>
               </div>
               <div className="relative">
                 <div className="absolute -left-4 top-0 w-1 h-full bg-gradient-to-b from-[#348992] to-[#d73c77] rounded-full opacity-30" />
-                <p className="text-gray-700 leading-relaxed text-lg font-medium pl-4">
-                  To be India&apos;s <span className="text-[#348992] font-semibold">most trusted</span> communication partner, 
-                  recognized for delivering <span className="text-[#d73c77] font-semibold">impactful narratives, </span> 
-                    that drive business success and build lasting reputations.
-                </p>
+                <div className="text-gray-700 leading-relaxed text-lg font-medium pl-4 space-y-3">
+                  <div>
+                    <span className="block text-[#348992] font-semibold text-sm">Mobile 1</span>
+                    <a href="tel:+919876543210" className="hover:text-[#348992] transition-colors duration-300">
+                      +91 98765 43210
+                    </a>
+                  </div>
+                  <div>
+                    <span className="block text-[#348992] font-semibold text-sm">Mobile 2</span>
+                    <a href="tel:+919123456789" className="hover:text-[#348992] transition-colors duration-300">
+                      +91 91234 56789
+                    </a>
+                  </div>
+                  <div>
+                    <span className="block text-[#d73c77] font-semibold text-sm">Landline</span>
+                    <a href="tel:+918012345678" className="hover:text-[#d73c77] transition-colors duration-300">
+                      +91 80 1234 5678
+                    </a>
+                  </div>
+                </div>
               </div>
               <div className="absolute bottom-4 right-4 w-8 h-8 bg-gradient-to-br from-[#348992]/20 to-[#d73c77]/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </div>
           </div>
 
-          {/* Philosophy Card */}
+          {/* Email Card */}
           <div className={`group relative overflow-hidden transition-all duration-700 delay-700 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
           }`}>
@@ -123,56 +130,98 @@ const AboutUs: React.FC = () => {
               <div className="flex items-center mb-6">
                 <div className="w-12 h-12 bg-gradient-to-br from-[#d73c77] to-[#2d6389] rounded-full flex items-center justify-center mr-4 shadow-lg">
                   <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                 </div>
                 <h3 className="text-2xl font-bold text-[#d73c77] group-hover:text-[#2d6389] transition-colors duration-300">
-                  Our Philosophy 
+                  Email
                 </h3>
               </div>
               <div className="relative">
                 <div className="absolute -left-4 top-0 w-1 h-full bg-gradient-to-b from-[#d73c77] to-[#2d6389] rounded-full opacity-30" />
-                <p className="text-gray-700 leading-relaxed text-lg font-medium pl-4">
-                  We&apos;re inspired by the belief that one can use communications to 
-                  <span className="text-[#d73c77] font-semibold"> change the world</span> and 
-                  the way it responds to <span className="text-[#2d6389] font-semibold">brands, reputations, and ideas</span>.
-                </p>
+                <div className="text-gray-700 leading-relaxed text-lg font-medium pl-4">
+                  <span className="block text-[#d73c77] font-semibold text-sm mb-2">Get in Touch</span>
+                  <a 
+                    href="mailto:hello@konnectionsimag.com" 
+                    className="hover:text-[#d73c77] transition-colors duration-300 break-all"
+                  >
+                    hello@konnectionsimag.com
+                  </a>
+                </div>
               </div>
               <div className="absolute bottom-4 right-4 w-8 h-8 bg-gradient-to-br from-[#d73c77]/20 to-[#2d6389]/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </div>
           </div>
-        </div>
 
-        {/* Core Values */}
-        <div className={`bg-white/95 backdrop-blur-sm p-12 md:p-16 rounded-3xl mb-16 shadow-2xl transition-all duration-1000 delay-900 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-        }`}>
-          <h2 className="text-3xl md:text-4xl font-semibold text-[#2d6389] text-center mb-12">
-            Our Core Values
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { title: 'Integrity', desc: 'We believe in honest, trustworthy, and ethical communication services', delay: 1000 },
-              { title: 'Innovation', desc: 'We relentlessly focus on bringing creativity and innovation to all our work', delay: 1200 },
-              { title: 'Impact', desc: 'We drive real business results for our clients through strategic communication', delay: 1400 },
-              { title: 'Excellence', desc: 'We maintain the highest standards in everything we deliver', delay: 1600 }
-            ].map((value, index) => (
-              <div 
-                key={index}
-                className={`bg-gradient-to-br from-[#2d6389] to-[#348992] p-6 rounded-2xl text-white text-center transform hover:scale-105 transition-all duration-500 ${
-                  isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
-                }`}
-                style={{ transitionDelay: `${value.delay}ms` }}
-              >
-                <h4 className="text-xl font-semibold mb-4">{value.title}</h4>
-                <p className="text-sm leading-relaxed">{value.desc}</p>
+          {/* Book Appointment Card */}
+          <div className={`group relative overflow-hidden transition-all duration-700 delay-900 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          }`}>
+            <div className="relative bg-gradient-to-br from-[#2d6389] to-[#348992] p-8 rounded-3xl shadow-xl h-full hover:shadow-2xl transition-all duration-300 hover:scale-105">
+              <div className="flex items-center mb-6">
+                <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mr-4 shadow-lg">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <h3 className="text-2xl font-bold text-white">
+                  Meet Us
+                </h3>
               </div>
-            ))}
+              <div className="text-white leading-relaxed mb-6">
+                <p className="text-lg font-medium mb-4">
+                  Ready to transform your brand&apos;s story?
+                </p>
+                <p className="text-sm opacity-90">
+                  Schedule a consultation with our expert team and discover how we can elevate your communication strategy.
+                </p>
+              </div>
+              <button
+                onClick={handleBookAppointment}
+                className="w-full bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white font-semibold py-3 px-6 rounded-2xl transition-all duration-300 hover:transform hover:translateY(-1px) border border-white/20 hover:border-white/30"
+              >
+                Book Appointment
+              </button>
+              <div className="absolute top-4 right-4 w-16 h-16 bg-white/10 rounded-full opacity-50" />
+              <div className="absolute bottom-4 left-4 w-8 h-8 bg-white/10 rounded-full opacity-30" />
+            </div>
           </div>
         </div>
 
-        {/* Our Reach */}
         
+
+        {/* Office Hours */}
+        <div className={`bg-gradient-to-r from-[#2d6389] to-[#348992] p-12 md:p-16 rounded-3xl shadow-2xl transition-all duration-1000 delay-1300 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}>
+          <h2 className="text-3xl md:text-4xl font-semibold text-white text-center mb-12">
+            Office Hours
+          </h2>
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div className="bg-white/20 backdrop-blur-sm p-8 rounded-2xl">
+              <h3 className="text-2xl font-semibold text-white mb-6">Weekdays</h3>
+              <div className="space-y-3 text-white/90">
+                <div className="flex justify-between">
+                  <span>Monday - Friday</span>
+                  <span className="font-semibold">9:00 AM - 6:00 PM</span>
+                </div>
+              </div>
+            </div>
+            <div className="bg-white/20 backdrop-blur-sm p-8 rounded-2xl">
+              <h3 className="text-2xl font-semibold text-white mb-6">Weekend</h3>
+              <div className="space-y-3 text-white/90">
+                <div className="flex justify-between">
+                  <span>Saturday</span>
+                  <span className="font-semibold">10:00 AM - 4:00 PM</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Sunday</span>
+                  <span className="font-semibold">Closed</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <style jsx>{`
@@ -307,4 +356,4 @@ const AboutUs: React.FC = () => {
   );
 };
 
-export default AboutUs;
+export default ContactUs;
