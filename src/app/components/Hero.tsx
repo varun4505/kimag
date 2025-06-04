@@ -185,16 +185,14 @@ const Hero: React.FC = () => {
           transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
         >
           <div className="w-5 h-5 bg-gradient-to-tl from-[#348992]/25 to-[#2d6389]/25 rounded-sm filter drop-shadow-lg"></div>
-        </motion.div>      </div>
-
-      {/* Main Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
+        </motion.div>      </div>      {/* Main Content */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 text-center pt-24 md:pt-16">
         {/* Trendy Badge with Animation */}
         <motion.div
           initial={{ opacity: 0, y: -20, scale: 0.9 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ delay: 0.5, duration: 0.8, ease: "backOut" }}
-          className="inline-flex items-center px-6 py-2 mb-8 bg-gradient-to-r from-[#2d6389]/10 via-[#348992]/10 to-[#d73c77]/10 backdrop-blur-xl border border-white/30 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group cursor-default"
+          className="inline-flex items-center px-6 py-2 mb-8 mt-4 bg-gradient-to-r from-[#2d6389]/10 via-[#348992]/10 to-[#d73c77]/10 backdrop-blur-xl border border-white/30 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group cursor-default"
         >
           <div className="relative flex h-2 w-2 mr-3">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#348992] opacity-75"></span>
@@ -210,44 +208,41 @@ const Hero: React.FC = () => {
           >
             ✦
           </motion.div>
-        </motion.div>
-
-        {/* Ultra Modern Main Title */}
-        <div className="relative mb-12">
+        </motion.div>        {/* Ultra Modern Main Title */}
+        <div className="relative mb-8">
           <h1 
             ref={titleRef}
-            className="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-black leading-[0.85] tracking-tighter mb-6"
+            className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-[0.9] tracking-tight mb-4"
           >
             <span className="block relative">
               <span className="absolute inset-0 bg-gradient-to-r from-[#2d6389] via-[#348992] to-[#d73c77] bg-clip-text text-transparent blur-lg opacity-30"></span>
-              <span className="relative text-[#2d6389] drop-shadow-2xl">Transform</span>
+              <span className="relative text-[#2d6389] drop-shadow-xl">Transform</span>
             </span>
-            <span className="block relative mt-2">
-              <span className="bg-gradient-to-r from-[#348992] via-[#d73c77] to-[#2d6389] bg-clip-text text-transparent drop-shadow-2xl animate-pulse">
+            <span className="block relative mt-1">
+              <span className="bg-gradient-to-r from-[#348992] via-[#d73c77] to-[#2d6389] bg-clip-text text-transparent drop-shadow-xl">
                 Your Story
               </span>
-              <div className="absolute -inset-4 bg-gradient-to-r from-[#348992]/20 via-[#d73c77]/20 to-[#2d6389]/20 blur-3xl opacity-60 -z-10"></div>
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#348992]/15 via-[#d73c77]/15 to-[#2d6389]/15 blur-2xl opacity-50 -z-10"></div>
             </span>
           </h1>
-          
-          {/* Floating accent elements */}
+            {/* Floating accent elements */}
           <motion.div
-            animate={{ rotate: 360, scale: [1, 1.2, 1] }}
+            animate={{ rotate: 360, scale: [1, 1.1, 1] }}
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-[#d73c77]/30 to-[#348992]/30 rounded-full blur-xl"
+            className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-br from-[#d73c77]/30 to-[#348992]/30 rounded-full blur-lg"
           />
           <motion.div
-            animate={{ rotate: -360, scale: [1, 0.8, 1] }}
+            animate={{ rotate: -360, scale: [1, 0.9, 1] }}
             transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-            className="absolute -bottom-8 -left-8 w-12 h-12 bg-gradient-to-br from-[#2d6389]/40 to-[#348992]/40 rounded-full blur-lg"
+            className="absolute -bottom-4 -left-4 w-6 h-6 bg-gradient-to-br from-[#2d6389]/40 to-[#348992]/40 rounded-full blur-md"
           />
         </div>
 
         {/* Enhanced Modern Subtitle */}
-        <div className="relative max-w-5xl mx-auto mb-16">
+        <div className="relative max-w-4xl mx-auto mb-10">
           <p 
             ref={subtitleRef}
-            className="text-xl md:text-2xl lg:text-3xl text-slate-700 leading-relaxed font-light tracking-wide"
+            className="text-lg md:text-xl lg:text-2xl text-slate-700 leading-relaxed font-light tracking-wide"
           >
             We craft <span className="relative inline-block">
               <span className="text-[#348992] font-semibold bg-gradient-to-r from-[#348992]/20 to-transparent px-2 py-1 rounded-lg">compelling narratives</span>
@@ -266,7 +261,7 @@ const Hero: React.FC = () => {
             className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-[#348992] via-[#d73c77] to-[#2d6389] rounded-full mt-4"
           />
         </div>        {/* Ultra-Modern CTA Buttons */}
-        <div ref={ctaRef} className="flex flex-col sm:flex-row gap-8 justify-center items-center mb-24">
+        <div ref={ctaRef} className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
           {/* Primary CTA - Glass Morphism Style */}
           <motion.button
             whileHover={{ 
@@ -275,7 +270,7 @@ const Hero: React.FC = () => {
               rotateX: 5,
             }}
             whileTap={{ scale: 0.98 }}
-            className="group relative px-10 py-5 bg-gradient-to-r from-[#2d6389] via-[#348992] to-[#2d6389] text-white font-bold rounded-2xl shadow-2xl hover:shadow-[#2d6389]/30 transition-all duration-500 text-lg min-w-[280px] overflow-hidden backdrop-blur-sm border border-white/20"
+            className="group relative px-8 py-4 bg-gradient-to-r from-[#2d6389] via-[#348992] to-[#2d6389] text-white font-bold rounded-2xl shadow-2xl hover:shadow-[#2d6389]/30 transition-all duration-500 text-base min-w-[240px] overflow-hidden backdrop-blur-sm border border-white/20"
           >
             <span className="relative z-10 flex items-center justify-center">
               <span className="mr-3">✨</span>
@@ -304,7 +299,7 @@ const Hero: React.FC = () => {
               boxShadow: "0 20px 40px rgba(45, 99, 137, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.6)"
             }}
             whileTap={{ scale: 0.98 }}
-            className="relative px-10 py-5 bg-white/80 backdrop-blur-xl text-[#2d6389] font-bold rounded-2xl transition-all duration-500 text-lg min-w-[280px] shadow-lg hover:shadow-xl border border-white/40 group"
+            className="relative px-8 py-4 bg-white/80 backdrop-blur-xl text-[#2d6389] font-bold rounded-2xl transition-all duration-500 text-base min-w-[240px] shadow-lg hover:shadow-xl border border-white/40 group"
           >
             <span className="flex items-center justify-center">
               <span className="mr-3">🚀</span>
@@ -329,7 +324,7 @@ const Hero: React.FC = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.8, duration: 1 }}
-          className="flex flex-col md:flex-row gap-8 justify-center items-center mb-16 max-w-4xl mx-auto"
+          className="flex flex-col md:flex-row gap-6 justify-center items-center mb-12 max-w-3xl mx-auto"
         >
           <div className="flex items-center space-x-2 px-6 py-3 bg-white/60 backdrop-blur-md rounded-full border border-white/30 shadow-lg">
             <div className="w-3 h-3 bg-[#348992] rounded-full animate-pulse"></div>
