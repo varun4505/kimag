@@ -317,36 +317,6 @@ const Hero: React.FC = () => {
             </span>
             <div className="absolute inset-0 bg-gradient-to-r from-[#348992]/10 via-[#d73c77]/10 to-[#2d6389]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
           </motion.button>        </div>
-
-        {/* Ultra-Modern Scroll Indicator */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 2.5, duration: 1 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-        >
-          <div className="flex flex-col items-center text-slate-500 group cursor-pointer">
-            <motion.span 
-              className="text-xs font-medium mb-4 tracking-widest uppercase opacity-70 group-hover:opacity-100 transition-opacity duration-300"
-              animate={{ opacity: [0.7, 1, 0.7] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            >
-              Scroll to explore
-            </motion.span>
-            <motion.div
-              animate={{ y: [0, 8, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              className="relative w-6 h-12 border-2 border-slate-300/60 rounded-full flex justify-center bg-white/40 backdrop-blur-md shadow-xl group-hover:shadow-2xl group-hover:border-[#348992]/60 transition-all duration-300"
-            >
-              <motion.div
-                animate={{ y: [2, 20, 2], opacity: [1, 0.3, 1] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                className="w-1 h-3 bg-gradient-to-b from-[#2d6389] via-[#348992] to-[#d73c77] rounded-full mt-2 shadow-sm"
-              />
-              <div className="absolute inset-0 bg-gradient-to-b from-[#348992]/10 to-[#d73c77]/10 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            </motion.div>
-          </div>
-        </motion.div>
       </div>
     </div>
   );
