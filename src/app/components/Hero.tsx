@@ -3,6 +3,7 @@
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
+import { useRouter } from 'next/navigation';
 
 const Hero: React.FC = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -10,6 +11,17 @@ const Hero: React.FC = () => {
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
   const particlesRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
+
+  const handleExploreWork = () => {
+    // Navigate to services section
+    document.getElementById('ourservies')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleStartJourney = () => {
+    // Navigate to appointment page in the same tab
+    router.push('/appointment');
+  };
 
   useEffect(() => {
     // Enhanced GSAP animations with better timing
@@ -199,7 +211,7 @@ const Hero: React.FC = () => {
             <span className="relative inline-flex rounded-full h-2 w-2 bg-[#348992] shadow-sm"></span>
           </div>
           <span className="text-[#2d6389] font-semibold text-sm tracking-wider uppercase">
-            Strategic Communications Excellence
+            Integrated Marketing and Communications Agency
           </span>
           <motion.div
             animate={{ rotate: 360 }}
@@ -209,14 +221,13 @@ const Hero: React.FC = () => {
             ✦
           </motion.div>
         </motion.div>        {/* Ultra Modern Main Title */}
-        <div className="relative mb-8">
-          <h1 
+        <div className="relative mb-8">          <h1 
             ref={titleRef}
             className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-[0.9] tracking-tight mb-4"
           >
             <span className="block relative">
               <span className="absolute inset-0 bg-gradient-to-r from-[#2d6389] via-[#348992] to-[#d73c77] bg-clip-text text-transparent blur-lg opacity-30"></span>
-              <span className="relative text-[#2d6389] drop-shadow-xl">Transform</span>
+              <span className="relative bg-gradient-to-r from-[#2d6389] via-[#348992] to-[#d73c77] bg-clip-text text-transparent drop-shadow-xl">Transform</span>
             </span>
             <span className="block relative mt-1">
               <span className="bg-gradient-to-r from-[#348992] via-[#d73c77] to-[#2d6389] bg-clip-text text-transparent drop-shadow-xl">
@@ -262,8 +273,8 @@ const Hero: React.FC = () => {
           />
         </div>        {/* Ultra-Modern CTA Buttons */}
         <div ref={ctaRef} className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
-          {/* Primary CTA - Glass Morphism Style */}
-          <motion.button
+          {/* Primary CTA - Glass Morphism Style */}          <motion.button
+            onClick={handleExploreWork}
             whileHover={{ 
               scale: 1.02, 
               y: -8,
@@ -290,8 +301,8 @@ const Hero: React.FC = () => {
             <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </motion.button>
           
-          {/* Secondary CTA - Neumorphism Style */}
-          <motion.button
+          {/* Secondary CTA - Neumorphism Style */}          <motion.button
+            onClick={handleStartJourney}
             whileHover={{ 
               scale: 1.02, 
               y: -8,

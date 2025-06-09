@@ -1,17 +1,19 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 const ContactUs: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
 
   const handleBookAppointment = () => {
-    // This would redirect to your appointment booking page
-    window.open('/appointment', '_blank');
+    // Navigate to appointment page in the same tab
+    router.push('/appointment');
   };
 
   return (
