@@ -76,10 +76,10 @@ export default function AppointmentPage() {
           </div>
           
           <h1 className="text-4xl md:text-6xl font-black leading-tight mb-6 text-gray-800">
-            Let&apos;s create something
+            Let&apos;s craft stories that spark
             <br />
             <span className="bg-gradient-to-r from-[#2d6389] via-[#348992] to-[#d73c77] bg-clip-text text-transparent">
-              out of this world together.
+              conversations and leave a legacy.
             </span>
           </h1>
         </motion.div>

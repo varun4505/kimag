@@ -155,7 +155,7 @@ const MainNavbar: React.FC = () => {
   const navigationLinks: NavigationLink[] = [
     { href: "#ourservies", text: "Our Services" },
     { href: "#casestudies", text: "Case Studies" },
-    { href: "#ourlocations", text: "Our Locations" },
+    { href: "/locations", text: "Our Locations" },
     { href: "#awards", text: "Awards and Achievements" },
     { href: "#whyuus", text: "Why Us?" },
     { href: "#leaders", text: "Leadership Team" },
@@ -174,13 +174,16 @@ const MainNavbar: React.FC = () => {
             transition={{ duration: 0.5 }}
             className="flex items-center"
           >
-            <Image
-              src={isMobile ? "/logo-small.png" : "/logo-big.png"}
-              alt="Ayush Kumar Logo"
-              width={isMobile ? 40 : 220}
-              height={isMobile ? 40 : 220}
-              priority
-            />
+            <Link href="/" className="cursor-pointer">
+              <Image
+                src={isMobile ? "/logo-small.png" : "/logo-big.png"}
+                alt="Ayush Kumar Logo"
+                width={isMobile ? 40 : 220}
+                height={isMobile ? 40 : 220}
+                priority
+                className="hover:opacity-80 transition-opacity duration-300"
+              />
+            </Link>
           </motion.div>
 
           <div className="hidden md:flex items-center space-x-8">
