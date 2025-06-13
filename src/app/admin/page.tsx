@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Navbar from '../components/Navbar';
 import { Footer } from '../components/Footer';
@@ -27,10 +27,27 @@ interface CaseStudyAccess {
   createdAt: string;
 }
 
+interface Stats {
+  appointments: {
+    pending: number;
+    approved: number;
+    rejected: number;
+  };
+  caseStudies: {
+    pending: number;
+    approved: number;
+    rejected: number;
+  };
+  total: {
+    appointments: number;
+    caseStudies: number;
+  };
+}
+
 export default function AdminPanel() {
   const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [caseStudyAccess, setCaseStudyAccess] = useState<CaseStudyAccess[]>([]);
-  const [stats, setStats] = useState<any>(null);
+  const [stats, setStats] = useState<Stats | null>(null);
   const [activeTab, setActiveTab] = useState<'appointments' | 'caseStudies'>('appointments');
   const [loading, setLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -113,7 +130,6 @@ export default function AdminPanel() {
       });
 
       if (response.ok) {
-        const result = await response.json();
         await Promise.all([fetchCaseStudyAccess(), fetchStats()]);
         
         // Show success message

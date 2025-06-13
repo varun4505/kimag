@@ -33,7 +33,7 @@ export default function AppointmentPage() {
     if (period === 'pm' && hours !== 12) hour24 += 12;
     if (period === 'am' && hours === 12) hour24 = 0;
 
-    const startTime = new Date(year, month, selectedDate, hour24, parseInt(minutes) || 0);
+    const startTime = new Date(year, month, selectedDate, hour24, minutes || 0);
     const endTime = new Date(startTime.getTime() + 30 * 60000); // 30 minutes later
 
     const appointmentData = {
@@ -191,7 +191,7 @@ export default function AppointmentPage() {
                   {/* Calendar Grid */}
                   <div className="grid grid-cols-7 gap-2">
                     {getDaysInMonth().map((day, index) => {
-                      const isAvailable = isDateAvailable(day);
+                      const isAvailable = day ? isDateAvailable(day) : false;
                       const isSelected = selectedDate === day;
                       
                       return (

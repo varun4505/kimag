@@ -28,7 +28,7 @@ export async function GET() {
     ]);
 
     // Format stats
-    const formatStats = (stats: any[]) => {
+    const formatStats = (stats: Array<{ _id: string; count: number }>) => {
       const result = { pending: 0, approved: 0, rejected: 0 };
       stats.forEach(stat => {
         result[stat._id as keyof typeof result] = stat.count;
