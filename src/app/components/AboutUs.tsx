@@ -9,10 +9,8 @@ import {
   Heart, 
   Zap, 
   Award, 
-  Users,
   Sparkles,
   TrendingUp,
-  Globe,
   CheckCircle
 } from 'lucide-react';
 
@@ -141,7 +139,7 @@ const AboutUs: React.FC = () => {
             <p className="text-lg md:text-xl text-gray-700 text-center leading-relaxed max-w-5xl mx-auto">
               Konnections IMAG is an award-winning independent multi-disciplinary communications company 
               offering 360-degree solutions to brands across India. Founded in 2010 and incubated at 
-              NSRCEL Indian Institute of Management, Bangalore, we have evolved into one of India's 
+              NSRCEL Indian Institute of Management, Bangalore, we have evolved into one of India&apos;s 
               leading integrated marketing communication consultancies.
             </p>
           </div>
@@ -209,7 +207,7 @@ const AboutUs: React.FC = () => {
               <div className="relative">
                 <div className="absolute -left-6 top-0 w-1 h-full bg-gradient-to-b from-[#348992] to-[#d73c77] rounded-full opacity-30" />
                 <p className="text-gray-700 leading-relaxed text-lg pl-6">
-                  To be India's <span className="text-[#348992] font-semibold">most trusted</span> communication partner, 
+                  To be India&apos;s <span className="text-[#348992] font-semibold">most trusted</span> communication partner, 
                   recognized for delivering <span className="text-[#d73c77] font-semibold">impactful narratives</span> 
                   that drive business success and build lasting reputations.
                 </p>
@@ -244,7 +242,7 @@ const AboutUs: React.FC = () => {
               <div className="relative">
                 <div className="absolute -left-6 top-0 w-1 h-full bg-gradient-to-b from-[#d73c77] to-[#2d6389] rounded-full opacity-30" />
                 <p className="text-gray-700 leading-relaxed text-lg pl-6">
-                  We're inspired by the belief that one can use communications to 
+                  We&apos;re inspired by the belief that one can use communications to 
                   <span className="text-[#d73c77] font-semibold"> change the world</span> and 
                   the way it responds to <span className="text-[#2d6389] font-semibold">brands, reputations, and ideas</span>.
                 </p>
