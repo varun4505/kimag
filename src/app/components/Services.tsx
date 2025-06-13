@@ -1,7 +1,7 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { AnimatePresence, motion } from "motion/react";
-import { useState } from "react";
+import { motion } from "motion/react";
+import Link from "next/link";
 import { 
   ArrowRight, 
   Sparkles, 
@@ -10,12 +10,17 @@ import {
   Target,
   TrendingUp,
   Users,
-  Lightbulb
+  Lightbulb,
+  Shield,
+  Smartphone,
+  Building,
+  Settings
 } from "lucide-react";
 
 // Main OurServices Component
 export const OurServices = ({
   items,
+  industries,
   className,
 }: {
   items: {
@@ -23,10 +28,12 @@ export const OurServices = ({
     description: string[];
     link: string;
   }[];
+  industries?: {
+    title: string;
+    sectors: string[];
+  }[];
   className?: string;
 }) => {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -53,15 +60,25 @@ export const OurServices = ({
   // Service icons mapping
   const serviceIcons = [
     <Target className="w-8 h-8" key="target" />,
+    <Shield className="w-8 h-8" key="shield" />,
     <TrendingUp className="w-8 h-8" key="trending" />,
-    <Users className="w-8 h-8" key="users" />,
-    <Lightbulb className="w-8 h-8" key="lightbulb" />,
-    <Star className="w-8 h-8" key="star" />,
-    <Zap className="w-8 h-8" key="zap" />
+    <Smartphone className="w-8 h-8" key="smartphone" />,
+    <Building className="w-8 h-8" key="building" />,
+    <Settings className="w-8 h-8" key="settings" />
   ];
 
+  // Convert items to services format for consistency
+  const services = items.map((item, index) => ({
+    title: item.title,
+    description: item.description[0], // Use first description as main tagline
+    image: "/api/placeholder/600/400",
+    icon: serviceIcons[index % serviceIcons.length],
+    link: item.link,
+    features: item.description.slice(0, 3) // Show only top 3 features
+  }));
+
   return (
-    <section className={cn("py-20 px-4 sm:px-8 lg:px-16 bg-gradient-to-br from-slate-50 via-white to-blue-50/30 relative overflow-hidden", className)}>
+    <section className={cn("py-16 px-4 sm:px-8 lg:px-16 bg-gradient-to-br from-slate-50 via-white to-blue-50/30 relative overflow-hidden", className)} id="ourservies">
       {/* Enhanced Background Elements */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-20 w-64 h-64 bg-gradient-to-br from-[#348992]/10 to-[#d73c77]/5 rounded-full blur-3xl"></div>
@@ -83,209 +100,160 @@ export const OurServices = ({
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#348992]/10 to-[#d73c77]/10 rounded-full mb-6 border border-[#348992]/20">
             <Sparkles className="w-4 h-4 text-[#348992]" />
-            <span className="text-sm font-medium text-[#348992]">What We Offer</span>
+            <span className="text-sm font-medium text-[#348992]">OUR EXPERTISE</span>
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 leading-tight">
             <span className="bg-gradient-to-r from-[#2d6389] via-[#348992] to-[#d73c77] bg-clip-text text-transparent">
-              Our Services
+              Services
             </span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Comprehensive solutions designed to elevate your brand and drive meaningful results
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Comprehensive communication solutions for your business
           </p>
           <motion.div
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
             transition={{ delay: 0.5, duration: 1, ease: "easeOut" }}
-            className="w-32 h-1 bg-gradient-to-r from-[#2d6389] via-[#348992] to-[#d73c77] mx-auto rounded-full mt-6"
+            className="w-24 h-1.5 bg-gradient-to-r from-[#2d6389] via-[#348992] to-[#d73c77] mx-auto rounded-full mt-6"
           />
         </motion.div>
-
         {/* Enhanced Services Grid */}
         <motion.div 
           variants={itemVariants}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
-          {items.map((item, idx) => (
-            <motion.a
-              href={item.link}
-              key={item.link}
-              className="relative group block h-full w-full"
-              onMouseEnter={() => setHoveredIndex(idx)}
-              onMouseLeave={() => setHoveredIndex(null)}
+          {services.map((service, index) => (
+            <motion.div
+              key={service.title}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: index * 0.15 }}
+              viewport={{ once: true }}
+              className="group cursor-pointer"
               whileHover={{ y: -8 }}
-              transition={{ duration: 0.3 }}
             >
-              <AnimatePresence>
-                {hoveredIndex === idx && (
-                  <motion.span
-                    className="absolute inset-0 h-full w-full bg-gradient-to-br from-[#2d6389]/20 via-[#348992]/20 to-[#d73c77]/20 block rounded-3xl"
-                    layoutId="hoverBackground"
-                    initial={{ opacity: 0 }}
-                    animate={{
-                      opacity: 1,
-                      transition: { duration: 0.15 },
-                    }}
-                    exit={{
-                      opacity: 0,
-                      transition: { duration: 0.15, delay: 0.2 },
-                    }}
-                  />
-                )}
-              </AnimatePresence>
-              <Card>
-                <CardImage icon={serviceIcons[idx % serviceIcons.length]} />
-                <CardTitle>{item.title}</CardTitle>
-                <CardDescription>
-                  <ul className="list-none space-y-2">
-                    {item.description.map((point, i) => (
-                      <li key={i} className="flex items-start gap-2">
-                        <div className="w-1.5 h-1.5 bg-gradient-to-r from-[#348992] to-[#d73c77] rounded-full mt-2 flex-shrink-0"></div>
-                        <span>{point}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardDescription>
-                <CardCTA />
-              </Card>
-            </motion.a>
+              <Link href={service.link}>
+                <div className="relative overflow-hidden rounded-2xl bg-white shadow-md hover:shadow-xl transition-all duration-500 h-full border border-gray-100 group-hover:border-[#348992]/30">
+                  {/* Service Image with Enhanced Overlay */}
+                  <div className="relative h-64 overflow-hidden">
+                    <div 
+                      className="absolute inset-0 bg-gradient-to-br from-[#2d6389]/40 via-[#348992]/30 to-[#d73c77]/40 transition-all duration-700 group-hover:scale-105"
+                      style={{
+                        backgroundImage: `url(${service.image})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center'
+                      }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+                    
+                    {/* Floating Icon */}
+                    <div className="absolute top-4 right-4">
+                      <motion.div 
+                        className="w-12 h-12 bg-white/95 backdrop-blur-sm rounded-xl flex items-center justify-center text-[#348992] shadow-xl"
+                        whileHover={{ rotate: 15, scale: 1.1 }}
+                        transition={{ duration: 0.4 }}
+                      >
+                        {service.icon}
+                      </motion.div>
+                    </div>
+                    
+                    {/* Main Title - Smaller */}
+                    <div className="absolute bottom-4 left-4 right-4">
+                      <h3 className="text-xl font-bold text-white leading-tight">
+                        {service.title}
+                      </h3>
+                    </div>
+                  </div>
+                  
+                  {/* Professional Footer with CTA */}
+                  <div className="p-4">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[#348992] font-medium text-sm group-hover:text-[#2d6389] transition-colors duration-300">
+                        Learn more
+                      </span>
+                      
+                      <div className="w-8 h-8 bg-gray-100 group-hover:bg-[#348992] rounded-lg flex items-center justify-center transition-all duration-300">
+                        <ArrowRight className="w-4 h-4 text-gray-600 group-hover:text-white transition-colors duration-300" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            </motion.div>
           ))}
         </motion.div>
+
+        {/* Industry Verticals Section */}
+        {industries && industries.length > 0 && (
+          <motion.div 
+            variants={itemVariants}
+            className="mt-20"
+          >
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#d73c77]/15 to-[#348992]/15 rounded-full mb-6 border border-[#d73c77]/30">
+                <Star className="w-4 h-4 text-[#d73c77]" />
+                <span className="text-sm font-bold text-[#d73c77]">INDUSTRIES</span>
+              </div>
+              <h3 className="text-3xl md:text-4xl font-black mb-8 leading-tight">
+                <span className="bg-gradient-to-r from-[#d73c77] via-[#348992] to-[#2d6389] bg-clip-text text-transparent">
+                  We Serve
+                </span>
+              </h3>
+              <motion.div
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                transition={{ delay: 0.5, duration: 1, ease: "easeOut" }}
+                className="w-20 h-1 bg-gradient-to-r from-[#d73c77] via-[#348992] to-[#2d6389] mx-auto rounded-full mt-4"
+              />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {industries.map((industry, idx) => (
+                <motion.div
+                  key={industry.title}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: idx * 0.1 }}
+                  viewport={{ once: true }}
+                  className="bg-white rounded-2xl p-6 border border-gray-100 shadow-md hover:shadow-lg transition-all duration-300 group hover:border-[#348992]/30"
+                  whileHover={{ y: -4 }}
+                >
+                  <div className="flex items-center mb-6">
+                    <div className="w-12 h-12 bg-gradient-to-br from-[#d73c77] to-[#348992] rounded-xl flex items-center justify-center mr-3 shadow-md group-hover:shadow-lg transition-all duration-300">
+                      <TrendingUp className="w-6 h-6 text-white" />
+                    </div>
+                    <h4 className="text-lg font-bold text-[#2d6389] group-hover:text-[#348992] transition-colors duration-300">
+                      {industry.title}
+                    </h4>
+                  </div>
+                  
+                  {/* Show only top 4-5 sectors to reduce clutter */}
+                  <div className="space-y-3">
+                    {industry.sectors.slice(0, 5).map((sector, sectorIdx) => (
+                      <div 
+                        key={sectorIdx}
+                        className="flex items-center gap-2 p-2 rounded-lg hover:bg-gradient-to-r hover:from-[#348992]/5 hover:to-[#d73c77]/5 transition-all duration-300"
+                      >
+                        <div className="w-2 h-2 bg-gradient-to-r from-[#348992] to-[#d73c77] rounded-full flex-shrink-0"></div>
+                        <span className="text-gray-700 text-sm font-medium">{sector}</span>
+                      </div>
+                    ))}
+                    {industry.sectors.length > 5 && (
+                      <div className="pt-2 border-t border-gray-100">
+                        <span className="text-xs text-[#348992] font-semibold">
+                          +{industry.sectors.length - 5} more sectors
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        )}
       </motion.div>
     </section>
   );
 };
 
-// Enhanced Card Wrapper
-export const Card = ({
-  className,
-  children,
-}: {
-  className?: string;
-  children: React.ReactNode;
-}) => {
-  return (
-    <div
-      className={cn(
-        "rounded-3xl h-full w-full p-2 overflow-hidden bg-white/80 backdrop-blur-xl border border-white/20 group-hover:border-[#348992]/30 relative z-20 shadow-lg group-hover:shadow-2xl transition-all duration-500",
-        className
-      )}
-    >
-      <div className="relative z-50 h-full">
-        <div className="p-6 h-full flex flex-col">{children}</div>
-      </div>
-    </div>
-  );
-};
-
-// Enhanced Card Image with Icon
-export const CardImage = ({
-  className,
-  icon,
-}: {
-  className?: string;
-  icon?: React.ReactNode;
-}) => {
-  return (
-    <div
-      className={cn(
-        "w-full h-48 bg-gradient-to-br from-[#2d6389]/10 via-[#348992]/10 to-[#d73c77]/10 rounded-2xl mb-6 flex items-center justify-center border border-gray-100/50 relative overflow-hidden group-hover:border-[#348992]/20 transition-all duration-300",
-        className
-      )}
-    >
-      {/* Background pattern */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(52,137,146,0.1),transparent_50%),radial-gradient(circle_at_70%_80%,rgba(215,60,119,0.1),transparent_50%)]"></div>
-      
-      {/* Icon container */}
-      <motion.div 
-        className="relative z-10 w-16 h-16 bg-gradient-to-br from-[#348992] to-[#2d6389] rounded-2xl flex items-center justify-center text-white shadow-lg"
-        whileHover={{ 
-          scale: 1.1, 
-          rotate: [0, -10, 10, 0],
-          boxShadow: "0 20px 40px rgba(52, 137, 146, 0.3)"
-        }}
-        transition={{ duration: 0.3 }}
-      >
-        {icon || <Target className="w-8 h-8" />}
-      </motion.div>
-      
-      {/* Floating elements */}
-      <motion.div
-        className="absolute top-4 right-4 w-3 h-3 bg-gradient-to-br from-[#d73c77]/40 to-[#348992]/40 rounded-full"
-        animate={{ 
-          scale: [1, 1.2, 1],
-          opacity: [0.5, 1, 0.5]
-        }}
-        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute bottom-4 left-4 w-2 h-2 bg-gradient-to-br from-[#348992]/40 to-[#2d6389]/40 rounded-full"
-        animate={{ 
-          scale: [1, 1.3, 1],
-          opacity: [0.3, 0.8, 0.3]
-        }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-      />
-    </div>
-  );
-};
-// Enhanced Card Title
-export const CardTitle = ({
-  className,
-  children,
-}: {
-  className?: string;
-  children: React.ReactNode;
-}) => {
-  return (
-    <h4
-      className={cn(
-        "text-[#2d6389] font-bold tracking-wide text-xl mb-4 group-hover:text-[#348992] transition-colors duration-300",
-        className
-      )}
-    >
-      {children}
-    </h4>
-  );
-};
-
-// Enhanced Card Description
-export const CardDescription = ({
-  className,
-  children,
-}: {
-  className?: string;
-  children: React.ReactNode;
-}) => {
-  return (
-    <div
-      className={cn(
-        "text-gray-600 tracking-wide leading-relaxed text-sm flex-grow",
-        className
-      )}
-    >
-      {children}
-    </div>
-  );
-};
-
-// New Card CTA Component
-export const CardCTA = ({
-  className,
-}: {
-  className?: string;
-}) => {
-  return (
-    <motion.div
-      className={cn(
-        "mt-6 pt-4 border-t border-gray-100 flex items-center justify-between text-[#348992] font-medium text-sm group-hover:text-[#2d6389] transition-colors duration-300",
-        className
-      )}
-      whileHover={{ x: 5 }}
-      transition={{ duration: 0.2 }}
-    >
-      <span>Learn More</span>
-      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-    </motion.div>
-  );
-};
+export default OurServices;
