@@ -8,21 +8,64 @@ export default function AppointmentPage() {
   const [form, setForm] = useState({ 
     name: '', 
     email: '', 
-    startTime: '', 
-    endTime: '', 
-    approver: '' 
+    approver: 'kim@kimag.com' // Default approver
   });
   
-  const [selectedDate, setSelectedDate] = useState(5); // Default to 5th June
+  const [selectedDate, setSelectedDate] = useState(13); // Default to 13th June (current date)
   const [selectedTime, setSelectedTime] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const submit = async () => {
-    await fetch('/api/appointments/new', {
-      method: 'POST',
-      body: JSON.stringify(form),
-      headers: { 'Content-Type': 'application/json' },
-    });
-    alert('Request sent!');
+    if (!selectedDate || !selectedTime || !form.name || !form.email) {
+      alert('Please fill in all required fields and select a date and time.');
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    // Convert selected date and time to proper Date objects
+    const year = 2025;
+    const month = 5; // June (0-indexed)
+    const [timeStr, period] = selectedTime.split(/(?=[ap]m)/);
+    const [hours, minutes] = timeStr.split(':').map(num => parseInt(num));
+    
+    let hour24 = hours;
+    if (period === 'pm' && hours !== 12) hour24 += 12;
+    if (period === 'am' && hours === 12) hour24 = 0;
+
+    const startTime = new Date(year, month, selectedDate, hour24, parseInt(minutes) || 0);
+    const endTime = new Date(startTime.getTime() + 30 * 60000); // 30 minutes later
+
+    const appointmentData = {
+      ...form,
+      startTime: startTime.toISOString(),
+      endTime: endTime.toISOString()
+    };
+
+    try {
+      const response = await fetch('/api/appointments/new', {
+        method: 'POST',
+        body: JSON.stringify(appointmentData),
+        headers: { 'Content-Type': 'application/json' },
+      });
+
+      const result = await response.json();
+      
+      if (response.ok) {
+        alert('Appointment request sent successfully! You will receive a confirmation email shortly.');
+        // Reset form
+        setForm({ name: '', email: '', approver: 'kim@kimag.com' });
+        setSelectedDate(13); // Reset to current date
+        setSelectedTime('');
+      } else {
+        alert(result.message || 'Failed to send appointment request.');
+      }
+    } catch (error) {
+      console.error('Error submitting appointment:', error);
+      alert('An error occurred while sending your request. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   // Generate calendar days for June 2025
@@ -42,6 +85,27 @@ export default function AppointmentPage() {
     }
     
     return days;
+  };
+
+  // Helper function to check if a date is available (excluding weekends for this example)
+  const isDateAvailable = (day: number) => {
+    if (!day) return false;
+    const date = new Date(2025, 5, day); // June 2025
+    const dayOfWeek = date.getDay();
+    // Exclude weekends (Saturday = 6, Sunday = 0)
+    return dayOfWeek !== 0 && dayOfWeek !== 6;
+  };
+
+  // Helper function to get day name and formatted date
+  const getSelectedDateInfo = () => {
+    const date = new Date(2025, 5, selectedDate); // June 2025
+    const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const dayAbbr = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    return {
+      dayName: dayNames[date.getDay()],
+      dayAbbr: dayAbbr[date.getDay()],
+      formattedDate: selectedDate.toString().padStart(2, '0')
+    };
   };
 
   const timeSlots = [
@@ -126,31 +190,57 @@ export default function AppointmentPage() {
 
                   {/* Calendar Grid */}
                   <div className="grid grid-cols-7 gap-2">
-                    {getDaysInMonth().map((day, index) => (
-                      <button
-                        key={index}
-                        onClick={() => day && setSelectedDate(day)}
-                        disabled={!day}
-                        className={`
-                          aspect-square flex items-center justify-center text-sm font-medium rounded-xl transition-all duration-300
-                          ${!day ? 'invisible' : ''}
-                          ${selectedDate === day 
-                            ? 'bg-gradient-to-r from-[#2d6389] to-[#348992] text-white shadow-lg transform scale-105' 
-                            : 'hover:bg-gray-100 text-gray-700'
-                          }
-                          ${day === 5 ? 'ring-2 ring-[#348992]/30' : ''}
-                        `}
-                      >
-                        {day}
-                      </button>
-                    ))}
+                    {getDaysInMonth().map((day, index) => {
+                      const isAvailable = isDateAvailable(day);
+                      const isSelected = selectedDate === day;
+                      
+                      return (
+                        <button
+                          key={index}
+                          onClick={() => day && isAvailable && setSelectedDate(day)}
+                          disabled={!day || !isAvailable}
+                          className={`
+                            aspect-square flex items-center justify-center text-sm font-medium rounded-xl transition-all duration-300
+                            ${!day ? 'invisible' : ''}
+                            ${!isAvailable && day ? 'text-gray-300 cursor-not-allowed bg-gray-50' : ''}
+                            ${isSelected && isAvailable
+                              ? 'bg-gradient-to-r from-[#2d6389] to-[#348992] text-white shadow-lg transform scale-105' 
+                              : isAvailable 
+                                ? 'hover:bg-gray-100 text-gray-700 hover:scale-105'
+                                : ''
+                            }
+                            ${day === 13 && isAvailable ? 'ring-2 ring-[#348992]/30' : ''}
+                          `}
+                        >
+                          {day}
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  {/* Calendar Legend */}
+                  <div className="mt-4 flex items-center justify-center space-x-4 text-xs text-gray-500">
+                    <div className="flex items-center space-x-1">
+                      <div className="w-3 h-3 bg-gradient-to-r from-[#2d6389] to-[#348992] rounded"></div>
+                      <span>Selected</span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <div className="w-3 h-3 bg-gray-100 rounded"></div>
+                      <span>Available</span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <div className="w-3 h-3 bg-gray-50 border border-gray-200 rounded"></div>
+                      <span>Unavailable</span>
+                    </div>
                   </div>
                 </div>
 
                 {/* Time Slots */}
                 <div className="bg-white rounded-3xl p-6 shadow-xl border border-gray-100">
                   <div className="flex items-center justify-between mb-6">
-                    <h3 className="text-xl font-bold text-gray-800">Thu 05</h3>
+                    <h3 className="text-xl font-bold text-gray-800">
+                      {getSelectedDateInfo().dayAbbr} {getSelectedDateInfo().formattedDate}
+                    </h3>
                     <div className="flex items-center space-x-4 text-sm text-gray-500">
                       <span>12h</span>
                       <span>24h</span>
@@ -210,29 +300,49 @@ export default function AppointmentPage() {
                         required
                       />
                     </div>
+
+                    <div className="md:col-span-2">
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Meeting With
+                      </label>
+                      <select
+                        value={form.approver}
+                        onChange={(e) => setForm(f => ({ ...f, approver: e.target.value }))}
+                        className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#348992]/20 focus:border-[#348992] transition-colors outline-none"
+                      >
+                        <option value="kim@kimag.com">Kim - CEO & Creative Director</option>
+                        <option value="team@kimag.com">Team Lead</option>
+                      </select>
+                    </div>
                   </div>
                 </div>
 
                 {/* Book Button */}
                 <motion.button
                   onClick={submit}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  disabled={!selectedTime || !form.name || !form.email}
+                  whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+                  whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+                  disabled={!selectedTime || !form.name || !form.email || isSubmitting}
                   className={`
-                    h-fit py-6 px-6 rounded-xl font-semibold text-lg transition-all duration-300
-                    ${(selectedTime && form.name && form.email)
+                    h-fit py-6 px-6 rounded-xl font-semibold text-lg transition-all duration-300 relative
+                    ${(selectedTime && form.name && form.email && !isSubmitting)
                       ? 'bg-gradient-to-r from-[#2d6389] to-[#348992] text-white shadow-lg hover:shadow-xl' 
                       : 'bg-gray-200 text-gray-400 cursor-not-allowed'
                     }
                   `}
                 >
-                  {selectedTime && form.name && form.email 
-                    ? `Book for ${selectedTime}` 
-                    : !selectedTime 
-                      ? 'Select a time' 
-                      : 'Fill in your details'
-                  }
+                  {isSubmitting ? (
+                    <div className="flex items-center justify-center space-x-2">
+                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                      <span>Sending...</span>
+                    </div>
+                  ) : selectedTime && form.name && form.email ? (
+                    `Book for ${selectedTime}` 
+                  ) : !selectedTime ? (
+                    'Select a time' 
+                  ) : (
+                    'Fill in your details'
+                  )}
                 </motion.button>
               </div>
             </motion.div>

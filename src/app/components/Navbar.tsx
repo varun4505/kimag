@@ -154,11 +154,12 @@ const MainNavbar: React.FC = () => {
 
   const navigationLinks: NavigationLink[] = [
     { href: "#ourservies", text: "Our Services" },
-    { href: "#casestudies", text: "Case Studies" },
+    { href: "/case-studies", text: "Case Studies Access" },
     { href: "/locations", text: "Our Locations" },
     { href: "#awards", text: "Awards and Achievements" },
     { href: "#whyuus", text: "Why Us?" },
     { href: "#leaders", text: "Leadership Team" },
+    { href: "/appointment", text: "Book Appointment" },
   ];
 
   return (
