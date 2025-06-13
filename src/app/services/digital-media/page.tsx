@@ -6,7 +6,6 @@ import Link from 'next/link';
 import { 
   Smartphone, 
   Users, 
-  TrendingUp, 
   Camera, 
   Share2, 
   BarChart3,

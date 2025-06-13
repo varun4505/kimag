@@ -14,8 +14,7 @@ import {
   CheckCircle,
   Zap,
   Eye,
-  Target,
-  Award
+  Target
 } from 'lucide-react';
 
 const SpecializedServicesPage: React.FC = () => {

@@ -6,12 +6,9 @@ import {
   ArrowRight, 
   Sparkles, 
   Star,
-  Zap,
   Target,
-  TrendingUp,
-  Users,
-  Lightbulb,
   Shield,
+  TrendingUp,
   Smartphone,
   Building,
   Settings

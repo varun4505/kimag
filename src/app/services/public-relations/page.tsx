@@ -6,8 +6,6 @@ import Link from 'next/link';
 import { 
   Target, 
   Users, 
-  TrendingUp, 
-  Shield, 
   Megaphone, 
   Globe,
   ArrowLeft,
@@ -109,7 +107,7 @@ const PublicRelationsPage: React.FC = () => {
             </h1>
             
             <p className="text-xl md:text-2xl text-white/90 max-w-4xl mx-auto leading-relaxed mb-12">
-              Build, protect, and enhance your brand's reputation through strategic public relations 
+              Build, protect, and enhance your brand&apos;s reputation through strategic public relations 
               and comprehensive reputation management solutions
             </p>
             

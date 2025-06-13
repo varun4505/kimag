@@ -38,18 +38,6 @@ const AboutUs: React.FC = () => {
     }
   };
 
-  const floatingVariants = {
-    float: {
-      y: [-20, 20, -20],
-      rotate: [0, 180, 360],
-      transition: {
-        duration: 8,
-        repeat: Infinity,
-        ease: "easeInOut"
-      }
-    }
-  };
-
   return (
     <section className="relative py-20 px-4 bg-white">
       {/* Subtle Background */}

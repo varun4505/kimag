@@ -198,21 +198,24 @@ const Hero: React.FC = () => {
         >
           <div className="w-5 h-5 bg-gradient-to-tl from-[#348992]/25 to-[#2d6389]/25 rounded-sm filter drop-shadow-lg"></div>
         </motion.div>      </div>      {/* Main Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 text-center pt-24 md:pt-16">        {/* Professional Badge */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-20 sm:pt-24 md:pt-16">
+        {/* Professional Badge */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.6 }}
-          className="inline-flex items-center px-4 py-2 mb-8 bg-gray-100 border border-gray-200 rounded-full"
+          className="inline-flex items-center px-3 sm:px-4 py-2 mb-6 sm:mb-8 bg-gray-100 border border-gray-200 rounded-full"
         >
-          <span className="text-gray-700 font-medium text-sm">
+          <span className="text-gray-700 font-medium text-xs sm:text-sm text-center">
             Integrated Marketing & Communications
           </span>
-        </motion.div>        {/* Clean, Professional Title */}
-        <div className="mb-8">
+        </motion.div>
+
+        {/* Clean, Professional Title */}
+        <div className="mb-6 sm:mb-8">
           <h1 
             ref={titleRef}
-            className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight mb-6 text-gray-900"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight tracking-tight mb-4 sm:mb-6 text-gray-900 px-2"
           >
             <span className="block">
               Strategic Communications
@@ -221,23 +224,26 @@ const Hero: React.FC = () => {
               That Drive Results
             </span>
           </h1>
-        </div>        {/* Professional Subtitle */}
-        <div className="max-w-4xl mx-auto mb-10">
+        </div>
+
+        {/* Professional Subtitle */}
+        <div className="max-w-4xl mx-auto mb-8 sm:mb-10 px-4">
           <p 
             ref={subtitleRef}
-            className="text-lg md:text-xl text-gray-600 leading-relaxed"
+            className="text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed"
           >
             We help businesses build stronger relationships with their stakeholders through 
             strategic communications, crisis management, and integrated marketing solutions.
-          </p>        </div>
+          </p>
+        </div>
 
         {/* Professional CTA Buttons */}
-        <div ref={ctaRef} className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
+        <div ref={ctaRef} className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-12 sm:mb-16 px-4">
           <motion.button
             onClick={handleExploreWork}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="px-8 py-4 bg-[#348992] text-white font-semibold rounded-lg hover:bg-[#2d6389] transition-all duration-300 shadow-sm hover:shadow-md min-w-[180px]"
+            className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-[#348992] text-white font-semibold rounded-lg hover:bg-[#2d6389] transition-all duration-300 shadow-sm hover:shadow-md min-w-[180px]"
           >
             Our Services
           </motion.button>
@@ -246,7 +252,7 @@ const Hero: React.FC = () => {
             onClick={handleStartJourney}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="px-8 py-4 bg-transparent text-[#348992] font-semibold rounded-lg border-2 border-[#348992] hover:bg-[#348992] hover:text-white transition-all duration-300 shadow-sm hover:shadow-md min-w-[180px]"
+            className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-transparent text-[#348992] font-semibold rounded-lg border-2 border-[#348992] hover:bg-[#348992] hover:text-white transition-all duration-300 shadow-sm hover:shadow-md min-w-[180px]"
           >
             Get Started
           </motion.button>
