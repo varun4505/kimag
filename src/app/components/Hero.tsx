@@ -223,11 +223,10 @@ const Hero: React.FC = () => {
               Creating Impact
             </span>
           </h1>
-          
-          {/* Konnections IMAG Slogan */}
+            {/* Konnections IMAG Slogan */}
           <div className="mt-4 sm:mt-6">
             <p className="text-lg sm:text-xl md:text-2xl font-medium text-gray-700 italic">
-              "Where Strategic Communication Meets Creative Excellence"
+              &ldquo;Where Strategic Communication Meets Creative Excellence&rdquo;
             </p>
           </div>
         </div>
