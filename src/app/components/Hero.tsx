@@ -212,18 +212,24 @@ const Hero: React.FC = () => {
         </motion.div>
 
         {/* Clean, Professional Title */}
-        <div className="mb-6 sm:mb-8">
-          <h1 
+        <div className="mb-6 sm:mb-8">          <h1 
             ref={titleRef}
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight tracking-tight mb-4 sm:mb-6 text-gray-900 px-2"
           >
             <span className="block">
-              Strategic Communications
+              Connecting Visions
             </span>
-            <span className="block text-[#348992]">
-              That Drive Results
+            <span className="block bg-gradient-to-r from-[#348992] via-[#2d6389] to-[#d73c77] bg-clip-text text-transparent">
+              Creating Impact
             </span>
           </h1>
+          
+          {/* Konnections IMAG Slogan */}
+          <div className="mt-4 sm:mt-6">
+            <p className="text-lg sm:text-xl md:text-2xl font-medium text-gray-700 italic">
+              "Where Strategic Communication Meets Creative Excellence"
+            </p>
+          </div>
         </div>
 
         {/* Professional Subtitle */}
