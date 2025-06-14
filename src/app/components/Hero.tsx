@@ -9,6 +9,7 @@ import Image from 'next/image';
 const Hero: React.FC = () => {
   const heroRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
+  const sloganRef = useRef<HTMLDivElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
   const particlesRef = useRef<HTMLDivElement>(null);
@@ -52,6 +53,15 @@ const Hero: React.FC = () => {
           stagger: 0.2,
           ease: "power4.out" 
         }
+      );
+    }
+    
+    // Slogan animation with fade-in and slide up effect
+    if (sloganRef.current) {
+      tl.fromTo(sloganRef.current,
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1.2, ease: "power3.out" },
+        "-=1.4"
       );
     }
     
@@ -235,7 +245,7 @@ const Hero: React.FC = () => {
               </h1>
               
               {/* Konnections IMAG Slogan */}
-              <div className="mt-4">
+              <div ref={sloganRef} className="mt-4">
                 <p className="text-lg lg:text-xl font-medium text-gray-700 italic">
                   &ldquo;Where Strategic Communication Meets Creative Excellence&rdquo;
                 </p>
