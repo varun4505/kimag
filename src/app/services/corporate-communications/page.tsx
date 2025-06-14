@@ -3,6 +3,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import DraggableCarousel from '@/app/components/DraggableCarousel';
+import Navbar from '@/app/components/Navbar';
 import { 
   Building, 
   Users, 
@@ -11,7 +13,6 @@ import {
   Award, 
   Target,
   ArrowLeft,
-  CheckCircle,
   Briefcase,
   Globe,
   Heart,
@@ -64,15 +65,10 @@ const CorporateCommunicationsPage: React.FC = () => {
     }
   ];
 
-  const corporateMetrics = [
-    { metric: "500+", label: "Corporate Events Managed" },
-    { metric: "100+", label: "CSR Programs Launched" }, 
-    { metric: "90%", label: "Employee Engagement Rate" },
-    { metric: "200+", label: "Executive Positioning Projects" }
-  ];
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-green-50/30">
+    <>
+      <Navbar />
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-green-50/30">
       {/* Hero Section with Image Overlay */}
       <section className="relative py-24 px-4 sm:px-8 lg:px-16 overflow-hidden">
         {/* Background Image with Overlay */}
@@ -120,6 +116,19 @@ const CorporateCommunicationsPage: React.FC = () => {
               solutions that drive engagement and build stakeholder confidence
             </p>
             
+            <div className="flex justify-center mb-8">
+              <Link href="/appointment">
+                <motion.div
+                  className="flex items-center gap-2 px-8 py-4 bg-green-600/90 hover:bg-green-600 text-white font-semibold rounded-full shadow-lg transition-all duration-300 cursor-pointer"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Target className="w-5 h-5" />
+                  <span>Schedule Corporate Consultation</span>
+                </motion.div>
+              </Link>
+            </div>
+            
             <motion.div
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
@@ -128,58 +137,6 @@ const CorporateCommunicationsPage: React.FC = () => {
             />
           </div>
         </motion.div>
-      </section>
-
-      {/* Corporate Metrics */}
-      <section className="py-16 px-4 sm:px-8 lg:px-16 bg-white/80 backdrop-blur-xl">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {corporateMetrics.map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="group"
-              >
-                <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-green-600 to-[#2d6389] bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300">
-                  {item.metric}
-                </div>
-                <p className="text-gray-600 font-medium">{item.label}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Corporate Excellence Banner */}
-      <section className="py-8 px-4 sm:px-8 lg:px-16 bg-gradient-to-r from-green-500 to-blue-600">
-        <div className="max-w-7xl mx-auto">
-          <motion.div 
-            className="flex flex-col md:flex-row items-center justify-between text-white"
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <div className="flex items-center gap-4 mb-4 md:mb-0">
-              <Award className="w-8 h-8 text-yellow-300" />
-              <div>
-                <h3 className="text-xl font-bold">Transform Your Corporate Communication</h3>
-                <p className="text-white/90">Align stakeholders and drive organizational success</p>
-              </div>
-            </div>
-            <motion.div
-              className="flex items-center gap-2 px-6 py-3 bg-white text-green-600 font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Target className="w-5 h-5" />
-              <span>Get Corporate Strategy</span>
-            </motion.div>
-          </motion.div>
-        </div>
       </section>
 
       {/* Services Details */}
@@ -202,61 +159,6 @@ const CorporateCommunicationsPage: React.FC = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <motion.div
-                key={service.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="group"
-              >
-                <div className="bg-white/80 backdrop-blur-xl p-8 rounded-3xl border border-white/20 shadow-lg hover:shadow-2xl transition-all duration-500 h-full">
-                  {/* Service Image with Overlay */}
-                  <div className="relative h-48 mb-6 rounded-2xl overflow-hidden">
-                    <div 
-                      className="absolute inset-0 bg-gradient-to-br from-green-500/20 via-[#2d6389]/20 to-blue-600/20"
-                      style={{
-                        backgroundImage: `url('${service.image}')`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center'
-                      }}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent"></div>
-                    
-                    {/* Icon and Text Overlay */}
-                    <div className="absolute inset-0 flex flex-col justify-between p-6">
-                      <div className="flex justify-end">
-                        <div className="w-12 h-12 bg-white/90 backdrop-blur-sm rounded-xl flex items-center justify-center text-green-600 shadow-lg">
-                          {service.icon}
-                        </div>
-                      </div>
-                      
-                      <div className="bg-white/90 backdrop-blur-sm p-4 rounded-2xl shadow-lg">
-                        <h3 className="text-lg font-bold text-[#2d6389] mb-2">
-                          {service.title}
-                        </h3>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <p className="text-gray-600 leading-relaxed mb-6">
-                    {service.description}
-                  </p>
-                  
-                  <div className="space-y-3">
-                    {service.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-center gap-3">
-                        <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-                        <span className="text-gray-700 text-sm">{feature}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -319,6 +221,7 @@ const CorporateCommunicationsPage: React.FC = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

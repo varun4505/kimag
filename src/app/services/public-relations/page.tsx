@@ -3,13 +3,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import DraggableCarousel from '@/app/components/DraggableCarousel';
+import Navbar from '@/app/components/Navbar';
 import { 
   Target, 
   Users, 
   Megaphone, 
   Globe,
   ArrowLeft,
-  CheckCircle,
   Star,
   Eye,
   Award
@@ -61,15 +62,10 @@ const PublicRelationsPage: React.FC = () => {
     }
   ];
 
-  const successMetrics = [
-    { metric: "95%", label: "Media Coverage Success Rate" },
-    { metric: "300+", label: "Media Relationships" }, 
-    { metric: "50+", label: "Brand Positioning Projects" },
-    { metric: "24/7", label: "Reputation Monitoring" }
-  ];
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30">
+    <>
+      <Navbar />
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30">
       {/* Hero Section with Image Overlay */}
       <section className="relative py-24 px-4 sm:px-8 lg:px-16 overflow-hidden">
         {/* Background Image with Overlay */}
@@ -117,6 +113,19 @@ const PublicRelationsPage: React.FC = () => {
               and comprehensive reputation management solutions
             </p>
             
+            <div className="flex justify-center mb-8">
+              <Link href="/appointment">
+                <motion.div
+                  className="flex items-center gap-2 px-8 py-4 bg-blue-600/90 hover:bg-blue-600 text-white font-semibold rounded-full shadow-lg transition-all duration-300 cursor-pointer"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Star className="w-5 h-5" />
+                  <span>Book PR Strategy Session</span>
+                </motion.div>
+              </Link>
+            </div>
+            
             <motion.div
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
@@ -125,29 +134,6 @@ const PublicRelationsPage: React.FC = () => {
             />
           </div>
         </motion.div>
-      </section>
-
-      {/* Success Metrics */}
-      <section className="py-16 px-4 sm:px-8 lg:px-16 bg-white/80 backdrop-blur-xl">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {successMetrics.map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="group"
-              >
-                <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#2d6389] to-[#348992] bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300">
-                  {item.metric}
-                </div>
-                <p className="text-gray-600 font-medium">{item.label}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
       </section>
 
       {/* Services Details */}
@@ -162,7 +148,7 @@ const PublicRelationsPage: React.FC = () => {
           >
             <h2 className="text-3xl md:text-5xl font-bold mb-6">
               <span className="bg-gradient-to-r from-[#2d6389] via-[#348992] to-[#d73c77] bg-clip-text text-transparent">
-                Comprehensive PR Solutions
+                Strategic PR Excellence
               </span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
@@ -170,65 +156,15 @@ const PublicRelationsPage: React.FC = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <motion.div
-                key={service.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="group"
-              >
-                <div className="bg-white/80 backdrop-blur-xl p-8 rounded-3xl border border-white/20 shadow-lg hover:shadow-2xl transition-all duration-500 h-full">
-                  {/* Service Image with Overlay */}
-                  <div className="relative h-48 mb-6 rounded-2xl overflow-hidden">
-                    <div 
-                      className="absolute inset-0 bg-gradient-to-br from-[#2d6389]/20 via-[#348992]/20 to-[#d73c77]/20"
-                      style={{
-                        backgroundImage: `url('${service.image}')`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center'
-                      }}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent"></div>
-                    
-                    {/* Icon and Text Overlay */}
-                    <div className="absolute inset-0 flex flex-col justify-between p-6">
-                      <div className="flex justify-end">
-                        <div className="w-12 h-12 bg-white/90 backdrop-blur-sm rounded-xl flex items-center justify-center text-[#348992] shadow-lg">
-                          {service.icon}
-                        </div>
-                      </div>
-                      
-                      <div className="bg-white/90 backdrop-blur-sm p-4 rounded-2xl shadow-lg">
-                        <h3 className="text-lg font-bold text-[#2d6389] mb-2">
-                          {service.title}
-                        </h3>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <p className="text-gray-600 leading-relaxed mb-6">
-                    {service.description}
-                  </p>
-                  
-                  <div className="space-y-3">
-                    {service.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-center gap-3">
-                        <CheckCircle className="w-5 h-5 text-[#348992] flex-shrink-0" />
-                        <span className="text-gray-700 text-sm">{feature}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+          {/* Draggable Services Carousel */}
+          <DraggableCarousel 
+            services={services} 
+            gradientColors="from-[#2d6389]/40 via-[#348992]/30 to-[#d73c77]/40"
+          />
         </div>
       </section>
 
-      {/* Why Choose Our PR Services */}
+      {/* Why Choose Our PR Services? */}
       <section className="py-20 px-4 sm:px-8 lg:px-16 bg-gradient-to-br from-[#2d6389]/5 to-[#d73c77]/5">
         <div className="max-w-7xl mx-auto">
           <motion.div 
@@ -282,6 +218,7 @@ const PublicRelationsPage: React.FC = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 
