@@ -2,6 +2,19 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+### Environment Setup
+
+1. Copy the environment example file:
+```bash
+cp .env.example .env.local
+```
+
+2. Edit `.env.local` and set your environment variables:
+   - `ADMIN_PASSWORD`: Set a secure password for admin access
+   - Add other configuration variables as needed
+
+### Development
+
 First, run the development server:
 
 ```bash
@@ -19,6 +32,15 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+## Admin Access
+
+The admin panel is available at `/admin` and allows you to:
+- View and manage appointment requests
+- Handle case study access requests
+- View system statistics
+
+Make sure to set a secure `ADMIN_PASSWORD` in your `.env.local` file.
 
 ## Learn More
 

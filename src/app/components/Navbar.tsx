@@ -38,27 +38,27 @@ const ModernHamburger: React.FC<{
       className="p-2 rounded-lg hover:bg-gray-50 transition-colors duration-200 group" 
       aria-label="Toggle Menu"
     >
-      <div className="flex flex-col items-center justify-center w-6 h-6 space-y-1">
+      <div className="flex flex-col items-center justify-center w-5 h-5 space-y-1">
         <motion.div
-          className="w-6 h-0.5 bg-gray-700 rounded-full"
+          className="w-5 h-0.5 bg-gray-700 rounded-full"
           animate={{
             rotate: isOpen ? 45 : 0,
-            y: isOpen ? 8 : 0,
+            y: isOpen ? 6 : 0,
           }}
           transition={{ duration: 0.3 }}
         />
         <motion.div
-          className="w-6 h-0.5 bg-gray-700 rounded-full"
+          className="w-5 h-0.5 bg-gray-700 rounded-full"
           animate={{
             opacity: isOpen ? 0 : 1,
           }}
           transition={{ duration: 0.3 }}
         />
         <motion.div
-          className="w-6 h-0.5 bg-gray-700 rounded-full"
+          className="w-5 h-0.5 bg-gray-700 rounded-full"
           animate={{
             rotate: isOpen ? -45 : 0,
-            y: isOpen ? -8 : 0,
+            y: isOpen ? -6 : 0,
           }}
           transition={{ duration: 0.3 }}
         />
@@ -70,6 +70,7 @@ const ModernHamburger: React.FC<{
 const MainNavbar: React.FC = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
@@ -108,6 +109,14 @@ const MainNavbar: React.FC = () => {
 
   const toggleDrawer = () => {
     setIsDrawerOpen((prev) => !prev);
+    // Close mobile services dropdown when closing drawer
+    if (isDrawerOpen) {
+      setIsMobileServicesOpen(false);
+    }
+  };
+
+  const toggleMobileServices = () => {
+    setIsMobileServicesOpen((prev) => !prev);
   };
 
   const handleNavClick = (href: string) => {
@@ -259,13 +268,13 @@ const MainNavbar: React.FC = () => {
         className={`fixed left-0 w-full z-50 transition-all duration-300 ${
           isScrolled 
             ? 'top-0 bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-200/50' 
-            : isMobile 
+            : isMobile
               ? 'top-0 bg-white/90 backdrop-blur-sm'
               : 'top-10 bg-white/90 backdrop-blur-sm'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-14 sm:h-16 lg:h-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16 lg:h-20">
             
             {/* Logo */}
             <motion.div
@@ -277,10 +286,10 @@ const MainNavbar: React.FC = () => {
               <Link href="/" className="group">
                 <div className="relative">
                   <Image
-                    src="/logo-big.png"
+                    src={isMobile ? "/logo-small.png" : "/logo-big.png"}
                     alt="Konnections IMAG Logo"
-                    width={isMobile ? 120 : 220}
-                    height={isMobile ? 40 : 73}
+                    width={isMobile ? 60 : 220}
+                    height={isMobile ? 20 : 73}
                     priority
                     className="transition-transform duration-300 group-hover:scale-105"
                   />
@@ -397,120 +406,152 @@ const MainNavbar: React.FC = () => {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "tween", duration: 0.3 }}
-              className="fixed top-0 right-0 w-80 max-w-[90vw] h-full bg-white z-50 shadow-2xl lg:hidden"
+              className="fixed top-0 right-0 w-72 max-w-[85vw] h-full bg-white z-50 shadow-2xl lg:hidden overflow-hidden flex flex-col"
             >
               {/* Header */}
-              <div className="flex justify-between items-center p-6 border-b border-gray-200">
+              <div className="flex justify-between items-center p-4 border-b border-gray-200 flex-shrink-0">
                 <div className="flex items-center">
                   <Image
-                    src="/logo-big.png"
+                    src="/logo-small.png"
                     alt="Konnections IMAG Logo"
-                    width={140}
-                    height={46}
+                    width={80}
+                    height={27}
                   />
                 </div>
                 <ModernHamburger isOpen={isDrawerOpen} onClick={toggleDrawer} />
               </div>
 
-              {/* Navigation */}
-              <div className="flex-1 overflow-y-auto p-6">
-                {/* Services Section */}
-                <div className="mb-8">
-                  <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">
-                    Services
-                  </h3>
-                  <div className="space-y-1">
-                    {servicesDropdown.map((service, index) => (
-                      <Link
-                        key={index}
-                        href={service.href}
-                        className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors duration-200 group"
-                        onClick={toggleDrawer}
+              {/* Navigation - Scrollable */}
+              <div className="flex-1 overflow-y-auto">
+                <div className="p-4 space-y-6">
+                  {/* Services Section - Collapsible */}
+                  <div>
+                    <button
+                      onClick={toggleMobileServices}
+                      className="flex items-center justify-between w-full text-left mb-3"
+                    >
+                      <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider">
+                        Services
+                      </h3>
+                      <motion.svg
+                        className="w-4 h-4 text-gray-500"
+                        animate={{ rotate: isMobileServicesOpen ? 180 : 0 }}
+                        transition={{ duration: 0.2 }}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
                       >
-                        <span className="text-lg group-hover:scale-110 transition-transform duration-200">
-                          {service.icon}
-                        </span>
-                        <div>
-                          <div className="font-medium text-gray-900 group-hover:text-[#348992] transition-colors duration-200">
-                            {service.text}
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </motion.svg>
+                    </button>
+                    
+                    <AnimatePresence>
+                      {isMobileServicesOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.3 }}
+                          className="overflow-hidden"
+                        >
+                          <div className="space-y-1">
+                            {servicesDropdown.map((service, index) => (
+                              <Link
+                                key={index}
+                                href={service.href}
+                                className="flex items-center space-x-3 p-2.5 rounded-lg hover:bg-gray-50 transition-colors duration-200 group"
+                                onClick={toggleDrawer}
+                              >
+                                <span className="text-base group-hover:scale-110 transition-transform duration-200 flex-shrink-0">
+                                  {service.icon}
+                                </span>
+                                <div className="min-w-0 flex-1">
+                                  <div className="font-medium text-gray-900 group-hover:text-[#348992] transition-colors duration-200 text-sm">
+                                    {service.text}
+                                  </div>
+                                  <div className="text-xs text-gray-600 leading-tight">
+                                    {service.description}
+                                  </div>
+                                </div>
+                              </Link>
+                            ))}
                           </div>
-                          <div className="text-xs text-gray-600">
-                            {service.description}
-                          </div>
-                        </div>
-                      </Link>
-                    ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
-                </div>
 
-                {/* Main Navigation */}
-                <div className="mb-8">
-                  <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">
-                    Navigation
-                  </h3>
-                  <div className="space-y-1">
-                    {navigationLinks.map((link, index) => (
-                      <button
-                        key={index}
-                        onClick={() => handleNavClick(link.href)}
-                        className="block w-full text-left p-3 rounded-lg hover:bg-gray-50 transition-colors duration-200 group"
-                      >
-                        <div className="font-medium text-gray-900 group-hover:text-[#348992] transition-colors duration-200">
-                          {link.text}
-                        </div>
-                        {link.description && (
-                          <div className="text-xs text-gray-600 mt-1">
-                            {link.description}
+                  {/* Main Navigation */}
+                  <div>
+                    <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">
+                      Navigation
+                    </h3>
+                    <div className="space-y-1">
+                      {navigationLinks.map((link, index) => (
+                        <button
+                          key={index}
+                          onClick={() => handleNavClick(link.href)}
+                          className="block w-full text-left p-2.5 rounded-lg hover:bg-gray-50 transition-colors duration-200 group"
+                        >
+                          <div className="font-medium text-gray-900 group-hover:text-[#348992] transition-colors duration-200 text-sm">
+                            {link.text}
                           </div>
-                        )}
-                      </button>
-                    ))}
+                          {link.description && (
+                            <div className="text-xs text-gray-600 mt-0.5 leading-tight">
+                              {link.description}
+                            </div>
+                          )}
+                        </button>
+                      ))}
+                    </div>
                   </div>
-                </div>
 
-                {/* CTA Button */}
-                <Link
-                  href="/appointment"
-                  className="block w-full bg-gradient-to-r from-[#348992] to-[#2d6389] text-white text-center py-4 px-6 rounded-lg font-semibold hover:shadow-lg transition-all duration-300"
-                  onClick={toggleDrawer}
-                >
-                  Get Started
-                </Link>
+                  {/* CTA Button */}
+                  <Link
+                    href="/appointment"
+                    className="block w-full bg-gradient-to-r from-[#348992] to-[#2d6389] text-white text-center py-3 px-4 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 text-sm"
+                    onClick={toggleDrawer}
+                  >
+                    Get Started
+                  </Link>
+                </div>
               </div>
 
               {/* Footer */}
-              <div className="p-6 border-t border-gray-200">
+              <div className="p-4 border-t border-gray-200 flex-shrink-0">
                 <div className="mb-4">
                   <h4 className="text-sm font-semibold text-gray-900 mb-2">Contact Info</h4>
-                  <div className="space-y-2 text-sm text-gray-600">
+                  <div className="space-y-2 text-xs text-gray-600">
                     <div className="flex items-center space-x-2">
-                      <FaPhone size={12} />
+                      <FaPhone size={10} />
                       <span>+91 7032939360</span>
                     </div>
                     <div className="flex items-center space-x-2">
-                      <FaEnvelope size={12} />
-                      <span>info@konnections.co.in</span>
+                      <FaEnvelope size={10} />
+                      <span className="break-all">info@konnections.co.in</span>
                     </div>
                     <div className="flex items-start space-x-2">
-                      <FaMapMarkerAlt size={12} className="mt-0.5 flex-shrink-0" />
-                      <span className="leading-tight">Konnections IMAG<br />6-3-596/102F, 2nd Floor, Navin Nagar,<br />Banjara Hills, Hyderabad, Telangana - 500004</span>
+                      <FaMapMarkerAlt size={10} className="mt-0.5 flex-shrink-0" />
+                      <span className="leading-tight text-xs">Konnections IMAG<br />Banjara Hills, Hyderabad</span>
                     </div>
                   </div>
                 </div>
                 
                 <div>
-                  <h4 className="text-sm font-semibold text-gray-900 mb-3">Follow Us</h4>
-                  <div className="flex space-x-4">
+                  <h4 className="text-sm font-semibold text-gray-900 mb-2">Follow Us</h4>
+                  <div className="flex space-x-3">
                     {socialLinks.map((social, index) => (
                       <Link
                         key={index}
                         href={social.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`text-gray-600 ${social.hoverColor} transition-colors duration-200 p-2 rounded-lg hover:bg-gray-50`}
+                        className={`text-gray-600 ${social.hoverColor} transition-colors duration-200 p-1.5 rounded-lg hover:bg-gray-50`}
                         aria-label={social.label}
                       >
-                        {social.icon}
+                        <div className="w-4 h-4">
+                          {React.cloneElement(social.icon, { size: 16 })}
+                        </div>
                       </Link>
                     ))}
                   </div>

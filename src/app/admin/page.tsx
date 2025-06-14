@@ -53,13 +53,28 @@ export default function AdminPanel() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [password, setPassword] = useState('');
 
-  // Simple authentication check
-  const authenticate = () => {
-    if (password === 'admin123') { // In production, use proper authentication
-      setIsAuthenticated(true);
-      fetchData();
-    } else {
-      alert('Invalid password');
+  // Authentication check using API
+  const authenticate = async () => {
+    try {
+      const response = await fetch('/api/admin/auth', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ password }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setIsAuthenticated(true);
+        fetchData();
+      } else {
+        alert(data.error || 'Invalid password');
+      }
+    } catch (error) {
+      console.error('Authentication error:', error);
+      alert('Authentication failed. Please try again.');
     }
   };
 
