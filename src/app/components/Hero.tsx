@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 const Hero: React.FC = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -79,6 +80,7 @@ const Hero: React.FC = () => {
       );
     }
   }, []);
+
   return (
     <div 
       ref={heroRef}
@@ -197,70 +199,221 @@ const Hero: React.FC = () => {
           transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
         >
           <div className="w-5 h-5 bg-gradient-to-tl from-[#348992]/25 to-[#2d6389]/25 rounded-sm filter drop-shadow-lg"></div>
-        </motion.div>      </div>      {/* Main Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-20 sm:pt-24 md:pt-16">
-        {/* Professional Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-          className="inline-flex items-center px-3 sm:px-4 py-2 mb-6 sm:mb-8 bg-gray-100 border border-gray-200 rounded-full"
-        >
-          <span className="text-gray-700 font-medium text-xs sm:text-sm text-center">
-            Integrated Marketing & Communications
-          </span>
         </motion.div>
+      </div>
 
-        {/* Clean, Professional Title */}
-        <div className="mb-6 sm:mb-8">          <h1 
-            ref={titleRef}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight tracking-tight mb-4 sm:mb-6 text-gray-900 px-2"
-          >
-            <span className="block">
-              Connecting Visions
-            </span>
-            <span className="block bg-gradient-to-r from-[#348992] via-[#2d6389] to-[#d73c77] bg-clip-text text-transparent">
-              Creating Impact
-            </span>
-          </h1>
-            {/* Konnections IMAG Slogan */}
-          <div className="mt-4 sm:mt-6">
-            <p className="text-lg sm:text-xl md:text-2xl font-medium text-gray-700 italic">
-              &ldquo;Where Strategic Communication Meets Creative Excellence&rdquo;
-            </p>
-          </div>
-        </div>
-
-        {/* Professional Subtitle */}
-        <div className="max-w-4xl mx-auto mb-8 sm:mb-10 px-4">
-          <p 
-            ref={subtitleRef}
-            className="text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed"
-          >
-            We help businesses build stronger relationships with their stakeholders through 
-            strategic communications, crisis management, and integrated marketing solutions.
-          </p>
-        </div>
-
-        {/* Professional CTA Buttons */}
-        <div ref={ctaRef} className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-12 sm:mb-16 px-4">
-          <motion.button
-            onClick={handleExploreWork}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-[#348992] text-white font-semibold rounded-lg hover:bg-[#2d6389] transition-all duration-300 shadow-sm hover:shadow-md min-w-[180px]"
-          >
-            Our Services
-          </motion.button>
+      {/* Main Content - Split Layout */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24 md:pt-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-[80vh]">
           
-          <motion.button
-            onClick={handleStartJourney}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-transparent text-[#348992] font-semibold rounded-lg border-2 border-[#348992] hover:bg-[#348992] hover:text-white transition-all duration-300 shadow-sm hover:shadow-md min-w-[180px]"
-          >
-            Get Started
-          </motion.button>
+          {/* Left Side - Text Content */}
+          <div className="text-left space-y-6 lg:space-y-8">
+            {/* Professional Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+              className="inline-flex items-center px-4 py-2 bg-gray-100 border border-gray-200 rounded-full"
+            >
+              <span className="text-gray-700 font-medium text-sm">
+                Integrated Marketing & Communications
+              </span>
+            </motion.div>
+
+            {/* Clean, Professional Title */}
+            <div>
+              <h1 
+                ref={titleRef}
+                className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight tracking-tight text-gray-900"
+              >
+                <span className="block">
+                  Connecting Visions
+                </span>
+                <span className="block bg-gradient-to-r from-[#348992] via-[#2d6389] to-[#d73c77] bg-clip-text text-transparent">
+                  Creating Impact
+                </span>
+              </h1>
+              
+              {/* Konnections IMAG Slogan */}
+              <div className="mt-4">
+                <p className="text-lg lg:text-xl font-medium text-gray-700 italic">
+                  &ldquo;Where Strategic Communication Meets Creative Excellence&rdquo;
+                </p>
+              </div>
+            </div>
+
+            {/* Professional Subtitle */}
+            <div>
+              <p 
+                ref={subtitleRef}
+                className="text-base lg:text-lg text-gray-600 leading-relaxed max-w-xl"
+              >
+                We help businesses build stronger relationships with their stakeholders through 
+                strategic communications, crisis management, and integrated marketing solutions.
+              </p>
+            </div>
+
+            {/* Professional CTA Buttons */}
+            <div ref={ctaRef} className="flex flex-col sm:flex-row gap-4">
+              <motion.button
+                onClick={handleExploreWork}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="px-8 py-4 bg-[#348992] text-white font-semibold rounded-lg hover:bg-[#2d6389] transition-all duration-300 shadow-sm hover:shadow-md"
+              >
+                Our Services
+              </motion.button>
+              
+              <motion.button
+                onClick={handleStartJourney}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="px-8 py-4 bg-transparent text-[#348992] font-semibold rounded-lg border-2 border-[#348992] hover:bg-[#348992] hover:text-white transition-all duration-300 shadow-sm hover:shadow-md"
+              >
+                Get Started
+              </motion.button>
+            </div>
+          </div>
+
+          {/* Right Side - Animated Card Grid */}
+          <div className="relative hidden lg:block">
+            <div className="flex gap-4 h-[800px] overflow-hidden">
+              
+              {/* First Column - Moving Up Infinitely */}
+              <motion.div
+                className="flex flex-col gap-4 w-1/2"
+                animate={{
+                  y: [-300, 0]
+                }}
+                transition={{
+                  duration: 25,
+                  repeat: Infinity,
+                  ease: "linear",
+                  repeatType: "loop"
+                }}
+              >
+                {/* Duplicate sets for seamless infinite scroll */}
+                {[...Array(3)].map((_, setIndex) => (
+                  <React.Fragment key={`col1-${setIndex}`}>
+                    {/* Card 1 */}
+                    <div className="h-56 bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group hover:shadow-xl transition-all duration-300">
+                      <div className="h-full relative">
+                        <Image
+                          src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                          alt="Strategic Communication Services"
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Card 2 */}
+                    <div className="h-64 bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group hover:shadow-xl transition-all duration-300">
+                      <div className="h-full relative">
+                        <Image
+                          src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                          alt="Crisis Management Services"
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Card 3 */}
+                    <div className="h-48 bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group hover:shadow-xl transition-all duration-300">
+                      <div className="h-full relative">
+                        <Image
+                          src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                          alt="Analytics & Insights"
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Card 4 */}
+                    <div className="h-60 bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group hover:shadow-xl transition-all duration-300">
+                      <div className="h-full relative">
+                        <Image
+                          src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                          alt="Stakeholder Relations"
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    </div>
+                  </React.Fragment>
+                ))}
+              </motion.div>
+
+              {/* Second Column - Moving Down Infinitely */}
+              <motion.div
+                className="flex flex-col gap-4 w-1/2 mt-16"
+                animate={{
+                  y: [0, -300]
+                }}
+                transition={{
+                  duration: 25,
+                  repeat: Infinity,
+                  ease: "linear",
+                  repeatType: "loop"
+                }}
+              >
+                {/* Duplicate sets for seamless infinite scroll */}
+                {[...Array(3)].map((_, setIndex) => (
+                  <React.Fragment key={`col2-${setIndex}`}>
+                    {/* Card 5 */}
+                    <div className="h-60 bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group hover:shadow-xl transition-all duration-300">
+                      <div className="h-full relative">
+                        <Image
+                          src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                          alt="Creative Content"
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Card 6 */}
+                    <div className="h-48 bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group hover:shadow-xl transition-all duration-300">
+                      <div className="h-full relative">
+                        <Image
+                          src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                          alt="Digital Media"
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Card 7 */}
+                    <div className="h-64 bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group hover:shadow-xl transition-all duration-300">
+                      <div className="h-full relative">
+                        <Image
+                          src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                          alt="Financial Communications"
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Card 8 */}
+                    <div className="h-56 bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group hover:shadow-xl transition-all duration-300">
+                      <div className="h-full relative">
+                        <Image
+                          src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                          alt="Corporate Services"
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    </div>
+                  </React.Fragment>
+                ))}
+              </motion.div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

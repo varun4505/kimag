@@ -64,11 +64,21 @@ export const OurServices = ({
     <Settings className="w-8 h-8" key="settings" />
   ];
 
+  // Service images mapping with relevant online images
+  const serviceImages = [
+    "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=600&h=400&fit=crop&crop=center", // Public Relations - Meeting/Communication
+    "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=400&fit=crop&crop=center", // Crisis Management - Business emergency
+    "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=400&fit=crop&crop=center", // Digital Media - Social media/digital
+    "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=600&h=400&fit=crop&crop=center", // Financial Communications - Finance/charts
+    "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&h=400&fit=crop&crop=center", // Corporate Communications - Office/business
+    "https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop&crop=center"  // Specialized Services - Consulting/strategy
+  ];
+
   // Convert items to services format for consistency
   const services = items.map((item, index) => ({
     title: item.title,
     description: item.description[0], // Use first description as main tagline
-    image: "/api/placeholder/600/400",
+    image: serviceImages[index % serviceImages.length],
     icon: serviceIcons[index % serviceIcons.length],
     link: item.link,
     features: item.description.slice(0, 3) // Show only top 3 features
