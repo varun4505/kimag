@@ -2,7 +2,7 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useMotionValue, useAnimation } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, CheckCircle } from 'lucide-react';
 
 interface Service {
   title: string;
