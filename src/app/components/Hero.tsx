@@ -204,10 +204,10 @@ const Hero: React.FC = () => {
 
       {/* Main Content - Split Layout */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24 md:pt-16">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-[80vh]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[80vh]">
           
           {/* Left Side - Text Content */}
-          <div className="text-left space-y-6 lg:space-y-8">
+          <div className="text-center lg:text-left space-y-6 lg:space-y-8 flex flex-col justify-center">
             {/* Professional Badge */}
             <motion.div
               initial={{ opacity: 0, y: -20 }}
@@ -254,7 +254,7 @@ const Hero: React.FC = () => {
             </div>
 
             {/* Professional CTA Buttons */}
-            <div ref={ctaRef} className="flex flex-col sm:flex-row gap-4">
+            <div ref={ctaRef} className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <motion.button
                 onClick={handleExploreWork}
                 whileHover={{ scale: 1.02 }}
@@ -275,31 +275,31 @@ const Hero: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Side - Animated Card Grid */}
+          {/* Right Side - Improved Card Grid */}
           <div className="relative hidden lg:block">
-            <div className="flex gap-4 h-[800px] overflow-hidden">
+            <div className="flex gap-3 h-[700px] overflow-hidden justify-center">
               
               {/* First Column - Moving Up Infinitely */}
               <motion.div
-                className="flex flex-col gap-4 w-1/2"
+                className="flex flex-col gap-3 w-[140px]"
                 animate={{
-                  y: [-300, 0]
+                  y: [-400, 0]
                 }}
                 transition={{
-                  duration: 25,
+                  duration: 30,
                   repeat: Infinity,
                   ease: "linear",
                   repeatType: "loop"
                 }}
               >
                 {/* Duplicate sets for seamless infinite scroll */}
-                {[...Array(3)].map((_, setIndex) => (
+                {[...Array(4)].map((_, setIndex) => (
                   <React.Fragment key={`col1-${setIndex}`}>
                     {/* Card 1 */}
-                    <div className="h-56 bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group hover:shadow-xl transition-all duration-300">
+                    <div className="h-44 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden group hover:shadow-xl transition-all duration-300">
                       <div className="h-full relative">
                         <Image
-                          src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                          src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
                           alt="Strategic Communication Services"
                           fill
                           className="object-cover"
@@ -308,10 +308,10 @@ const Hero: React.FC = () => {
                     </div>
 
                     {/* Card 2 */}
-                    <div className="h-64 bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group hover:shadow-xl transition-all duration-300">
+                    <div className="h-52 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden group hover:shadow-xl transition-all duration-300">
                       <div className="h-full relative">
                         <Image
-                          src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                          src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
                           alt="Crisis Management Services"
                           fill
                           className="object-cover"
@@ -320,10 +320,10 @@ const Hero: React.FC = () => {
                     </div>
 
                     {/* Card 3 */}
-                    <div className="h-48 bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group hover:shadow-xl transition-all duration-300">
+                    <div className="h-40 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden group hover:shadow-xl transition-all duration-300">
                       <div className="h-full relative">
                         <Image
-                          src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                          src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
                           alt="Analytics & Insights"
                           fill
                           className="object-cover"
@@ -332,10 +332,10 @@ const Hero: React.FC = () => {
                     </div>
 
                     {/* Card 4 */}
-                    <div className="h-60 bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group hover:shadow-xl transition-all duration-300">
+                    <div className="h-48 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden group hover:shadow-xl transition-all duration-300">
                       <div className="h-full relative">
                         <Image
-                          src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                          src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
                           alt="Stakeholder Relations"
                           fill
                           className="object-cover"
@@ -348,25 +348,25 @@ const Hero: React.FC = () => {
 
               {/* Second Column - Moving Down Infinitely */}
               <motion.div
-                className="flex flex-col gap-4 w-1/2 mt-16"
+                className="flex flex-col gap-3 w-[140px] mt-12"
                 animate={{
-                  y: [0, -300]
+                  y: [0, -400]
                 }}
                 transition={{
-                  duration: 25,
+                  duration: 30,
                   repeat: Infinity,
                   ease: "linear",
                   repeatType: "loop"
                 }}
               >
                 {/* Duplicate sets for seamless infinite scroll */}
-                {[...Array(3)].map((_, setIndex) => (
+                {[...Array(4)].map((_, setIndex) => (
                   <React.Fragment key={`col2-${setIndex}`}>
                     {/* Card 5 */}
-                    <div className="h-60 bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group hover:shadow-xl transition-all duration-300">
+                    <div className="h-48 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden group hover:shadow-xl transition-all duration-300">
                       <div className="h-full relative">
                         <Image
-                          src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                          src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
                           alt="Creative Content"
                           fill
                           className="object-cover"
@@ -375,10 +375,10 @@ const Hero: React.FC = () => {
                     </div>
 
                     {/* Card 6 */}
-                    <div className="h-48 bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group hover:shadow-xl transition-all duration-300">
+                    <div className="h-40 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden group hover:shadow-xl transition-all duration-300">
                       <div className="h-full relative">
                         <Image
-                          src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                          src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
                           alt="Digital Media"
                           fill
                           className="object-cover"
@@ -387,10 +387,10 @@ const Hero: React.FC = () => {
                     </div>
 
                     {/* Card 7 */}
-                    <div className="h-64 bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group hover:shadow-xl transition-all duration-300">
+                    <div className="h-52 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden group hover:shadow-xl transition-all duration-300">
                       <div className="h-full relative">
                         <Image
-                          src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                          src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
                           alt="Financial Communications"
                           fill
                           className="object-cover"
@@ -399,11 +399,78 @@ const Hero: React.FC = () => {
                     </div>
 
                     {/* Card 8 */}
-                    <div className="h-56 bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden group hover:shadow-xl transition-all duration-300">
+                    <div className="h-44 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden group hover:shadow-xl transition-all duration-300">
                       <div className="h-full relative">
                         <Image
-                          src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                          src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
                           alt="Corporate Services"
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    </div>
+                  </React.Fragment>
+                ))}
+              </motion.div>
+
+              {/* Third Column - Moving Up Infinitely */}
+              <motion.div
+                className="flex flex-col gap-3 w-[140px] mt-6"
+                animate={{
+                  y: [-400, 0]
+                }}
+                transition={{
+                  duration: 35,
+                  repeat: Infinity,
+                  ease: "linear",
+                  repeatType: "loop"
+                }}
+              >
+                {/* Duplicate sets for seamless infinite scroll */}
+                {[...Array(4)].map((_, setIndex) => (
+                  <React.Fragment key={`col3-${setIndex}`}>
+                    {/* Card 9 */}
+                    <div className="h-50 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden group hover:shadow-xl transition-all duration-300">
+                      <div className="h-full relative">
+                        <Image
+                          src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
+                          alt="Public Relations"
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Card 10 */}
+                    <div className="h-42 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden group hover:shadow-xl transition-all duration-300">
+                      <div className="h-full relative">
+                        <Image
+                          src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
+                          alt="Business Strategy"
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Card 11 */}
+                    <div className="h-46 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden group hover:shadow-xl transition-all duration-300">
+                      <div className="h-full relative">
+                        <Image
+                          src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
+                          alt="Digital Marketing"
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Card 12 */}
+                    <div className="h-48 bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden group hover:shadow-xl transition-all duration-300">
+                      <div className="h-full relative">
+                        <Image
+                          src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
+                          alt="Data Analysis"
                           fill
                           className="object-cover"
                         />
