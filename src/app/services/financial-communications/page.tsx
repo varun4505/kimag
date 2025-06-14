@@ -24,37 +24,43 @@ const FinancialCommunicationsPage: React.FC = () => {
       title: "IR/Corporate Website Development",
       description: "Design and develop comprehensive investor relations websites with seamless user experience and regulatory compliance",
       icon: <Globe className="w-6 h-6" />,
-      features: ["Responsive IR Websites", "Regulatory Compliance", "Document Management", "Investor Portal Development"]
+      features: ["Responsive IR Websites", "Regulatory Compliance", "Document Management", "Investor Portal Development"],
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
     },
     {
       title: "Investor Relations & Outreach",
       description: "Strategic investor communication programs to build strong relationships with institutional and retail investors",
       icon: <Users className="w-6 h-6" />,
-      features: ["Investor Roadshows", "Conference Participation", "One-on-One Meetings", "Investor Database Management"]
+      features: ["Investor Roadshows", "Conference Participation", "One-on-One Meetings", "Investor Database Management"],
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
     },
     {
       title: "Analyst & Fund Manager Relations",
       description: "Build and maintain relationships with research analysts and fund managers to ensure accurate coverage and valuation",
       icon: <BarChart3 className="w-6 h-6" />,
-      features: ["Analyst Briefings", "Research Coverage", "Consensus Management", "Sell-side Relations"]
+      features: ["Analyst Briefings", "Research Coverage", "Consensus Management", "Sell-side Relations"],
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
     },
     {
       title: "Disclosure Policy & Training",
       description: "Develop comprehensive disclosure policies and provide training to ensure regulatory compliance and transparency",
       icon: <Shield className="w-6 h-6" />,
-      features: ["Policy Development", "Compliance Training", "Disclosure Guidelines", "Risk Management"]
+      features: ["Policy Development", "Compliance Training", "Disclosure Guidelines", "Risk Management"],
+      image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
     },
     {
       title: "Corporate Governance Communication",
       description: "Strategic communication around corporate governance practices, board changes, and governance initiatives",
       icon: <Building className="w-6 h-6" />,
-      features: ["Board Communications", "ESG Reporting", "Governance Frameworks", "Transparency Initiatives"]
+      features: ["Board Communications", "ESG Reporting", "Governance Frameworks", "Transparency Initiatives"],
+      image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
     },
     {
       title: "Earnings Communication",
       description: "Comprehensive earnings communication strategies including results preparation, conference calls, and follow-up activities",
       icon: <FileText className="w-6 h-6" />,
-      features: ["Earnings Presentations", "Conference Call Management", "Results Analysis", "Guidance Communication"]
+      features: ["Earnings Presentations", "Conference Call Management", "Results Analysis", "Guidance Communication"],
+      image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
     }
   ];
 
@@ -73,7 +79,7 @@ const FinancialCommunicationsPage: React.FC = () => {
         <div 
           className="absolute inset-0 bg-gradient-to-br from-blue-900/30 via-[#2d6389]/20 to-green-600/30"
           style={{
-            backgroundImage: "url('/api/placeholder/1920/1080')",
+            backgroundImage: "url('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')",
             backgroundSize: 'cover',
             backgroundPosition: 'center'
           }}
@@ -212,7 +218,7 @@ const FinancialCommunicationsPage: React.FC = () => {
                     <div 
                       className="absolute inset-0 bg-gradient-to-br from-green-500/20 via-[#2d6389]/20 to-blue-600/20"
                       style={{
-                        backgroundImage: `url('/api/placeholder/400/300')`,
+                        backgroundImage: `url('${service.image}')`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center'
                       }}

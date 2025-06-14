@@ -23,37 +23,43 @@ const DigitalMediaPage: React.FC = () => {
       title: "Social Media Management & Strategy",
       description: "Comprehensive social media presence management with strategic content planning and community engagement",
       icon: <Share2 className="w-6 h-6" />,
-      features: ["Content Calendar Planning", "Community Management", "Platform Optimization", "Brand Voice Development"]
+      features: ["Content Calendar Planning", "Community Management", "Platform Optimization", "Brand Voice Development"],
+      image: "https://images.unsplash.com/photo-1611926653458-09294b3142bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
     },
     {
       title: "Content Creation & Management",
       description: "Strategic content development for both internal and external audiences across multiple digital platforms",
       icon: <Camera className="w-6 h-6" />,
-      features: ["Video Content Production", "Graphic Design", "Copywriting", "Content Distribution"]
+      features: ["Video Content Production", "Graphic Design", "Copywriting", "Content Distribution"],
+      image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
     },
     {
       title: "Digital News Dissemination",
       description: "Strategic distribution of news and announcements across digital channels for maximum reach and impact",
       icon: <Globe className="w-6 h-6" />,
-      features: ["Press Release Distribution", "News Portal Management", "Digital Media Relations", "Content Syndication"]
+      features: ["Press Release Distribution", "News Portal Management", "Digital Media Relations", "Content Syndication"],
+      image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
     },
     {
       title: "Influencer Marketing Programs",
       description: "Strategic influencer partnerships and collaboration programs to amplify brand reach and credibility",
       icon: <Users className="w-6 h-6" />,
-      features: ["Influencer Identification", "Partnership Management", "Campaign Development", "Performance Tracking"]
+      features: ["Influencer Identification", "Partnership Management", "Campaign Development", "Performance Tracking"],
+      image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
     },
     {
       title: "Digital Campaigns & Engagement",
       description: "Creative digital marketing campaigns designed to drive engagement and build meaningful audience connections",
       icon: <Zap className="w-6 h-6" />,
-      features: ["Campaign Strategy", "Creative Development", "Multi-platform Execution", "Real-time Optimization"]
+      features: ["Campaign Strategy", "Creative Development", "Multi-platform Execution", "Real-time Optimization"],
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
     },
     {
       title: "Social Media Analytics & Reporting",
       description: "Comprehensive analytics and reporting to measure performance and optimize digital marketing efforts",
       icon: <BarChart3 className="w-6 h-6" />,
-      features: ["Performance Analytics", "ROI Measurement", "Audience Insights", "Competitive Analysis"]
+      features: ["Performance Analytics", "ROI Measurement", "Audience Insights", "Competitive Analysis"],
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
     }
   ];
 
@@ -72,7 +78,7 @@ const DigitalMediaPage: React.FC = () => {
         <div 
           className="absolute inset-0 bg-gradient-to-br from-purple-900/30 via-[#348992]/20 to-pink-600/30"
           style={{
-            backgroundImage: "url('/api/placeholder/1920/1080')",
+            backgroundImage: "url('https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')",
             backgroundSize: 'cover',
             backgroundPosition: 'center'
           }}
@@ -211,7 +217,7 @@ const DigitalMediaPage: React.FC = () => {
                     <div 
                       className="absolute inset-0 bg-gradient-to-br from-purple-500/20 via-[#348992]/20 to-pink-600/20"
                       style={{
-                        backgroundImage: `url('/api/placeholder/400/300')`,
+                        backgroundImage: `url('${service.image}')`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center'
                       }}

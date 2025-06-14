@@ -23,37 +23,43 @@ const SpecializedServicesPage: React.FC = () => {
       title: "Media Training & Workshops",
       description: "Comprehensive media training programs to prepare executives and spokespersons for effective media interactions",
       icon: <Users className="w-6 h-6" />,
-      features: ["Executive Media Training", "Interview Techniques", "Crisis Communication Training", "On-camera Training"]
+      features: ["Executive Media Training", "Interview Techniques", "Crisis Communication Training", "On-camera Training"],
+      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
     },
     {
       title: "Market Intelligence & Research",
       description: "Strategic market research and intelligence services to inform communication strategies and business decisions",
       icon: <Search className="w-6 h-6" />,
-      features: ["Market Analysis", "Competitive Intelligence", "Brand Perception Studies", "Stakeholder Research"]
+      features: ["Market Analysis", "Competitive Intelligence", "Brand Perception Studies", "Stakeholder Research"],
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
     },
     {
       title: "Creative Services & Content Development",
       description: "Innovative creative solutions and content development for comprehensive communication campaigns",
       icon: <Palette className="w-6 h-6" />,
-      features: ["Creative Campaign Development", "Brand Identity Design", "Multimedia Content", "Visual Communication"]
+      features: ["Creative Campaign Development", "Brand Identity Design", "Multimedia Content", "Visual Communication"],
+      image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
     },
     {
       title: "B2B Communications",
       description: "Specialized business-to-business communication strategies for complex industrial and professional markets",
       icon: <Building2 className="w-6 h-6" />,
-      features: ["Industrial Communication", "Professional Services PR", "Trade Media Relations", "B2B Content Strategy"]
+      features: ["Industrial Communication", "Professional Services PR", "Trade Media Relations", "B2B Content Strategy"],
+      image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
     },
     {
       title: "Measurement & Analytics",
       description: "Comprehensive measurement frameworks and analytics to track communication effectiveness and ROI",
       icon: <BarChart3 className="w-6 h-6" />,
-      features: ["Performance Measurement", "ROI Analysis", "Communication Audits", "Analytics Reporting"]
+      features: ["Performance Measurement", "ROI Analysis", "Communication Audits", "Analytics Reporting"],
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
     },
     {
       title: "Communication Audit & Strategy",
       description: "In-depth communication audits and strategic planning to optimize organizational communication effectiveness",
       icon: <Eye className="w-6 h-6" />,
-      features: ["Communication Assessment", "Strategic Planning", "Gap Analysis", "Optimization Strategies"]
+      features: ["Communication Assessment", "Strategic Planning", "Gap Analysis", "Optimization Strategies"],
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
     }
   ];
 
@@ -72,7 +78,7 @@ const SpecializedServicesPage: React.FC = () => {
         <div 
           className="absolute inset-0 bg-gradient-to-br from-orange-900/30 via-[#2d6389]/20 to-purple-700/30"
           style={{
-            backgroundImage: "url('/api/placeholder/1920/1080')",
+            backgroundImage: "url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')",
             backgroundSize: 'cover',
             backgroundPosition: 'center'
           }}
@@ -211,7 +217,7 @@ const SpecializedServicesPage: React.FC = () => {
                     <div 
                       className="absolute inset-0 bg-gradient-to-br from-orange-500/20 via-[#2d6389]/20 to-purple-600/20"
                       style={{
-                        backgroundImage: `url('/api/placeholder/400/300')`,
+                        backgroundImage: `url('${service.image}')`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center'
                       }}

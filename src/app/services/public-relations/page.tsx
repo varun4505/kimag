@@ -21,37 +21,43 @@ const PublicRelationsPage: React.FC = () => {
       title: "Media Relations & Strategic Counsel",
       description: "Build strong relationships with key media personnel and develop strategic messaging that resonates with your target audience",
       icon: <Megaphone className="w-6 h-6" />,
-      features: ["Press Release Distribution", "Media Pitch Development", "Journalist Relationship Building", "Editorial Calendar Planning"]
+      features: ["Press Release Distribution", "Media Pitch Development", "Journalist Relationship Building", "Editorial Calendar Planning"],
+      image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
     },
     {
       title: "Brand Building & Positioning", 
       description: "Establish and strengthen your brand's market position through consistent messaging and strategic communication initiatives",
       icon: <Award className="w-6 h-6" />,
-      features: ["Brand Messaging Framework", "Competitive Positioning", "Market Research & Analysis", "Brand Story Development"]
+      features: ["Brand Messaging Framework", "Competitive Positioning", "Market Research & Analysis", "Brand Story Development"],
+      image: "https://images.unsplash.com/photo-1553729459-efe14ef6055d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
     },
     {
       title: "Image Audit & Perception Analysis",
       description: "Comprehensive assessment of your current brand perception and strategic recommendations for improvement",
       icon: <Eye className="w-6 h-6" />,
-      features: ["Reputation Assessment", "Stakeholder Surveys", "Media Monitoring", "Perception Gap Analysis"]
+      features: ["Reputation Assessment", "Stakeholder Surveys", "Media Monitoring", "Perception Gap Analysis"],
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
     },
     {
       title: "Consumer & Industry Relations",
       description: "Foster meaningful connections with consumers and industry stakeholders to build brand loyalty and market influence",
       icon: <Users className="w-6 h-6" />,
-      features: ["Consumer Engagement Programs", "Industry Partnership Development", "Stakeholder Mapping", "Community Outreach"]
+      features: ["Consumer Engagement Programs", "Industry Partnership Development", "Stakeholder Mapping", "Community Outreach"],
+      image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
     },
     {
       title: "Digital PR & Online Reputation Management",
       description: "Manage your online presence and reputation across digital platforms with strategic content and engagement",
       icon: <Globe className="w-6 h-6" />,
-      features: ["Online Reputation Monitoring", "Digital Content Strategy", "Social Media PR", "SEO-Optimized Content"]
+      features: ["Online Reputation Monitoring", "Digital Content Strategy", "Social Media PR", "SEO-Optimized Content"],
+      image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
     },
     {
       title: "Employee Communications",
       description: "Strengthen internal communications to align your workforce with company values and strategic objectives",
       icon: <Target className="w-6 h-6" />,
-      features: ["Internal Newsletter Development", "Employee Engagement Surveys", "Change Communication", "Leadership Communication"]
+      features: ["Internal Newsletter Development", "Employee Engagement Surveys", "Change Communication", "Leadership Communication"],
+      image: "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
     }
   ];
 
@@ -70,7 +76,7 @@ const PublicRelationsPage: React.FC = () => {
         <div 
           className="absolute inset-0 bg-gradient-to-br from-[#2d6389]/30 via-[#348992]/20 to-[#d73c77]/30"
           style={{
-            backgroundImage: "url('/api/placeholder/1920/1080')",
+            backgroundImage: "url('https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')",
             backgroundSize: 'cover',
             backgroundPosition: 'center'
           }}
@@ -180,7 +186,7 @@ const PublicRelationsPage: React.FC = () => {
                     <div 
                       className="absolute inset-0 bg-gradient-to-br from-[#2d6389]/20 via-[#348992]/20 to-[#d73c77]/20"
                       style={{
-                        backgroundImage: `url('/api/placeholder/400/300')`,
+                        backgroundImage: `url('${service.image}')`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center'
                       }}

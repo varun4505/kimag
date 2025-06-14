@@ -23,37 +23,43 @@ const CrisisManagementPage: React.FC = () => {
       title: "Crisis Communication Planning",
       description: "Develop comprehensive crisis communication strategies and protocols before issues arise to ensure rapid, effective response",
       icon: <Target className="w-6 h-6" />,
-      features: ["Crisis Response Protocols", "Communication Templates", "Stakeholder Mapping", "Risk Assessment"]
+      features: ["Crisis Response Protocols", "Communication Templates", "Stakeholder Mapping", "Risk Assessment"],
+      image: "https://images.unsplash.com/photo-1566325593923-e4b76a8c5d44?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
     },
     {
       title: "24/7 Crisis Response",
       description: "Round-the-clock crisis management support with immediate response capabilities and strategic guidance",
       icon: <Clock className="w-6 h-6" />,
-      features: ["Immediate Response Team", "Real-time Monitoring", "Emergency Hotline", "Rapid Communication"]
+      features: ["Immediate Response Team", "Real-time Monitoring", "Emergency Hotline", "Rapid Communication"],
+      image: "https://images.unsplash.com/photo-1504681869696-d977211a5f4c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
     },
     {
       title: "Reputation Recovery Strategies",
       description: "Strategic programs to rebuild and restore brand reputation following crisis situations",
       icon: <TrendingUp className="w-6 h-6" />,
-      features: ["Reputation Rebuilding", "Trust Restoration", "Brand Recovery Plans", "Long-term Monitoring"]
+      features: ["Reputation Rebuilding", "Trust Restoration", "Brand Recovery Plans", "Long-term Monitoring"],
+      image: "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
     },
     {
       title: "Media Training & Spokesperson Development",
       description: "Comprehensive media training to prepare executives and spokespersons for crisis communications",
       icon: <Users className="w-6 h-6" />,
-      features: ["Executive Media Training", "Spokesperson Coaching", "Crisis Simulations", "Message Development"]
+      features: ["Executive Media Training", "Spokesperson Coaching", "Crisis Simulations", "Message Development"],
+      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
     },
     {
       title: "Stakeholder Communication Management",
       description: "Coordinated communication strategies for all stakeholder groups during crisis situations",
       icon: <Shield className="w-6 h-6" />,
-      features: ["Stakeholder Mapping", "Communication Coordination", "Feedback Management", "Relationship Maintenance"]
+      features: ["Stakeholder Mapping", "Communication Coordination", "Feedback Management", "Relationship Maintenance"],
+      image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
     },
     {
       title: "Risk Assessment & Mitigation",
       description: "Proactive identification and assessment of potential reputation risks with mitigation strategies",
       icon: <Eye className="w-6 h-6" />,
-      features: ["Risk Identification", "Vulnerability Assessment", "Mitigation Planning", "Preventive Measures"]
+      features: ["Risk Identification", "Vulnerability Assessment", "Mitigation Planning", "Preventive Measures"],
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
     }
   ];
 
@@ -72,7 +78,7 @@ const CrisisManagementPage: React.FC = () => {
         <div 
           className="absolute inset-0 bg-gradient-to-br from-red-900/30 via-[#2d6389]/20 to-[#348992]/30"
           style={{
-            backgroundImage: "url('/api/placeholder/1920/1080')",
+            backgroundImage: "url('https://images.unsplash.com/photo-1554774853-719586f82d77?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')",
             backgroundSize: 'cover',
             backgroundPosition: 'center'
           }}
@@ -225,7 +231,7 @@ const CrisisManagementPage: React.FC = () => {
                     <div 
                       className="absolute inset-0 bg-gradient-to-br from-red-500/20 via-[#2d6389]/20 to-[#348992]/20"
                       style={{
-                        backgroundImage: `url('/api/placeholder/400/300')`,
+                        backgroundImage: `url('${service.image}')`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center'
                       }}

@@ -24,37 +24,43 @@ const CorporateCommunicationsPage: React.FC = () => {
       title: "Internal Communications Strategy",
       description: "Develop comprehensive internal communication frameworks to align employees with organizational goals and values",
       icon: <MessageSquare className="w-6 h-6" />,
-      features: ["Employee Engagement", "Change Communication", "Leadership Messaging", "Internal Newsletters"]
+      features: ["Employee Engagement", "Change Communication", "Leadership Messaging", "Internal Newsletters"],
+      image: "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
     },
     {
       title: "Executive Communications",
       description: "Strategic positioning and communication support for C-level executives and senior leadership teams",
       icon: <Briefcase className="w-6 h-6" />,
-      features: ["Thought Leadership", "Executive Positioning", "Speaking Engagements", "CEO Communication"]
+      features: ["Thought Leadership", "Executive Positioning", "Speaking Engagements", "CEO Communication"],
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
     },
     {
       title: "Corporate Social Responsibility (CSR)",
       description: "Strategic CSR communication programs that showcase your organization's commitment to social and environmental impact",
       icon: <Heart className="w-6 h-6" />,
-      features: ["CSR Strategy", "Impact Reporting", "Sustainability Communication", "Community Engagement"]
+      features: ["CSR Strategy", "Impact Reporting", "Sustainability Communication", "Community Engagement"],
+      image: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
     },
     {
       title: "Event Management & Coordination",
       description: "End-to-end event planning and communication for corporate events, conferences, and stakeholder gatherings",
       icon: <Calendar className="w-6 h-6" />,
-      features: ["Event Planning", "Conference Management", "Virtual Events", "Stakeholder Meetings"]
+      features: ["Event Planning", "Conference Management", "Virtual Events", "Stakeholder Meetings"],
+      image: "https://images.unsplash.com/photo-1511578314322-379afb476865?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
     },
     {
       title: "Thought Leadership Development",
       description: "Build industry authority through strategic thought leadership programs and content development",
       icon: <Lightbulb className="w-6 h-6" />,
-      features: ["Content Strategy", "Industry Speaking", "Expert Positioning", "Knowledge Sharing"]
+      features: ["Content Strategy", "Industry Speaking", "Expert Positioning", "Knowledge Sharing"],
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
     },
     {
       title: "Industry Relations",
       description: "Strategic relationship building with industry associations, trade bodies, and professional networks",
       icon: <Globe className="w-6 h-6" />,
-      features: ["Association Relations", "Industry Partnerships", "Trade Communication", "Network Building"]
+      features: ["Association Relations", "Industry Partnerships", "Trade Communication", "Network Building"],
+      image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
     }
   ];
 
@@ -73,7 +79,7 @@ const CorporateCommunicationsPage: React.FC = () => {
         <div 
           className="absolute inset-0 bg-gradient-to-br from-blue-900/30 via-[#2d6389]/20 to-green-700/30"
           style={{
-            backgroundImage: "url('/api/placeholder/1920/1080')",
+            backgroundImage: "url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')",
             backgroundSize: 'cover',
             backgroundPosition: 'center'
           }}
@@ -212,7 +218,7 @@ const CorporateCommunicationsPage: React.FC = () => {
                     <div 
                       className="absolute inset-0 bg-gradient-to-br from-green-500/20 via-[#2d6389]/20 to-blue-600/20"
                       style={{
-                        backgroundImage: `url('/api/placeholder/400/300')`,
+                        backgroundImage: `url('${service.image}')`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center'
                       }}
