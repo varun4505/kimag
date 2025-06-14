@@ -12,7 +12,6 @@ import {
   Share2, 
   BarChart3,
   ArrowLeft,
-  Play,
   Globe,
   Heart,
   Zap

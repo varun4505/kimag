@@ -1,9 +1,8 @@
 'use client';
 
 import React, { useRef, useState, useEffect } from 'react';
-import { motion, useMotionValue, useTransform, useAnimation } from 'framer-motion';
-import Link from 'next/link';
-import { ArrowRight, CheckCircle } from 'lucide-react';
+import { motion, useMotionValue, useAnimation } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
 
 interface Service {
   title: string;
@@ -162,7 +161,7 @@ const DraggableCarousel: React.FC<DraggableCarouselProps> = ({
         ))}
         
         {/* Duplicate set for seamless loop */}
-        {services.map((service, index) => (
+        {services.map((service) => (
           <motion.div
             key={`second-${service.title}`}
             className="group flex-shrink-0 w-80"

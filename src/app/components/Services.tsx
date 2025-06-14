@@ -1,6 +1,6 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { motion, useMotionValue, useTransform, useAnimation } from "motion/react";
+import { motion, useMotionValue, useAnimation } from "motion/react";
 import Link from "next/link";
 import { useRef, useState, useEffect } from "react";
 import { 
@@ -59,6 +59,7 @@ export const OurServices = ({
   const constraintsRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
+  const [hasDragged, setHasDragged] = useState(false);
   const x = useMotionValue(0);
   const controls = useAnimation();
 
@@ -178,10 +179,16 @@ export const OurServices = ({
             style={{ x }}
             onDragStart={() => {
               setIsDragging(true);
+              setHasDragged(false);
               controls.stop();
+            }}
+            onDrag={() => {
+              setHasDragged(true);
             }}
             onDragEnd={() => {
               setIsDragging(false);
+              // Reset hasDragged after a small delay to allow click prevention
+              setTimeout(() => setHasDragged(false), 100);
             }}
             onPointerDown={(e) => {
               // Ensure dragging works even when starting on images
@@ -199,7 +206,14 @@ export const OurServices = ({
                 className="group cursor-pointer flex-shrink-0 w-80"
                 whileHover={{ y: -8 }}
               >
-                <Link href={service.link}>
+                <Link 
+                  href={service.link}
+                  onClick={(e) => {
+                    if (hasDragged) {
+                      e.preventDefault();
+                    }
+                  }}
+                >
                   <div className="relative overflow-hidden rounded-2xl bg-white shadow-md hover:shadow-xl transition-all duration-500 h-full border border-gray-100 group-hover:border-[#348992]/30">
                     {/* Service Image with Enhanced Overlay */}
                     <div className="relative h-64 overflow-hidden">
@@ -250,13 +264,20 @@ export const OurServices = ({
             ))}
             
             {/* Duplicate set for seamless loop */}
-            {services.map((service, index) => (
+            {services.map((service) => (
               <motion.div
                 key={`second-${service.title}`}
                 className="group cursor-pointer flex-shrink-0 w-80"
                 whileHover={{ y: -8 }}
               >
-                <Link href={service.link}>
+                <Link 
+                  href={service.link}
+                  onClick={(e) => {
+                    if (hasDragged) {
+                      e.preventDefault();
+                    }
+                  }}
+                >
                   <div className="relative overflow-hidden rounded-2xl bg-white shadow-md hover:shadow-xl transition-all duration-500 h-full border border-gray-100 group-hover:border-[#348992]/30">
                     {/* Service Image with Enhanced Overlay */}
                     <div className="relative h-64 overflow-hidden">

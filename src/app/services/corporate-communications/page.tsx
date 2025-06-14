@@ -159,6 +159,11 @@ const CorporateCommunicationsPage: React.FC = () => {
             </p>
           </motion.div>
 
+          {/* Draggable Services Carousel */}
+          <DraggableCarousel 
+            services={services} 
+            gradientColors="from-green-500/40 via-[#2d6389]/30 to-blue-600/40"
+          />
         </div>
       </section>
 

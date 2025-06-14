@@ -13,10 +13,7 @@ import {
   Shield, 
   BarChart3,
   ArrowLeft,
-  CheckCircle,
-  DollarSign,
   Globe,
-  Eye,
   Award
 } from 'lucide-react';
 
