@@ -94,7 +94,7 @@ const Hero: React.FC = () => {
   return (
     <div 
       ref={heroRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50 pt-16 lg:pt-0"
     >
       {/* Enhanced Background with Modern Patterns */}
       <div className="absolute inset-0 overflow-hidden">

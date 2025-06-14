@@ -16,22 +16,22 @@ export const Footer = () => {
         {/* Social Icons */}
         <div className="flex space-x-5">
           <FooterIcon
-            href="https://facebook.com"
+            href="https://www.facebook.com/Konnections/"
             label="Facebook"
             icon={<Facebook className="w-5 h-5" />}
           />
           <FooterIcon
-            href="https://instagram.com"
+            href="https://www.instagram.com/konnections.imag/"
             label="Instagram"
             icon={<Instagram className="w-5 h-5" />}
           />
           <FooterIcon
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/company/konnectionsimag/posts/?feedView=all"
             label="LinkedIn"
             icon={<Linkedin className="w-5 h-5" />}
           />
           <FooterIcon
-            href="mailto:info@konnectionsimag.com"
+            href="mailto:info@konnections.co.in"
             label="Email"
             icon={<Mail className="w-5 h-5" />}
           />

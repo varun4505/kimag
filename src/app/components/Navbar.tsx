@@ -136,19 +136,19 @@ const MainNavbar: React.FC = () => {
   const socialLinks: SocialLink[] = [
     {
       icon: <FaLinkedinIn size={20} />,
-      href: "https://www.linkedin.com/company/konnections-imag",
+      href: "https://www.linkedin.com/company/konnectionsimag/posts/?feedView=all",
       hoverColor: "hover:text-[#0077B5]",
       label: "LinkedIn"
     },
     {
       icon: <FaFacebook size={20} />,
-      href: "https://facebook.com/konnectionsimag",
+      href: "https://www.facebook.com/Konnections/",
       hoverColor: "hover:text-[#1877F2]",
       label: "Facebook"
     },
     {
       icon: <FaInstagram size={20} />,
-      href: "https://instagram.com/konnectionsimag",
+      href: "https://www.instagram.com/konnections.imag/",
       hoverColor: "hover:text-[#E4405F]",
       label: "Instagram"
     },
@@ -549,8 +549,8 @@ const MainNavbar: React.FC = () => {
                         className={`text-gray-600 ${social.hoverColor} transition-colors duration-200 p-1.5 rounded-lg hover:bg-gray-50`}
                         aria-label={social.label}
                       >
-                        <div className="w-4 h-4">
-                          {React.cloneElement(social.icon, { size: 16 })}
+                        <div className="w-4 h-4 flex items-center justify-center">
+                          {social.icon}
                         </div>
                       </Link>
                     ))}
