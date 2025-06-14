@@ -44,7 +44,7 @@ const ContactUs: React.FC = () => {
   };
 
   return (
-    <section className="relative min-h-screen overflow-hidden px-4 py-20 bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/30">
+    <section id="contact" className="relative min-h-screen overflow-hidden px-4 py-20 bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/30">
       {/* Enhanced Background Elements */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-20 w-72 h-72 bg-gradient-to-br from-[#348992]/10 to-[#d73c77]/5 rounded-full blur-3xl"></div>
@@ -93,21 +93,21 @@ const ContactUs: React.FC = () => {
             {
               icon: <Mail className="w-6 h-6" />,
               title: "Email Us",
-              content: "hello@konnections.in",
+              content: "info@konnections.co.in",
               gradient: "from-[#2d6389] to-[#348992]",
               bgGradient: "from-blue-50 to-indigo-50"
             },
             {
               icon: <Phone className="w-6 h-6" />,
               title: "Call Us",
-              content: "+91 98765 43210",
+              content: "+91 7032939360",
               gradient: "from-[#348992] to-[#d73c77]",
               bgGradient: "from-green-50 to-emerald-50"
             },
             {
               icon: <MapPin className="w-6 h-6" />,
               title: "Visit Us",
-              content: "Bangalore, India",
+              content: "Konnections IMAG\n6-3-596/102F, 2nd Floor, Navin Nagar,\nBanjara Hills, Hyderabad, Telangana - 500004",
               gradient: "from-[#d73c77] to-[#2d6389]",
               bgGradient: "from-purple-50 to-pink-50"
             },
@@ -133,7 +133,7 @@ const ContactUs: React.FC = () => {
                 {item.icon}
               </motion.div>
               <h3 className="text-lg font-bold text-[#2d6389] mb-2">{item.title}</h3>
-              <p className="text-gray-600">{item.content}</p>
+              <p className="text-gray-600 whitespace-pre-line leading-relaxed">{item.content}</p>
             </motion.div>
           ))}
         </motion.div>

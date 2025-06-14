@@ -51,7 +51,7 @@ export default function CaseStudies() {
     }
   };
   return (
-    <section className="w-full py-20 px-4 sm:px-8 lg:px-16 bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/30 relative overflow-hidden">
+    <section id="case-studies" className="w-full py-20 px-4 sm:px-8 lg:px-16 bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/30 relative overflow-hidden">
       {/* Enhanced background decorative elements */}
       <div className="absolute inset-0">
         <div className="absolute top-0 left-0 w-72 h-72 bg-gradient-to-br from-[#348992]/10 to-[#d73c77]/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>

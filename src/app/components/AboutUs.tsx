@@ -39,7 +39,7 @@ const AboutUs: React.FC = () => {
   };
 
   return (
-    <section className="relative py-20 px-4 bg-white">
+    <section id="about" className="relative py-20 px-4 bg-white">
       {/* Subtle Background */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-20 w-64 h-64 bg-[#348992]/3 rounded-full blur-3xl"></div>
