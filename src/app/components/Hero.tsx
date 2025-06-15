@@ -94,7 +94,7 @@ const Hero: React.FC = () => {
   return (
     <div 
       ref={heroRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50 pt-16 lg:pt-0"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50"
     >
       {/* Enhanced Background with Modern Patterns */}
       <div className="absolute inset-0 overflow-hidden">
@@ -335,15 +335,6 @@ const Hero: React.FC = () => {
                     style={{
                       background: 'linear-gradient(to top, rgba(52, 137, 146, 0.9), rgba(52, 137, 146, 0.6), rgba(52, 137, 146, 0.2), transparent)',
                       transformOrigin: 'bottom center'
-                    }}
-                  />
-                  
-                  {/* Radar Sweep Effect - Mobile */}
-                  <div
-                    className="absolute top-0 left-0 w-24 h-24 opacity-30 pointer-events-none"
-                    style={{
-                      background: 'conic-gradient(from 0deg, transparent 0deg, rgba(52, 137, 146, 0.3) 30deg, transparent 60deg)',
-                      transformOrigin: '0 0'
                     }}
                   />
                 </motion.div>
@@ -598,15 +589,6 @@ const Hero: React.FC = () => {
                       transformOrigin: 'bottom center'
                     }}
                   />
-                  
-                  {/* Radar Sweep Effect */}
-                  <div
-                    className="absolute top-0 left-0 w-72 h-72 opacity-30 pointer-events-none"
-                    style={{
-                      background: 'conic-gradient(from 0deg, transparent 0deg, rgba(52, 137, 146, 0.3) 30deg, transparent 60deg)',
-                      transformOrigin: '0 0'
-                    }}
-                  />
                 </motion.div>
 
                 {/* PR-Related Icons positioned around the radar */}
@@ -703,7 +685,7 @@ const Hero: React.FC = () => {
                       whileHover={{ 
                         scale: 1.2, 
                         zIndex: 30,
-                        opacity: 1 // Full opacity on hover, overrides radar sweep
+                        opacity: 1 // Full opacity on hover
                       }}
                     >
                       {/* Icon Container */}

@@ -38,27 +38,27 @@ const ModernHamburger: React.FC<{
       className="p-2 rounded-lg hover:bg-gray-50 transition-colors duration-200 group" 
       aria-label="Toggle Menu"
     >
-      <div className="flex flex-col items-center justify-center w-5 h-5 space-y-1">
+      <div className="flex flex-col items-center justify-center w-6 h-6 space-y-1">
         <motion.div
-          className="w-5 h-0.5 bg-gray-700 rounded-full"
+          className="w-6 h-0.5 bg-gray-700 rounded-full"
           animate={{
             rotate: isOpen ? 45 : 0,
-            y: isOpen ? 6 : 0,
+            y: isOpen ? 8 : 0,
           }}
           transition={{ duration: 0.3 }}
         />
         <motion.div
-          className="w-5 h-0.5 bg-gray-700 rounded-full"
+          className="w-6 h-0.5 bg-gray-700 rounded-full"
           animate={{
             opacity: isOpen ? 0 : 1,
           }}
           transition={{ duration: 0.3 }}
         />
         <motion.div
-          className="w-5 h-0.5 bg-gray-700 rounded-full"
+          className="w-6 h-0.5 bg-gray-700 rounded-full"
           animate={{
             rotate: isOpen ? -45 : 0,
-            y: isOpen ? -6 : 0,
+            y: isOpen ? -8 : 0,
           }}
           transition={{ duration: 0.3 }}
         />
@@ -136,19 +136,19 @@ const MainNavbar: React.FC = () => {
   const socialLinks: SocialLink[] = [
     {
       icon: <FaLinkedinIn size={20} />,
-      href: "https://www.linkedin.com/company/konnectionsimag/posts/?feedView=all",
+      href: "https://www.linkedin.com/company/konnections-imag",
       hoverColor: "hover:text-[#0077B5]",
       label: "LinkedIn"
     },
     {
       icon: <FaFacebook size={20} />,
-      href: "https://www.facebook.com/Konnections/",
+      href: "https://facebook.com/konnectionsimag",
       hoverColor: "hover:text-[#1877F2]",
       label: "Facebook"
     },
     {
       icon: <FaInstagram size={20} />,
-      href: "https://www.instagram.com/konnections.imag/",
+      href: "https://instagram.com/konnectionsimag",
       hoverColor: "hover:text-[#E4405F]",
       label: "Instagram"
     },
@@ -273,8 +273,8 @@ const MainNavbar: React.FC = () => {
               : 'top-10 bg-white/90 backdrop-blur-sm'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16 lg:h-20">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-14 sm:h-16 lg:h-20">
             
             {/* Logo */}
             <motion.div
@@ -288,8 +288,8 @@ const MainNavbar: React.FC = () => {
                   <Image
                     src={isMobile ? "/logo-small.png" : "/logo-big.png"}
                     alt="Konnections IMAG Logo"
-                    width={isMobile ? 60 : 220}
-                    height={isMobile ? 20 : 73}
+                    width={isMobile ? 80 : 220}
+                    height={isMobile ? 27 : 73}
                     priority
                     className="transition-transform duration-300 group-hover:scale-105"
                   />
@@ -406,16 +406,16 @@ const MainNavbar: React.FC = () => {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "tween", duration: 0.3 }}
-              className="fixed top-0 right-0 w-72 max-w-[85vw] h-full bg-white z-50 shadow-2xl lg:hidden overflow-hidden flex flex-col"
+              className="fixed top-0 right-0 w-80 max-w-[90vw] h-full bg-white z-50 shadow-2xl lg:hidden overflow-hidden flex flex-col"
             >
               {/* Header */}
-              <div className="flex justify-between items-center p-4 border-b border-gray-200 flex-shrink-0">
+              <div className="flex justify-between items-center p-6 border-b border-gray-200 flex-shrink-0">
                 <div className="flex items-center">
                   <Image
                     src="/logo-small.png"
                     alt="Konnections IMAG Logo"
-                    width={80}
-                    height={27}
+                    width={100}
+                    height={33}
                   />
                 </div>
                 <ModernHamburger isOpen={isDrawerOpen} onClick={toggleDrawer} />
@@ -423,7 +423,7 @@ const MainNavbar: React.FC = () => {
 
               {/* Navigation - Scrollable */}
               <div className="flex-1 overflow-y-auto">
-                <div className="p-4 space-y-6">
+                <div className="p-6 space-y-6">
                   {/* Services Section - Collapsible */}
                   <div>
                     <button
@@ -459,17 +459,17 @@ const MainNavbar: React.FC = () => {
                               <Link
                                 key={index}
                                 href={service.href}
-                                className="flex items-center space-x-3 p-2.5 rounded-lg hover:bg-gray-50 transition-colors duration-200 group"
+                                className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors duration-200 group"
                                 onClick={toggleDrawer}
                               >
-                                <span className="text-base group-hover:scale-110 transition-transform duration-200 flex-shrink-0">
+                                <span className="text-lg group-hover:scale-110 transition-transform duration-200">
                                   {service.icon}
                                 </span>
-                                <div className="min-w-0 flex-1">
-                                  <div className="font-medium text-gray-900 group-hover:text-[#348992] transition-colors duration-200 text-sm">
+                                <div>
+                                  <div className="font-medium text-gray-900 group-hover:text-[#348992] transition-colors duration-200">
                                     {service.text}
                                   </div>
-                                  <div className="text-xs text-gray-600 leading-tight">
+                                  <div className="text-xs text-gray-600">
                                     {service.description}
                                   </div>
                                 </div>
@@ -483,7 +483,7 @@ const MainNavbar: React.FC = () => {
 
                   {/* Main Navigation */}
                   <div>
-                    <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">
+                    <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">
                       Navigation
                     </h3>
                     <div className="space-y-1">
@@ -491,13 +491,13 @@ const MainNavbar: React.FC = () => {
                         <button
                           key={index}
                           onClick={() => handleNavClick(link.href)}
-                          className="block w-full text-left p-2.5 rounded-lg hover:bg-gray-50 transition-colors duration-200 group"
+                          className="block w-full text-left p-3 rounded-lg hover:bg-gray-50 transition-colors duration-200 group"
                         >
-                          <div className="font-medium text-gray-900 group-hover:text-[#348992] transition-colors duration-200 text-sm">
+                          <div className="font-medium text-gray-900 group-hover:text-[#348992] transition-colors duration-200">
                             {link.text}
                           </div>
                           {link.description && (
-                            <div className="text-xs text-gray-600 mt-0.5 leading-tight">
+                            <div className="text-xs text-gray-600 mt-1">
                               {link.description}
                             </div>
                           )}
@@ -509,7 +509,7 @@ const MainNavbar: React.FC = () => {
                   {/* CTA Button */}
                   <Link
                     href="/appointment"
-                    className="block w-full bg-gradient-to-r from-[#348992] to-[#2d6389] text-white text-center py-3 px-4 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 text-sm"
+                    className="block w-full bg-gradient-to-r from-[#348992] to-[#2d6389] text-white text-center py-4 px-6 rounded-lg font-semibold hover:shadow-lg transition-all duration-300"
                     onClick={toggleDrawer}
                   >
                     Get Started
@@ -518,40 +518,38 @@ const MainNavbar: React.FC = () => {
               </div>
 
               {/* Footer */}
-              <div className="p-4 border-t border-gray-200 flex-shrink-0">
+              <div className="p-6 border-t border-gray-200 flex-shrink-0">
                 <div className="mb-4">
                   <h4 className="text-sm font-semibold text-gray-900 mb-2">Contact Info</h4>
-                  <div className="space-y-2 text-xs text-gray-600">
+                  <div className="space-y-2 text-sm text-gray-600">
                     <div className="flex items-center space-x-2">
-                      <FaPhone size={10} />
+                      <FaPhone size={12} />
                       <span>+91 7032939360</span>
                     </div>
                     <div className="flex items-center space-x-2">
-                      <FaEnvelope size={10} />
-                      <span className="break-all">info@konnections.co.in</span>
+                      <FaEnvelope size={12} />
+                      <span>info@konnections.co.in</span>
                     </div>
                     <div className="flex items-start space-x-2">
-                      <FaMapMarkerAlt size={10} className="mt-0.5 flex-shrink-0" />
-                      <span className="leading-tight text-xs">Konnections IMAG<br />Banjara Hills, Hyderabad</span>
+                      <FaMapMarkerAlt size={12} className="mt-0.5 flex-shrink-0" />
+                      <span className="leading-tight">Konnections IMAG<br />6-3-596/102F, 2nd Floor, Navin Nagar,<br />Banjara Hills, Hyderabad, Telangana - 500004</span>
                     </div>
                   </div>
                 </div>
                 
                 <div>
-                  <h4 className="text-sm font-semibold text-gray-900 mb-2">Follow Us</h4>
-                  <div className="flex space-x-3">
+                  <h4 className="text-sm font-semibold text-gray-900 mb-3">Follow Us</h4>
+                  <div className="flex space-x-4">
                     {socialLinks.map((social, index) => (
                       <Link
                         key={index}
                         href={social.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`text-gray-600 ${social.hoverColor} transition-colors duration-200 p-1.5 rounded-lg hover:bg-gray-50`}
+                        className={`text-gray-600 ${social.hoverColor} transition-colors duration-200 p-2 rounded-lg hover:bg-gray-50`}
                         aria-label={social.label}
                       >
-                        <div className="w-4 h-4 flex items-center justify-center">
-                          {social.icon}
-                        </div>
+                        {social.icon}
                       </Link>
                     ))}
                   </div>
