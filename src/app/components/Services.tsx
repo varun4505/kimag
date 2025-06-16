@@ -95,22 +95,27 @@ export const OurServices = ({
   
   // Calculate appropriate drag constraints based on content width
   const cardWidth = 336; // 320px + 16px gap
-  const totalWidth = services.length * cardWidth * 2; // Doubled for seamless loop
-  const dragConstraints = { left: -totalWidth + 800, right: 100 };
+  const totalWidth = services.length * cardWidth;
+  const dragConstraints = { left: -totalWidth, right: 0 };
 
-  // Auto-scroll effect
+  // Auto-scroll effect with infinite loop
   useEffect(() => {
     if (!isDragging && !isHovering) {
       const autoScroll = async () => {
+        // Start from 0 and animate to negative totalWidth
         await controls.start({
           x: -totalWidth,
           transition: {
-            duration: services.length * 8, // Slower, more relaxed scrolling
-            ease: "linear",
-            repeat: Infinity,
-            repeatType: "loop"
+            duration: services.length * 6, // Adjust speed as needed
+            ease: "linear"
           }
         });
+        
+        // Reset position instantly to create seamless loop
+        controls.set({ x: 0 });
+        
+        // Recursively call autoScroll to continue the loop
+        autoScroll();
       };
       autoScroll();
     } else {
@@ -263,7 +268,7 @@ export const OurServices = ({
               </motion.div>
             ))}
             
-            {/* Duplicate set for seamless loop */}
+            {/* Second set for seamless loop */}
             {services.map((service) => (
               <motion.div
                 key={`second-${service.title}`}

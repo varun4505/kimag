@@ -288,8 +288,8 @@ const MainNavbar: React.FC = () => {
                   <Image
                     src={isMobile ? "/logo-small.png" : "/logo-big.png"}
                     alt="Konnections IMAG Logo"
-                    width={isMobile ? 80 : 220}
-                    height={isMobile ? 27 : 73}
+                    width={isMobile ? 60 : 220}
+                    height={isMobile ? 20 : 73}
                     priority
                     className="transition-transform duration-300 group-hover:scale-105"
                   />
