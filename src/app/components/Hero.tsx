@@ -218,19 +218,8 @@ const Hero: React.FC = () => {
           
           {/* Left Side - Text Content */}
           <div className="text-center lg:text-left space-y-6 lg:space-y-8 flex flex-col justify-center">
-            {/* Professional Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.6 }}
-              className="inline-flex items-center px-4 py-2 bg-gray-100 border border-gray-200 rounded-full"
-            >
-              <span className="text-gray-700 font-medium text-sm">
-                Integrated Marketing & Communications
-              </span>
-            </motion.div>
-
-            {/* Clean, Professional Title */}
+      
+            {/* Title */}
             <div>
               <h1 
                 ref={titleRef}
