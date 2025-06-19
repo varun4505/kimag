@@ -34,14 +34,14 @@ export default function CaseStudies() {
     { name: 'Manufacturing', icon: Factory }
   ];
 
-  // Auto-scroll effect for carousel
+  // Auto-scroll effect for carousel - Optimized speed
   useEffect(() => {
     if (!isHovering) {
       const autoScroll = async () => {
         await controls.start({
           x: '-50%',
           transition: {
-            duration: 30,
+            duration: 20, // Faster: reduced from 30 to 20 seconds
             ease: "linear",
             repeat: Infinity,
             repeatType: "loop"

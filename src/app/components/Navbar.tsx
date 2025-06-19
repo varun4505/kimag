@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { gsap } from "gsap";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter, usePathname } from "next/navigation";
 
 interface SocialLink {
   icon: React.ReactElement;
@@ -75,6 +76,8 @@ const MainNavbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
   const servicesDropdownRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     const checkMobile = () => {
@@ -121,12 +124,19 @@ const MainNavbar: React.FC = () => {
 
   const handleNavClick = (href: string) => {
     if (href.startsWith('#')) {
-      const element = document.getElementById(href.substring(1));
-      if (element) {
-        element.scrollIntoView({ 
-          behavior: 'smooth',
-          block: 'start'
-        });
+      // Check if we're on the homepage
+      if (pathname === '/') {
+        // We're on the homepage, scroll to the section
+        const element = document.getElementById(href.substring(1));
+        if (element) {
+          element.scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      } else {
+        // We're not on the homepage, navigate to homepage with hash
+        router.push('/' + href);
       }
     }
     // Close mobile menu if open
