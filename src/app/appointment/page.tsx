@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from '../components/Navbar';
 import { Footer } from '../components/Footer';
@@ -530,7 +530,7 @@ export default function AppointmentPage() {
                         <div>
                           <h4 className="font-semibold text-purple-900 mb-1">What to Expect</h4>
                           <p className="text-sm text-purple-700">
-                            We'll discuss your goals, challenges, and how our expertise can help elevate your brand.
+                            We&apos;ll discuss your goals, challenges, and how our expertise can help elevate your brand.
                           </p>
                         </div>
                       </div>
