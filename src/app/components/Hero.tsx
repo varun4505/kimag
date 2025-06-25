@@ -13,11 +13,7 @@ import {
   FaUniversity, 
   FaStar, 
   FaBullseye, 
-  FaUsers,
-  FaMicrophone,
-  FaChartLine,
-  FaGlobe,
-  FaHandshake
+  FaUsers
 } from 'react-icons/fa';
 
 const Hero: React.FC = () => {
