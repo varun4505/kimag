@@ -5,6 +5,20 @@ import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import { 
+  FaNewspaper, 
+  FaShieldAlt, 
+  FaLaptop, 
+  FaBuilding, 
+  FaUniversity, 
+  FaStar, 
+  FaBullseye, 
+  FaUsers,
+  FaMicrophone,
+  FaChartLine,
+  FaGlobe,
+  FaHandshake
+} from 'react-icons/fa';
 
 const Hero: React.FC = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -330,14 +344,14 @@ const Hero: React.FC = () => {
 
                 {/* Simplified PR Icons for Mobile */}
                 {[
-                  { name: "Media Relations", icon: "🗞️", angle: 0 },
-                  { name: "Crisis Management", icon: "⚠️", angle: 45 },
-                  { name: "Digital Strategy", icon: "💻", angle: 90 },
-                  { name: "Corporate Communications", icon: "🏢", angle: 135 },
-                  { name: "Public Affairs", icon: "🏛️", angle: 180 },
-                  { name: "Brand Management", icon: "✨", angle: 225 },
-                  { name: "Event Management", icon: "🎯", angle: 270 },
-                  { name: "Stakeholder Engagement", icon: "🤝", angle: 315 }
+                  { name: "Media Relations", icon: FaNewspaper, angle: 0 },
+                  { name: "Crisis Management", icon: FaShieldAlt, angle: 45 },
+                  { name: "Digital Strategy", icon: FaLaptop, angle: 90 },
+                  { name: "Corporate Communications", icon: FaBuilding, angle: 135 },
+                  { name: "Public Affairs", icon: FaUniversity, angle: 180 },
+                  { name: "Brand Management", icon: FaStar, angle: 225 },
+                  { name: "Event Management", icon: FaBullseye, angle: 270 },
+                  { name: "Stakeholder Engagement", icon: FaUsers, angle: 315 }
                 ].map((item, index) => {
                   const radius = 75; // Slightly reduced for better mobile fit
                   const angleRad = (item.angle * Math.PI) / 180;
@@ -380,7 +394,7 @@ const Hero: React.FC = () => {
                       }}
                     >
                       <div className="w-7 h-7 bg-white/95 backdrop-blur-sm rounded-full shadow-lg border border-gray-200/50 flex items-center justify-center text-xs">
-                        {item.icon}
+                        <item.icon className="text-[#348992]" />
                       </div>
                     </motion.div>
                   );
@@ -588,49 +602,49 @@ const Hero: React.FC = () => {
                 {[
                   { 
                     name: "Media Relations", 
-                    icon: "🗞️", 
+                    icon: FaNewspaper, 
                     angle: 0, 
                     description: "Press Releases & Media Outreach"
                   },
                   { 
                     name: "Crisis Management", 
-                    icon: "⚠️", 
+                    icon: FaShieldAlt, 
                     angle: 45, 
                     description: "Risk Assessment & Crisis Response"
                   },
                   { 
                     name: "Digital Strategy", 
-                    icon: "💻", 
+                    icon: FaLaptop, 
                     angle: 90, 
                     description: "Online Presence & Social Media"
                   },
                   { 
                     name: "Corporate Communications", 
-                    icon: "🏢", 
+                    icon: FaBuilding, 
                     angle: 135, 
                     description: "Internal & Executive Communications"
                   },
                   { 
                     name: "Public Affairs", 
-                    icon: "🏛️", 
+                    icon: FaUniversity, 
                     angle: 180, 
                     description: "Government Relations & Policy"
                   },
                   { 
                     name: "Brand Management", 
-                    icon: "✨", 
+                    icon: FaStar, 
                     angle: 225, 
                     description: "Brand Positioning & Reputation"
                   },
                   { 
                     name: "Event Management", 
-                    icon: "🎯", 
+                    icon: FaBullseye, 
                     angle: 270, 
                     description: "Strategic Events & Campaigns"
                   },
                   { 
                     name: "Stakeholder Engagement", 
-                    icon: "🤝", 
+                    icon: FaUsers, 
                     angle: 315, 
                     description: "Investor & Community Relations"
                   }
@@ -696,8 +710,8 @@ const Hero: React.FC = () => {
                         />
                         
                         {/* Icon */}
-                        <motion.span 
-                          className="text-xl z-10 relative filter drop-shadow-sm"
+                        <motion.div
+                          className="text-xl z-10 relative filter drop-shadow-sm text-[#348992]"
                           animate={{ 
                             scale: [1, 1.05, 1]
                           }}
@@ -708,8 +722,8 @@ const Hero: React.FC = () => {
                             delay: index * 0.3
                           }}
                         >
-                          {item.icon}
-                        </motion.span>
+                          <item.icon />
+                        </motion.div>
                         
                         {/* Pulse Ring */}
                         <motion.div
