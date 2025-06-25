@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { FaFacebook, FaInstagram, FaEnvelope, FaLinkedinIn, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaEnvelope, FaLinkedinIn, FaPhone, FaMapMarkerAlt, FaNewspaper, FaShieldAlt, FaLaptop, FaBuilding, FaUniversity, FaBullseye } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import { gsap } from "gsap";
 import Image from "next/image";
@@ -26,7 +26,7 @@ interface ServiceDropdownItem {
   href: string;
   text: string;
   description: string;
-  icon: string;
+  icon: React.ReactElement;
 }
 
 const ModernHamburger: React.FC<{
@@ -176,37 +176,37 @@ const MainNavbar: React.FC = () => {
       href: "/services/public-relations",
       text: "Public Relations",
       description: "Media relations & reputation management",
-      icon: "🗞️"
+      icon: <FaNewspaper className="text-[#348992]" />
     },
     {
       href: "/services/crisis-management",
       text: "Crisis Management",
       description: "Strategic crisis communication",
-      icon: "⚠️"
+      icon: <FaShieldAlt className="text-[#348992]" />
     },
     {
       href: "/services/digital-media",
       text: "Digital Media",
       description: "Social media & online presence",
-      icon: "💻"
+      icon: <FaLaptop className="text-[#348992]" />
     },
     {
       href: "/services/corporate-communications",
       text: "Corporate Communications",
       description: "Internal & external communications",
-      icon: "🏢"
+      icon: <FaBuilding className="text-[#348992]" />
     },
     {
       href: "/services/financial-communications",
       text: "Financial Communications",
       description: "Investor relations & financial PR",
-      icon: "💰"
+      icon: <FaUniversity className="text-[#348992]" />
     },
     {
       href: "/services/specialized-services",
       text: "Specialized Services",
       description: "Events, CSR & strategic campaigns",
-      icon: "🎯"
+      icon: <FaBullseye className="text-[#348992]" />
     }
   ];
 
@@ -345,30 +345,32 @@ const MainNavbar: React.FC = () => {
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 10, scale: 0.95 }}
                       transition={{ duration: 0.2 }}
-                      className="absolute top-full left-0 mt-2 w-80 bg-white rounded-xl shadow-xl border border-gray-200/50 overflow-hidden"
+                      className="absolute top-full left-0 mt-2 w-96 bg-white rounded-xl shadow-xl border border-gray-200/50 overflow-hidden"
                     >
-                      <div className="py-4">
-                        {servicesDropdown.map((service, index) => (
-                          <Link
-                            key={index}
-                            href={service.href}
-                            className="block px-6 py-3 hover:bg-gray-50 transition-colors duration-200 group"
-                          >
-                            <div className="flex items-start space-x-3">
-                              <span className="text-lg group-hover:scale-110 transition-transform duration-200">
-                                {service.icon}
-                              </span>
-                              <div>
-                                <div className="font-medium text-gray-900 group-hover:text-[#348992] transition-colors duration-200">
-                                  {service.text}
-                                </div>
-                                <div className="text-sm text-gray-600 mt-1">
-                                  {service.description}
+                      <div className="p-4">
+                        <div className="grid grid-cols-2 gap-2">
+                          {servicesDropdown.map((service, index) => (
+                            <Link
+                              key={index}
+                              href={service.href}
+                              className="block p-3 hover:bg-gray-50 transition-colors duration-200 group rounded-lg"
+                            >
+                              <div className="flex items-start space-x-3">
+                                <span className="text-lg group-hover:scale-110 transition-transform duration-200 flex-shrink-0">
+                                  {service.icon}
+                                </span>
+                                <div className="min-w-0">
+                                  <div className="font-medium text-gray-900 group-hover:text-[#348992] transition-colors duration-200 text-sm">
+                                    {service.text}
+                                  </div>
+                                  <div className="text-xs text-gray-600 mt-1 line-clamp-2">
+                                    {service.description}
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                          </Link>
-                        ))}
+                            </Link>
+                          ))}
+                        </div>
                       </div>
                     </motion.div>
                   )}
@@ -504,22 +506,22 @@ const MainNavbar: React.FC = () => {
                           transition={{ duration: 0.3 }}
                           className="overflow-hidden"
                         >
-                          <div className="space-y-1">
+                          <div className="grid grid-cols-2 gap-2 p-2">
                             {servicesDropdown.map((service, index) => (
                               <Link
                                 key={index}
                                 href={service.href}
-                                className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors duration-200 group"
+                                className="flex items-start space-x-2 p-2 rounded-lg hover:bg-gray-50 transition-colors duration-200 group"
                                 onClick={toggleDrawer}
                               >
-                                <span className="text-lg group-hover:scale-110 transition-transform duration-200">
+                                <span className="text-base group-hover:scale-110 transition-transform duration-200 flex-shrink-0">
                                   {service.icon}
                                 </span>
-                                <div>
-                                  <div className="font-medium text-gray-900 group-hover:text-[#348992] transition-colors duration-200">
+                                <div className="min-w-0">
+                                  <div className="font-medium text-gray-900 group-hover:text-[#348992] transition-colors duration-200 text-sm">
                                     {service.text}
                                   </div>
-                                  <div className="text-xs text-gray-600">
+                                  <div className="text-xs text-gray-600 line-clamp-2">
                                     {service.description}
                                   </div>
                                 </div>
