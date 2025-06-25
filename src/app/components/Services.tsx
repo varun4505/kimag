@@ -1,10 +1,11 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { motion, useMotionValue, useAnimation } from "motion/react";
+import { motion, useMotionValue, useAnimation } from "framer-motion";
 import Link from "next/link";
 import { useRef, useState, useEffect } from "react";
 import { 
   ArrowRight, 
+  ArrowLeft,
   Sparkles, 
   Star,
   Target,
@@ -98,6 +99,21 @@ export const OurServices = ({
   const totalWidth = services.length * cardWidth;
   const dragConstraints = { left: -totalWidth, right: 0 };
 
+  // Navigation functions
+  const scrollLeft = () => {
+    controls.start({
+      x: Math.min(x.get() + cardWidth * 1, 0),
+      transition: { duration: 0.5, ease: "easeOut" }
+    });
+  };
+
+  const scrollRight = () => {
+    controls.start({
+      x: Math.max(x.get() - cardWidth * 1, -totalWidth),
+      transition: { duration: 0.5, ease: "easeOut" }
+    });
+  };
+
   // Auto-scroll effect with infinite loop
   useEffect(() => {
     if (!isDragging && !isHovering) {
@@ -171,6 +187,28 @@ export const OurServices = ({
           onMouseEnter={() => setIsHovering(true)}
           onMouseLeave={() => setIsHovering(false)}
         >
+          {/* Navigation Arrows */}
+          <div className="absolute inset-y-0 left-4 z-20 flex items-center">
+            <motion.button
+              onClick={scrollLeft}
+              className="w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full shadow-lg border border-gray-200/50 flex items-center justify-center text-[#348992] hover:bg-white hover:shadow-xl transition-all duration-300 group"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <ArrowLeft className="w-5 h-5 group-hover:scale-110 transition-transform duration-200" />
+            </motion.button>
+          </div>
+          
+          <div className="absolute inset-y-0 right-4 z-20 flex items-center">
+            <motion.button
+              onClick={scrollRight}
+              className="w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full shadow-lg border border-gray-200/50 flex items-center justify-center text-[#348992] hover:bg-white hover:shadow-xl transition-all duration-300 group"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <ArrowRight className="w-5 h-5 group-hover:scale-110 transition-transform duration-200" />
+            </motion.button>
+          </div>
           {/* Draggable carousel container */}
           <motion.div 
             className="flex gap-8 cursor-grab active:cursor-grabbing"

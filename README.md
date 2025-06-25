@@ -1,6 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Konnections IMAG Website
+
+A modern, responsive website for Konnections IMAG - a strategic communications and public relations agency. Built with Next.js 15, TypeScript, and Tailwind CSS with smooth scrolling powered by Lenis.
+
+## Features
+
+- 🎨 Modern, responsive design with smooth animations
+- 📱 Mobile-first approach with excellent UX
+- 🚀 Smooth scrolling throughout the site using Lenis
+- 📧 Contact forms with email integration
+- 👔 Admin panel for managing appointments and case studies
+- 🔒 Secure authentication and data handling
+- ⚡ Optimized for performance and SEO
+
+## Tech Stack
+
+- **Framework**: Next.js 15 with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Animations**: Framer Motion + GSAP
+- **Smooth Scrolling**: Lenis
+- **Database**: MongoDB with Mongoose
+- **Email**: Nodemailer
+- **Icons**: React Icons + Lucide React
 
 ## Getting Started
+
+### Prerequisites
+
+- Node.js 18+ 
+- MongoDB database
+- Email service (Gmail with App Password recommended)
 
 ### Environment Setup
 
@@ -9,25 +38,84 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 cp .env.example .env.local
 ```
 
-2. Edit `.env.local` and set your environment variables:
-   - `ADMIN_PASSWORD`: Set a secure password for admin access
-   - Add other configuration variables as needed
+2. Edit `.env.local` and configure your environment variables:
+   - `MONGODB_URI`: Your MongoDB connection string
+   - `MAIL_USER` & `MAIL_PASS`: Email service credentials
+   - `BASE_URL`: Your domain (http://localhost:3000 for development)
+   - `ADMIN_PASSWORD`: Secure admin panel password
+   - Case study links for different sectors
 
 ### Development
 
-First, run the development server:
+Install dependencies and run the development server:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the website.
+
+### Production Deployment
+
+1. **Build the application:**
+```bash
+npm run build
+```
+
+2. **Start production server:**
+```bash
+npm start
+```
+
+3. **Environment Variables:**
+   - Ensure all production environment variables are set
+   - Use strong passwords and secure database connections
+   - Configure proper email service credentials
+
+### Available Scripts
+
+- `npm run dev` - Start development server with Turbopack
+- `npm run build` - Build for production
+- `npm start` - Start production server
+- `npm run lint` - Run ESLint
+- `npm run lint:fix` - Fix ESLint issues automatically
+- `npm run type-check` - Run TypeScript type checking
+
+## Project Structure
+
+```
+src/
+├── app/
+│   ├── components/     # React components
+│   ├── api/           # API routes
+│   ├── services/      # Service pages
+│   └── ...           # Other pages
+├── components/        # Shared components (Lenis integration)
+├── hooks/            # Custom React hooks
+├── lib/              # Utilities and configurations
+└── models/           # Database models
+```
+
+## Key Components
+
+- **SmoothScrollProvider**: Lenis integration for smooth scrolling
+- **Navbar**: Responsive navigation with smooth scroll links
+- **Hero**: Interactive radar visualization with animations
+- **Services**: Animated service offerings
+- **ContactUs**: Contact form with email integration
+- **Admin Panel**: Secure admin interface for managing content
+
+## Production Optimizations
+
+- ✅ Security headers configured
+- ✅ Image optimization with WebP/AVIF support
+- ✅ Gzip compression enabled
+- ✅ CSS optimization
+- ✅ Bundle size optimization
+- ✅ No development logs in production
+- ✅ Proper error boundaries
+- ✅ Performance monitoring hooks
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 

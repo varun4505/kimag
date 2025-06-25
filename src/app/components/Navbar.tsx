@@ -7,6 +7,7 @@ import { gsap } from "gsap";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
+import { smoothScrollTo } from "../../lib/smoothScroll";
 
 interface SocialLink {
   icon: React.ReactElement;
@@ -133,14 +134,11 @@ const MainNavbar: React.FC = () => {
     if (href.startsWith('#')) {
       // Check if we're on the homepage
       if (pathname === '/') {
-        // We're on the homepage, scroll to the section
-        const element = document.getElementById(href.substring(1));
-        if (element) {
-          element.scrollIntoView({ 
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
+        // We're on the homepage, use Lenis smooth scroll
+        smoothScrollTo(href, { 
+          duration: 1.5,
+          offset: -80 // Account for fixed header
+        });
       } else {
         // We're not on the homepage, navigate to homepage with hash
         router.push('/' + href);

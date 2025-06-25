@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import { smoothScrollTo } from '../../lib/smoothScroll';
 import { 
   FaNewspaper, 
   FaShieldAlt, 
@@ -24,10 +25,12 @@ const Hero: React.FC = () => {
   const ctaRef = useRef<HTMLDivElement>(null);
   const particlesRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
-
   const handleExploreWork = () => {
-    // Navigate to services section
-    document.getElementById('ourservies')?.scrollIntoView({ behavior: 'smooth' });
+    // Navigate to services section with Lenis smooth scroll
+    smoothScrollTo('#ourservies', { 
+      duration: 1.8,
+      offset: -100 // Account for fixed header
+    });
   };
 
   const handleStartJourney = () => {

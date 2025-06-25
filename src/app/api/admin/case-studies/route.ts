@@ -64,7 +64,7 @@ export async function PATCH(req: NextRequest) {
           sector: accessRequest.sector
         });
 
-        console.log(`Case study access email sent to ${accessRequest.email} for ${accessRequest.sector} sector`);
+        // Email sent successfully
       } catch (emailError) {
         console.error('Error sending case study access email:', emailError);
         // Don't fail the request if email fails, just log it
