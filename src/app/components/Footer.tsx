@@ -16,7 +16,6 @@ export const Footer = () => {
 
   const quickLinks = [
     { name: "About", href: "#about" },
-    { name: "Case Studies", href: "#case-studies" },
     { name: "Services", href: "#ourservies" },
     { name: "Contact", href: "#contact" },
     { name: "Book Appointment", href: "/appointment" },

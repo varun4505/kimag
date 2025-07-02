@@ -215,11 +215,6 @@ const MainNavbar: React.FC = () => {
       description: "Learn about our agency" 
     },
     { 
-      href: "#case-studies", 
-      text: "Case Studies", 
-      description: "Success stories & portfolio" 
-    },
-    { 
       href: "#contact", 
       text: "Contact", 
       description: "Get in touch with us" 

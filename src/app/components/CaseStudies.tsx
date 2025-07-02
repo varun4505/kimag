@@ -102,10 +102,10 @@ export default function CaseStudies() {
             <span className="text-sm font-medium text-[#348992]">Success Stories</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold mb-4 leading-tight text-gray-900">
-            Industry <span className="bg-gradient-to-r from-[#348992] to-[#d73c77] bg-clip-text text-transparent">Case Studies</span>
+            Industry <span className="bg-gradient-to-r from-[#348992] to-[#d73c77] bg-clip-text text-transparent">Success Stories</span>
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            Explore proven strategies and real results from companies that transformed their operations with our expertise.
+            Discover how companies across various industries have transformed their operations. Contact us to learn more about our proven strategies and results.
           </p>
         </motion.div>
 
@@ -166,8 +166,8 @@ export default function CaseStudies() {
                   <div className="w-16 h-16 bg-gradient-to-br from-[#348992] to-[#2d6389] rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:shadow-lg transition-all duration-300">
                     <BarChart3 className="w-8 h-8 text-white" />
                   </div>
-                  <h4 className="text-lg font-bold text-gray-900 mb-2">Data-Driven Results</h4>
-                  <p className="text-gray-600 text-sm leading-relaxed">Comprehensive analytics and performance metrics with detailed ROI tracking</p>
+                  <h4 className="text-lg font-bold text-gray-900 mb-2">Proven Success</h4>
+                  <p className="text-gray-600 text-sm leading-relaxed">Contact us to see real examples of measurable results and achievements</p>
                 </motion.div>
 
                 <motion.div 
@@ -177,8 +177,8 @@ export default function CaseStudies() {
                   <div className="w-16 h-16 bg-gradient-to-br from-[#d73c77] to-[#348992] rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:shadow-lg transition-all duration-300">
                     <BookOpen className="w-8 h-8 text-white" />
                   </div>
-                  <h4 className="text-lg font-bold text-gray-900 mb-2">Industry-Specific</h4>
-                  <p className="text-gray-600 text-sm leading-relaxed">Tailored solutions designed for your specific sector and business model</p>
+                  <h4 className="text-lg font-bold text-gray-900 mb-2">Custom Examples</h4>
+                  <p className="text-gray-600 text-sm leading-relaxed">Get relevant project examples designed for your specific sector and business model</p>
                 </motion.div>
 
                 <motion.div 
@@ -188,8 +188,8 @@ export default function CaseStudies() {
                   <div className="w-16 h-16 bg-gradient-to-br from-[#348992] to-[#d73c77] rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:shadow-lg transition-all duration-300">
                     <Lightbulb className="w-8 h-8 text-white" />
                   </div>
-                  <h4 className="text-lg font-bold text-gray-900 mb-2">Implementation Guides</h4>
-                  <p className="text-gray-600 text-sm leading-relaxed">Step-by-step roadmaps and best practices with actionable insights</p>
+                  <h4 className="text-lg font-bold text-gray-900 mb-2">Strategic Consultation</h4>
+                  <p className="text-gray-600 text-sm leading-relaxed">Personal consultation with detailed process insights and strategic recommendations</p>
                 </motion.div>
               </div>
 
@@ -200,22 +200,22 @@ export default function CaseStudies() {
                     <Shield className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h5 className="font-bold text-gray-900 mb-2">Confidential Access</h5>
+                    <h5 className="font-bold text-gray-900 mb-2">Get In Touch</h5>
                     <p className="text-gray-600 mb-4 text-sm leading-relaxed">
-                      Access requires approval to ensure client confidentiality and provide you with the most relevant case studies for your needs.
+                      Interested in learning more about our work and results? Contact us directly to discuss your project needs and discover how we can help achieve your goals.
                     </p>
                     <div className="flex flex-wrap gap-4 text-sm">
                       <div className="flex items-center gap-2">
                         <CheckCircle className="w-4 h-4 text-green-500" />
-                        <span className="text-gray-700">Premium Quality</span>
+                        <span className="text-gray-700">Free Consultation</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <CheckCircle className="w-4 h-4 text-green-500" />
-                        <span className="text-gray-700">Verified Results</span>
+                        <span className="text-gray-700">Custom Solutions</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <CheckCircle className="w-4 h-4 text-green-500" />
-                        <span className="text-gray-700">Quick Approval</span>
+                        <span className="text-gray-700">Quick Response</span>
                       </div>
                     </div>
                   </div>
@@ -225,12 +225,12 @@ export default function CaseStudies() {
               {/* CTA - Simplified */}
               <div className="text-center">
                 <motion.a
-                  href="/case-studies"
+                  href="#contact"
                   className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-[#348992] to-[#d73c77] text-white font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  Request Access to Case Studies
+                  Contact Us for More Info
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </motion.a>
               </div>
