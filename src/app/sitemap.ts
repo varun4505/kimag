@@ -2,55 +2,63 @@ import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://www.konnectionsimag.com'
+  const currentDate = new Date()
   
-  return [
+  // Main pages
+  const routes = [
     {
       url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
+      lastModified: currentDate,
+      changeFrequency: 'monthly' as const,
       priority: 1,
     },
     {
-      url: `${baseUrl}/services/public-relations`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/services/crisis-management`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/services/digital-media`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/services/corporate-communications`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/services/financial-communications`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/services/specialized-services`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
       url: `${baseUrl}/appointment`,
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.6,
+      lastModified: currentDate,
+      changeFrequency: 'monthly' as const,
+      priority: 0.9,
     },
+  ]
+  
+  // Service pages
+  const servicePages = [
+    'public-relations',
+    'crisis-management',
+    'digital-media',
+    'corporate-communications',
+    'financial-communications',
+    'specialized-services'
+  ]
+  
+  const serviceRoutes = servicePages.map(service => ({
+    url: `${baseUrl}/services/${service}`,
+    lastModified: currentDate,
+    changeFrequency: 'monthly' as const,
+    priority: 0.8,
+  }))
+  
+  // Main services page
+  const servicesIndexRoute = {
+    url: `${baseUrl}/services`,
+    lastModified: currentDate,
+    changeFrequency: 'monthly' as const,
+    priority: 0.9,
+  }
+  
+  // Add blog and other potential pages here in the future
+  const otherRoutes = [
+    {
+      url: `${baseUrl}/contact`,
+      lastModified: currentDate,
+      changeFrequency: 'yearly' as const,
+      priority: 0.7,
+    }
+  ]
+
+  return [
+    ...routes,
+    servicesIndexRoute,
+    ...serviceRoutes,
+    ...otherRoutes
   ]
 }
