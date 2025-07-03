@@ -1,6 +1,5 @@
 import { connectDB } from '@/lib/db';
 import { Appointment } from '@/models/appointment';
-import { CaseStudyAccess } from '@/models/caseStudy';
 import { NextResponse } from 'next/server';
 
 export async function GET() {
@@ -9,16 +8,6 @@ export async function GET() {
 
     // Get appointment stats
     const appointmentStats = await Appointment.aggregate([
-      {
-        $group: {
-          _id: '$status',
-          count: { $sum: 1 }
-        }
-      }
-    ]);
-
-    // Get case study access request stats
-    const caseStudyStats = await CaseStudyAccess.aggregate([
       {
         $group: {
           _id: '$status',
@@ -38,10 +27,8 @@ export async function GET() {
 
     return NextResponse.json({
       appointments: formatStats(appointmentStats),
-      caseStudies: formatStats(caseStudyStats),
       total: {
-        appointments: appointmentStats.reduce((sum, stat) => sum + stat.count, 0),
-        caseStudies: caseStudyStats.reduce((sum, stat) => sum + stat.count, 0)
+        appointments: appointmentStats.reduce((sum, stat) => sum + stat.count, 0)
       }
     });
   } catch (error) {
