@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/admin/', '/api/'],
     },
-    sitemap: 'https://konnections.co.in/sitemap.xml',
+    sitemap: 'https://www.konnectionsimag.com/sitemap.xml',
   }
 }
