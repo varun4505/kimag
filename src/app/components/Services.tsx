@@ -1,11 +1,11 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { motion, useMotionValue, useAnimation } from "framer-motion";
+import { motion } from "framer-motion";
 import Link from "next/link";
-import { useRef, useState, useEffect } from "react";
+import { useRef } from "react";
+import { useMobile } from "../../hooks/useMobile";
 import { 
   ArrowRight, 
-  ArrowLeft,
   Sparkles, 
   Star,
   Target,
@@ -33,6 +33,7 @@ export const OurServices = ({
   }[];
   className?: string;
 }) => {
+  const { isMobile } = useMobile();
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -56,13 +57,8 @@ export const OurServices = ({
     }
   };
 
-  // Drag functionality
+  // Drag functionality - Simplified for static grid
   const constraintsRef = useRef(null);
-  const [isDragging, setIsDragging] = useState(false);
-  const [isHovering, setIsHovering] = useState(false);
-  const [hasDragged, setHasDragged] = useState(false);
-  const x = useMotionValue(0);
-  const controls = useAnimation();
 
   // Service icons mapping
   const serviceIcons = [
@@ -93,54 +89,9 @@ export const OurServices = ({
     link: item.link,
     features: item.description.slice(0, 3) // Show only top 3 features
   }));
-  
-  // Calculate appropriate drag constraints based on content width
-  const cardWidth = 336; // 320px + 16px gap
-  const totalWidth = services.length * cardWidth;
-  const dragConstraints = { left: -totalWidth, right: 0 };
-
-  // Navigation functions
-  const scrollLeft = () => {
-    controls.start({
-      x: Math.min(x.get() + cardWidth * 1, 0),
-      transition: { duration: 0.5, ease: "easeOut" }
-    });
-  };
-
-  const scrollRight = () => {
-    controls.start({
-      x: Math.max(x.get() - cardWidth * 1, -totalWidth),
-      transition: { duration: 0.5, ease: "easeOut" }
-    });
-  };
-
-  // Auto-scroll effect with infinite loop
-  useEffect(() => {
-    if (!isDragging && !isHovering) {
-      const autoScroll = async () => {
-        // Start from 0 and animate to negative totalWidth
-        await controls.start({
-          x: -totalWidth,
-          transition: {
-            duration: services.length * 6, // Adjust speed as needed
-            ease: "linear"
-          }
-        });
-        
-        // Reset position instantly to create seamless loop
-        controls.set({ x: 0 });
-        
-        // Recursively call autoScroll to continue the loop
-        autoScroll();
-      };
-      autoScroll();
-    } else {
-      controls.stop();
-    }
-  }, [isDragging, isHovering, controls, totalWidth, services.length]);
 
   return (
-    <section className={cn("py-16 px-4 sm:px-8 lg:px-16 bg-gradient-to-br from-slate-50 via-white to-blue-50/30 relative overflow-hidden", className)} id="ourservies">
+    <section className={cn("py-16 mobile-container bg-gradient-to-br from-slate-50 via-white to-blue-50/30 relative overflow-hidden", className)} id="ourservies">
       {/* Enhanced Background Elements */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-20 w-64 h-64 bg-gradient-to-br from-[#348992]/10 to-[#d73c77]/5 rounded-full blur-3xl"></div>
@@ -179,203 +130,143 @@ export const OurServices = ({
             className="w-24 h-1.5 bg-gradient-to-r from-[#2d6389] via-[#348992] to-[#d73c77] mx-auto rounded-full mt-6"
           />
         </motion.div>
-        {/* Enhanced Services Carousel - Draggable & Smooth */}
+        {/* Services Grid - Clean 6 Tile Layout */}
         <motion.div 
           variants={itemVariants}
-          className="relative overflow-hidden rounded-3xl select-none"
+          className="relative"
           ref={constraintsRef}
-          onMouseEnter={() => setIsHovering(true)}
-          onMouseLeave={() => setIsHovering(false)}
         >
-          {/* Navigation Arrows */}
-          <div className="absolute inset-y-0 left-4 z-20 flex items-center">
-            <motion.button
-              onClick={scrollLeft}
-              className="w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full shadow-lg border border-gray-200/50 flex items-center justify-center text-[#348992] hover:bg-white hover:shadow-xl transition-all duration-300 group"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <ArrowLeft className="w-5 h-5 group-hover:scale-110 transition-transform duration-200" />
-            </motion.button>
-          </div>
-          
-          <div className="absolute inset-y-0 right-4 z-20 flex items-center">
-            <motion.button
-              onClick={scrollRight}
-              className="w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full shadow-lg border border-gray-200/50 flex items-center justify-center text-[#348992] hover:bg-white hover:shadow-xl transition-all duration-300 group"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <ArrowRight className="w-5 h-5 group-hover:scale-110 transition-transform duration-200" />
-            </motion.button>
-          </div>
-          {/* Draggable carousel container */}
-          <motion.div 
-            className="flex gap-8 cursor-grab active:cursor-grabbing"
-            drag="x"
-            dragConstraints={dragConstraints}
-            dragElastic={0.1}
-            dragMomentum={true}
-            dragTransition={{ bounceStiffness: 300, bounceDamping: 30 }}
-            whileDrag={{ cursor: "grabbing" }}
-            animate={controls}
-            style={{ x }}
-            onDragStart={() => {
-              setIsDragging(true);
-              setHasDragged(false);
-              controls.stop();
-            }}
-            onDrag={() => {
-              setHasDragged(true);
-            }}
-            onDragEnd={() => {
-              setIsDragging(false);
-              // Reset hasDragged after a small delay to allow click prevention
-              setTimeout(() => setHasDragged(false), 100);
-            }}
-            onPointerDown={(e) => {
-              // Ensure dragging works even when starting on images
-              e.preventDefault();
-            }}
-          >
-            {/* First set of services */}
-            {services.map((service, index) => (
-              <motion.div
-                key={`first-${service.title}`}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: index * 0.15 }}
-                viewport={{ once: true }}
-                className="group cursor-pointer flex-shrink-0 w-80"
-                whileHover={{ y: -8 }}
-              >
-                <Link 
-                  href={service.link}
-                  onClick={(e) => {
-                    if (hasDragged) {
-                      e.preventDefault();
-                    }
-                  }}
+          {/* Mobile Services Grid - Optimized for Touch */}
+          {isMobile ? (
+            <div className="grid grid-cols-1 gap-6 px-4">
+              {services.map((service, index) => (
+                <motion.div
+                  key={service.title}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="group cursor-pointer"
+                  whileTap={{ scale: 0.98 }}
                 >
-                  <div className="relative overflow-hidden rounded-2xl bg-white shadow-md hover:shadow-xl transition-all duration-500 h-full border border-gray-100 group-hover:border-[#348992]/30">
-                    {/* Service Image with Enhanced Overlay */}
-                    <div className="relative h-64 overflow-hidden">
-                      <div 
-                        className="absolute inset-0 bg-gradient-to-br from-[#2d6389]/40 via-[#348992]/30 to-[#d73c77]/40 transition-all duration-700 group-hover:scale-105"
-                        style={{
-                          backgroundImage: `url(${service.image})`,
-                          backgroundSize: 'cover',
-                          backgroundPosition: 'center'
-                        }}
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
-                      
-                      {/* Floating Icon */}
-                      <div className="absolute top-4 right-4">
-                        <motion.div 
-                          className="w-12 h-12 bg-white/95 backdrop-blur-sm rounded-xl flex items-center justify-center text-[#348992] shadow-xl"
-                          whileHover={{ rotate: 15, scale: 1.1 }}
-                          transition={{ duration: 0.4 }}
-                        >
-                          {service.icon}
-                        </motion.div>
-                      </div>
-                      
-                      {/* Main Title - Smaller */}
-                      <div className="absolute bottom-4 left-4 right-4">
-                        <h3 className="text-xl font-bold text-white leading-tight">
-                          {service.title}
-                        </h3>
-                      </div>
-                    </div>
-                    
-                    {/* Professional Footer with CTA */}
-                    <div className="p-4">
-                      <div className="flex items-center justify-between">
-                        <span className="text-[#348992] font-medium text-sm group-hover:text-[#2d6389] transition-colors duration-300">
-                          Learn more
-                        </span>
+                  <Link href={service.link}>
+                    <div className="relative overflow-hidden rounded-2xl bg-white shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 group-hover:border-[#348992]/30">
+                      {/* Mobile-optimized layout - vertical */}
+                      <div className="relative h-48 overflow-hidden">
+                        <div 
+                          className="absolute inset-0 bg-gradient-to-br from-[#2d6389]/50 via-[#348992]/40 to-[#d73c77]/50"
+                          style={{
+                            backgroundImage: `url(${service.image})`,
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center'
+                          }}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
                         
-                        <div className="w-8 h-8 bg-gray-100 group-hover:bg-[#348992] rounded-lg flex items-center justify-center transition-all duration-300">
-                          <ArrowRight className="w-4 h-4 text-gray-600 group-hover:text-white transition-colors duration-300" />
+                        {/* Floating Icon */}
+                        <div className="absolute top-4 right-4">
+                          <div className="w-12 h-12 bg-white/95 backdrop-blur-sm rounded-xl flex items-center justify-center text-[#348992] shadow-md">
+                            {service.icon}
+                          </div>
+                        </div>
+                        
+                        {/* Title */}
+                        <div className="absolute bottom-4 left-4 right-4">
+                          <h3 className="text-xl font-bold text-white leading-tight">
+                            {service.title}
+                          </h3>
+                        </div>
+                      </div>
+                      
+                      {/* Content Area */}
+                      <div className="p-6">
+                        <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+                          {service.description}
+                        </p>
+                        
+                        {/* CTA */}
+                        <div className="flex items-center justify-between">
+                          <span className="text-[#348992] font-semibold text-sm group-hover:text-[#2d6389] transition-colors duration-300">
+                            Learn more
+                          </span>
+                          <div className="w-10 h-10 bg-gray-50 group-hover:bg-[#348992] rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-105">
+                            <ArrowRight className="w-5 h-5 text-gray-600 group-hover:text-white transition-colors duration-300" />
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
-            
-            {/* Second set for seamless loop */}
-            {services.map((service) => (
-              <motion.div
-                key={`second-${service.title}`}
-                className="group cursor-pointer flex-shrink-0 w-80"
-                whileHover={{ y: -8 }}
-              >
-                <Link 
-                  href={service.link}
-                  onClick={(e) => {
-                    if (hasDragged) {
-                      e.preventDefault();
-                    }
-                  }}
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+          ) : (
+            /* Desktop/Tablet Grid */
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
+              {services.map((service, index) => (
+                <motion.div
+                  key={service.title}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.7, delay: index * 0.15 }}
+                  viewport={{ once: true }}
+                  className="group cursor-pointer"
+                  whileHover={{ y: -8 }}
                 >
-                  <div className="relative overflow-hidden rounded-2xl bg-white shadow-md hover:shadow-xl transition-all duration-500 h-full border border-gray-100 group-hover:border-[#348992]/30">
-                    {/* Service Image with Enhanced Overlay */}
-                    <div className="relative h-64 overflow-hidden">
-                      <div 
-                        className="absolute inset-0 bg-gradient-to-br from-[#2d6389]/40 via-[#348992]/30 to-[#d73c77]/40 transition-all duration-700 group-hover:scale-105"
-                        style={{
-                          backgroundImage: `url(${service.image})`,
-                          backgroundSize: 'cover',
-                          backgroundPosition: 'center'
-                        }}
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
-                      
-                      {/* Floating Icon */}
-                      <div className="absolute top-4 right-4">
-                        <motion.div 
-                          className="w-12 h-12 bg-white/95 backdrop-blur-sm rounded-xl flex items-center justify-center text-[#348992] shadow-xl"
-                          whileHover={{ rotate: 15, scale: 1.1 }}
-                          transition={{ duration: 0.4 }}
-                        >
-                          {service.icon}
-                        </motion.div>
-                      </div>
-                      
-                      {/* Main Title - Smaller */}
-                      <div className="absolute bottom-4 left-4 right-4">
-                        <h3 className="text-xl font-bold text-white leading-tight">
-                          {service.title}
-                        </h3>
-                        </div>
-                    </div>
-                    
-                    {/* Professional Footer with CTA */}
-                    <div className="p-4">
-                      <div className="flex items-center justify-between">
-                        <span className="text-[#348992] font-medium text-sm group-hover:text-[#2d6389] transition-colors duration-300">
-                          Learn more
-                        </span>
+                  <Link href={service.link}>
+                    <div className="relative overflow-hidden rounded-2xl bg-white shadow-lg hover:shadow-2xl transition-all duration-500 h-full border border-gray-100 group-hover:border-[#348992]/30">
+                      {/* Service Image with Enhanced Overlay */}
+                      <div className="relative h-56 lg:h-64 overflow-hidden">
+                        <div 
+                          className="absolute inset-0 bg-gradient-to-br from-[#2d6389]/40 via-[#348992]/30 to-[#d73c77]/40 transition-all duration-700 group-hover:scale-105"
+                          style={{
+                            backgroundImage: `url(${service.image})`,
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center'
+                          }}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
                         
-                        <div className="w-8 h-8 bg-gray-100 group-hover:bg-[#348992] rounded-lg flex items-center justify-center transition-all duration-300">
-                          <ArrowRight className="w-4 h-4 text-gray-600 group-hover:text-white transition-colors duration-300" />
+                        {/* Floating Icon */}
+                        <div className="absolute top-4 right-4">
+                          <motion.div 
+                            className="w-14 h-14 bg-white/95 backdrop-blur-sm rounded-xl flex items-center justify-center text-[#348992] shadow-xl"
+                            whileHover={{ rotate: 15, scale: 1.1 }}
+                            transition={{ duration: 0.4 }}
+                          >
+                            {service.icon}
+                          </motion.div>
+                        </div>
+                        
+                        {/* Main Title */}
+                        <div className="absolute bottom-4 left-4 right-4">
+                          <h3 className="text-xl font-bold text-white leading-tight">
+                            {service.title}
+                          </h3>
+                        </div>
+                      </div>
+                      
+                      {/* Professional Footer with CTA */}
+                      <div className="p-6">
+                        <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+                          {service.description}
+                        </p>
+                        
+                        <div className="flex items-center justify-between">
+                          <span className="text-[#348992] font-semibold text-sm group-hover:text-[#2d6389] transition-colors duration-300">
+                            Learn more
+                          </span>
+                          
+                          <div className="w-10 h-10 bg-gray-100 group-hover:bg-[#348992] rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-105">
+                            <ArrowRight className="w-5 h-5 text-gray-600 group-hover:text-white transition-colors duration-300" />
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
-          </motion.div>
-          
-          {/* Gradient overlays for fade effect - smaller on mobile, larger on desktop */}
-          <div className="absolute left-0 top-0 bottom-0 w-8 md:w-16 lg:w-20 bg-gradient-to-r from-slate-50 to-transparent pointer-events-none z-10"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-8 md:w-16 lg:w-20 bg-gradient-to-l from-slate-50 to-transparent pointer-events-none z-10"></div>
-          
-
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+          )}
         </motion.div>
 
         {/* Industry Verticals Section */}

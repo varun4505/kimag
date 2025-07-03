@@ -78,7 +78,7 @@ export default function CaseStudies() {
   };
 
   return (
-    <section id="case-studies" className="w-full py-12 px-4 sm:px-8 lg:px-16 bg-gradient-to-br from-slate-50 via-blue-50/50 to-purple-50/50 relative overflow-hidden">
+    <section id="case-studies" className="w-full py-12 mobile-container bg-gradient-to-br from-slate-50 via-blue-50/50 to-purple-50/50 relative overflow-hidden">
       {/* Subtle background elements */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-10 w-64 h-64 bg-gradient-to-br from-[#348992]/5 to-[#d73c77]/5 rounded-full blur-3xl"></div>

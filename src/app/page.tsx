@@ -32,7 +32,7 @@ export default function Home() {
   }, [scrollToElement]);
 
   return (
-    <div className="">
+    <div className="min-h-screen bg-white">
       <Navbar/>
       <Hero/>
       <AboutUs/>

@@ -22,7 +22,7 @@ export const Footer = () => {
   ];
 
   return (
-    <footer className="bg-gradient-to-r from-[#2d6389] to-[#348992] text-white py-16 px-6 mt-20 border-t border-white/10">
+    <footer className="bg-gradient-to-r from-[#2d6389] to-[#348992] text-white py-16 mobile-container mt-20 border-t border-white/10">
       <div className="max-w-7xl mx-auto">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">

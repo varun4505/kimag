@@ -238,7 +238,7 @@ const MainNavbar: React.FC = () => {
         }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto mobile-container">
           <div className="flex justify-between items-center text-sm">
             <div className="flex items-center space-x-6">
               <div className="flex items-center space-x-2">
@@ -277,7 +277,7 @@ const MainNavbar: React.FC = () => {
             : 'top-0 lg:top-[44px] bg-white/90 backdrop-blur-sm'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto mobile-container">
           <div className="flex justify-between items-center h-14 sm:h-16 lg:h-20">
             
             {/* Logo */}

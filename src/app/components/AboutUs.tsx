@@ -1,7 +1,9 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { motion, useInView } from 'framer-motion';
+import React, { useState, useEffect, useCallback } from 'react';
+import { motion, useInView, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
+import { useMobile } from '../../hooks/useMobile';
 import { 
   Target, 
   Eye, 
@@ -14,7 +16,9 @@ import {
   CheckCircle,
   Globe,
   Calendar,
-  Building
+  Building,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
 
 // Counter component for animated statistics
@@ -46,6 +50,25 @@ const AnimatedCounter: React.FC<{ end: number; duration?: number; suffix?: strin
 };
 
 const AboutUs: React.FC = () => {
+  const { isMobile, isTablet } = useMobile();
+  const [currentAwardIndex, setCurrentAwardIndex] = useState(0);
+  const [isAwardModalOpen, setIsAwardModalOpen] = useState(false);
+  
+  // Debug logging
+  useEffect(() => {
+    console.log('AboutUs component - isMobile:', isMobile, 'isTablet:', isTablet);
+  }, [isMobile, isTablet]);
+  
+  // Awards data
+  const awards = [
+    { src: "/awards/chanak.jpg", alt: "Chanak Award", title: "Excellence in Communication" },
+    { src: "/awards/client1.jpg", alt: "Client Recognition Award", title: "Outstanding Client Service" },
+    { src: "/awards/client2.jpeg", alt: "Industry Award", title: "Industry Leadership Award" },
+    { src: "/awards/client5.jpg", alt: "Client Excellence Award", title: "Client Excellence Recognition" },
+    { src: "/awards/IMG-20220405-WA0052.jpg", alt: "Achievement Award", title: "Outstanding Achievement" },
+    { src: "/awards/tvaward.jpeg", alt: "TV Award", title: "Media Excellence Award" }
+  ];
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -69,8 +92,54 @@ const AboutUs: React.FC = () => {
     }
   };
 
+  // Mobile award navigation functions
+  const nextAward = useCallback(() => {
+    setCurrentAwardIndex((prev) => (prev + 1) % awards.length);
+  }, [awards.length]);
+
+  const prevAward = useCallback(() => {
+    setCurrentAwardIndex((prev) => (prev - 1 + awards.length) % awards.length);
+  }, [awards.length]);
+
+  // Auto-advance awards on mobile
+  useEffect(() => {
+    if (isMobile) {
+      const interval = setInterval(nextAward, 4000);
+      return () => clearInterval(interval);
+    }
+  }, [isMobile, nextAward]);
+
+  // Touch gesture support for mobile awards
+  const [touchStartX, setTouchStartX] = useState<number>(0);
+  const [touchEndX, setTouchEndX] = useState<number>(0);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStartX(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEndX(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStartX || !touchEndX) return;
+    
+    const distance = touchStartX - touchEndX;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) {
+      nextAward();
+    } else if (isRightSwipe) {
+      prevAward();
+    }
+
+    setTouchStartX(0);
+    setTouchEndX(0);
+  };
+
   return (
-    <section id="about" className="relative py-20 px-4 bg-white overflow-hidden">
+    <section id="about" className="relative py-20 mobile-container bg-white overflow-hidden">
       {/* Enhanced Animated Background */}
       <div className="absolute inset-0">
         <motion.div 
@@ -242,171 +311,149 @@ const AboutUs: React.FC = () => {
               leading integrated marketing communication consultancies.
             </p>
             
-            {/* Awards Carousel */}
-            <div id="awards" className="relative bg-gradient-to-br from-white via-white/95 to-[#348992]/5 backdrop-blur-xl p-8 rounded-3xl border border-[#348992]/20 mb-12 overflow-hidden shadow-2xl">
+            {/* Awards Section - Mobile Optimized */}
+            <div id="awards" className="relative bg-gradient-to-br from-white via-white/95 to-[#348992]/5 backdrop-blur-xl p-4 sm:p-6 lg:p-8 rounded-3xl border border-[#348992]/20 mb-12 overflow-hidden shadow-2xl">
               {/* Background decorative elements */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#348992]/10 to-[#d73c77]/10 rounded-full blur-2xl"></div>
               <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-[#d73c77]/10 to-[#348992]/10 rounded-full blur-xl"></div>
               
-              <div className="relative z-10">    
-                <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#348992]/5 via-transparent to-[#d73c77]/5 p-6">
-                  {/* Gradient overlays for smooth edges */}
-                  <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white via-white/80 to-transparent z-10 pointer-events-none"></div>
-                  <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none"></div>
-                  
-                  <motion.div
-                    className="flex items-center gap-8"
-                    animate={{ x: ["0%", "-100%"] }}
-                    transition={{
-                      duration: 45,
-                      repeat: Infinity,
-                      ease: "linear"
-                    }}
-                    style={{ width: "200%" }}
-                  >
-                    {/* First set of awards */}
-                    <div className="relative group cursor-pointer">
-                      <div className="w-80 h-80 overflow-hidden shadow-xl group-hover:shadow-2xl transition-all duration-500 border-2 border-white/50 group-hover:border-[#348992]/30 rounded-2xl relative">
-                        <img 
-                          src="/awards/chanak.jpg" 
-                          alt="Award Certificate" 
-                          className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                      </div>
-                    </div>
-                    
-                    <div className="relative group cursor-pointer">
-                      <div className="w-80 h-80 overflow-hidden shadow-xl group-hover:shadow-2xl transition-all duration-500 border-2 border-white/50 group-hover:border-[#348992]/30 rounded-2xl relative">
-                        <img 
-                          src="/awards/client1.jpg" 
-                          alt="Award Certificate" 
-                          className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                      </div>
-                    </div>
-                    
-                    <div className="relative group cursor-pointer">
-                      <div className="w-80 h-80 overflow-hidden shadow-xl group-hover:shadow-2xl transition-all duration-500 border-2 border-white/50 group-hover:border-[#348992]/30 rounded-2xl relative">
-                        <img 
-                          src="/awards/client2.jpeg" 
-                          alt="Award Certificate" 
-                          className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                      </div>
-                    </div>
-
-                    <div className="relative group cursor-pointer">
-                      <div className="w-80 h-80 overflow-hidden shadow-xl group-hover:shadow-2xl transition-all duration-500 border-2 border-white/50 group-hover:border-[#348992]/30 rounded-2xl relative">
-                        <img 
-                          src="/awards/client5.jpg" 
-                          alt="Award Certificate" 
-                          className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                      </div>
-                    </div>
-
-                    <div className="relative group cursor-pointer">
-                      <div className="w-80 h-80 overflow-hidden shadow-xl group-hover:shadow-2xl transition-all duration-500 border-2 border-white/50 group-hover:border-[#348992]/30 rounded-2xl relative">
-                        <img 
-                          src="/awards/IMG-20220405-WA0052.jpg" 
-                          alt="Award Certificate" 
-                          className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                      </div>
-                    </div>
-
-                    <div className="relative group cursor-pointer">
-                      <div className="w-80 h-80 overflow-hidden shadow-xl group-hover:shadow-2xl transition-all duration-500 border-2 border-white/50 group-hover:border-[#348992]/30 rounded-2xl relative">
-                        <img 
-                          src="/awards/tvaward.jpeg" 
-                          alt="Award Certificate" 
-                          className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                      </div>
-                    </div>
-                    
-                    {/* Duplicate set for continuous scrolling */}
-                    <div className="relative group cursor-pointer">
-                      <div className="w-80 h-80 overflow-hidden shadow-xl group-hover:shadow-2xl transition-all duration-500 border-2 border-white/50 group-hover:border-[#348992]/30 rounded-2xl relative">
-                        <img 
-                          src="/awards/chanak.jpg" 
-                          alt="Award Certificate" 
-                          className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                      </div>
-                    </div>
-                    
-                    <div className="relative group cursor-pointer">
-                      <div className="w-80 h-80 overflow-hidden shadow-xl group-hover:shadow-2xl transition-all duration-500 border-2 border-white/50 group-hover:border-[#348992]/30 rounded-2xl relative">
-                        <img 
-                          src="/awards/client1.jpg" 
-                          alt="Award Certificate" 
-                          className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                      </div>
-                    </div>
-                    
-                    <div className="relative group cursor-pointer">
-                      <div className="w-80 h-80 overflow-hidden shadow-xl group-hover:shadow-2xl transition-all duration-500 border-2 border-white/50 group-hover:border-[#348992]/30 rounded-2xl relative">
-                        <img 
-                          src="/awards/client2.jpeg" 
-                          alt="Award Certificate" 
-                          className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                      </div>
-                    </div>
-
-                    <div className="relative group cursor-pointer">
-                      <div className="w-80 h-80 overflow-hidden shadow-xl group-hover:shadow-2xl transition-all duration-500 border-2 border-white/50 group-hover:border-[#348992]/30 rounded-2xl relative">
-                        <img 
-                          src="/awards/client5.jpg" 
-                          alt="Award Certificate" 
-                          className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                      </div>
-                    </div>
-
-                    <div className="relative group cursor-pointer">
-                      <div className="w-80 h-80 overflow-hidden shadow-xl group-hover:shadow-2xl transition-all duration-500 border-2 border-white/50 group-hover:border-[#348992]/30 rounded-2xl relative">
-                        <img 
-                          src="/awards/IMG-20220405-WA0052.jpg" 
-                          alt="Award Certificate" 
-                          className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                      </div>
-                    </div>
-
-                    <div className="relative group cursor-pointer">
-                      <div className="w-80 h-80 overflow-hidden shadow-xl group-hover:shadow-2xl transition-all duration-500 border-2 border-white/50 group-hover:border-[#348992]/30 rounded-2xl relative">
-                        <img 
-                          src="/awards/tvaward.jpeg" 
-                          alt="Award Certificate" 
-                          className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                      </div>
-                    </div>
-                  </motion.div>
+              <div className="relative z-10">
+                {/* Awards Header */}
+                <div className="text-center mb-6">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#348992]/10 to-[#d73c77]/10 rounded-full mb-4 border border-[#348992]/20">
+                    <Award className="w-4 h-4 text-[#348992]" />
+                    <span className="text-sm font-medium text-[#348992]">AWARDS & RECOGNITION</span>
+                  </div>
+                  <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
+                    Our <span className="bg-gradient-to-r from-[#348992] to-[#d73c77] bg-clip-text text-transparent">Achievements</span>
+                  </h3>
+                  <p className="text-gray-600 text-sm sm:text-base">
+                    Recognition for excellence in communication and client service
+                  </p>
                 </div>
-                
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ delay: 0.5, duration: 0.6 }}
-                  className="text-center mt-6"
-                >
-                </motion.div>
+
+                {/* Mobile Awards Carousel */}
+                {isMobile ? (
+                  <div className="relative">
+                    {/* Mobile Single Award Display */}
+                    <motion.div
+                      key={currentAwardIndex}
+                      initial={{ opacity: 0, x: 50 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -50 }}
+                      transition={{ duration: 0.5 }}
+                      className="relative mx-auto max-w-sm mobile-award-container"
+                      onTouchStart={handleTouchStart}
+                      onTouchMove={handleTouchMove}
+                      onTouchEnd={handleTouchEnd}
+                    >
+                      <div className="relative group cursor-pointer mobile-award-card" onClick={() => setIsAwardModalOpen(true)}>
+                        <div className="w-full h-64 overflow-hidden shadow-xl rounded-2xl border-2 border-white/50">
+                          <Image 
+                            src={awards[currentAwardIndex].src}
+                            alt={awards[currentAwardIndex].alt}
+                            width={400}
+                            height={256}
+                            className="w-full h-full object-cover award-image"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                          <div className="absolute bottom-4 left-4 right-4 text-white">
+                            <h4 className="font-bold text-lg mb-1">{awards[currentAwardIndex].title}</h4>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Swipe Indicator */}
+                      <div className="absolute top-4 right-4 flex items-center space-x-1 bg-black/20 backdrop-blur-sm rounded-full px-3 py-1">
+                        <span className="text-white text-xs">Swipe</span>
+                        <motion.div
+                          animate={{ x: [0, 4, 0] }}
+                          transition={{ duration: 1.5, repeat: Infinity }}
+                          className="flex space-x-1"
+                        >
+                          <div className="w-1 h-1 bg-white rounded-full opacity-60"></div>
+                          <div className="w-1 h-1 bg-white rounded-full opacity-80"></div>
+                          <div className="w-1 h-1 bg-white rounded-full"></div>
+                        </motion.div>
+                      </div>
+                    </motion.div>
+
+                    {/* Mobile Navigation */}
+                    <div className="flex justify-center items-center mt-6">
+                      <button
+                        onClick={prevAward}
+                        className="award-nav-button p-3 bg-white/90 hover:bg-white rounded-full shadow-lg border border-gray-200/50 transition-all duration-300 mobile-touch-target mobile-award-nav mr-8"
+                        aria-label="Previous award"
+                      >
+                        <ChevronLeft className="w-5 h-5 text-[#348992]" />
+                      </button>
+                      
+                      <button
+                        onClick={nextAward}
+                        className="award-nav-button p-3 bg-white/90 hover:bg-white rounded-full shadow-lg border border-gray-200/50 transition-all duration-300 mobile-touch-target mobile-award-nav"
+                        aria-label="Next award"
+                      >
+                        <ChevronRight className="w-5 h-5 text-[#348992]" />
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  /* Desktop/Tablet Awards Carousel */
+                  <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#348992]/5 via-transparent to-[#d73c77]/5 p-6">
+                    {/* Gradient overlays for smooth edges */}
+                    <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white via-white/80 to-transparent z-10 pointer-events-none"></div>
+                    <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none"></div>
+                    
+                    <motion.div
+                      className="flex items-center gap-6 lg:gap-8"
+                      animate={{ x: ["0%", "-100%"] }}
+                      transition={{
+                        duration: 35,
+                        repeat: Infinity,
+                        ease: "linear"
+                      }}
+                      style={{ width: "200%" }}
+                    >
+                      {/* First set of awards */}
+                      {awards.map((award, index) => (
+                        <div key={`first-${index}`} className="relative group cursor-pointer">
+                          <div className="w-60 h-60 lg:w-80 lg:h-80 overflow-hidden shadow-xl group-hover:shadow-2xl transition-all duration-500 border-2 border-white/50 group-hover:border-[#348992]/30 rounded-2xl relative">
+                            <Image 
+                              src={award.src}
+                              alt={award.alt}
+                              width={320}
+                              height={320}
+                              className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                            <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                              <h4 className="font-bold text-lg mb-1">{award.title}</h4>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                      
+                      {/* Duplicate set for continuous scrolling */}
+                      {awards.map((award, index) => (
+                        <div key={`second-${index}`} className="relative group cursor-pointer">
+                          <div className="w-60 h-60 lg:w-80 lg:h-80 overflow-hidden shadow-xl group-hover:shadow-2xl transition-all duration-500 border-2 border-white/50 group-hover:border-[#348992]/30 rounded-2xl relative">
+                            <Image 
+                              src={award.src}
+                              alt={award.alt}
+                              width={320}
+                              height={320}
+                              className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                            <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                              <h4 className="font-bold text-lg mb-1">{award.title}</h4>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </motion.div>
+                  </div>
+                )}
               </div>
             </div>
             
@@ -776,7 +823,7 @@ const AboutUs: React.FC = () => {
               transition={{ duration: 1.4, delay: 0.4, ease: "easeOut" }}
               className="w-24 h-1 bg-gradient-to-r from-[#348992] via-[#d73c77] to-[#2d6389] rounded-full mx-auto mb-12"
             />
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               {[
                 {
                   title: "Client-Centric Approach",
@@ -824,8 +871,8 @@ const AboutUs: React.FC = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                 >
-                  <div className="bg-white/90 backdrop-blur-sm p-6 rounded-2xl shadow-lg group-hover:shadow-xl transition-all duration-300 border border-white/40 h-full">
-                    <div className={`w-12 h-12 bg-gradient-to-br ${feature.gradient} rounded-xl flex items-center justify-center mb-4 shadow-md group-hover:shadow-lg transition-all duration-300 text-white`}>
+                  <div className="bg-white/90 backdrop-blur-sm p-6 rounded-2xl shadow-lg group-hover:shadow-xl transition-all duration-300 border border-white/40 h-full flex flex-col items-center justify-start text-center">
+                    <div className={`w-12 h-12 bg-gradient-to-br ${feature.gradient} rounded-xl flex items-center justify-center mb-4 shadow-md group-hover:shadow-lg transition-all duration-300 text-white mx-auto`}>
                       {feature.icon}
                     </div>
                     <h4 className="text-lg font-bold text-[#2d6389] mb-3 group-hover:text-[#348992] transition-colors duration-300">
@@ -901,9 +948,11 @@ const AboutUs: React.FC = () => {
                 <div className={`absolute inset-0 bg-gradient-to-br ${achievement.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>
                 <div className="relative z-10 flex flex-col items-center justify-center h-full">
                   <div className="w-full h-16 mb-3 flex items-center justify-center">
-                    <img 
+                    <Image 
                       src={achievement.image} 
                       alt={achievement.label} 
+                      width={64}
+                      height={64}
                       className="max-h-full max-w-full object-contain transition-transform duration-300 group-hover:scale-110"
                     />
                   </div>
@@ -922,6 +971,47 @@ const AboutUs: React.FC = () => {
           </div>
         </motion.div>
       </motion.div>
+      
+      {/* Mobile Award Modal */}
+      <AnimatePresence>
+        {isMobile && isAwardModalOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+            onClick={() => setIsAwardModalOpen(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              className="relative max-w-lg w-full"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Image
+                src={awards[currentAwardIndex].src}
+                alt={awards[currentAwardIndex].alt}
+                width={500}
+                height={400}
+                className="w-full h-auto rounded-2xl shadow-2xl"
+              />
+              <div className="absolute top-4 right-4">
+                <button
+                  onClick={() => setIsAwardModalOpen(false)}
+                  className="w-10 h-10 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center text-white transition-all duration-300"
+                >
+                  ✕
+                </button>
+              </div>
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 rounded-b-2xl">
+                <h4 className="text-white font-bold text-xl mb-2">{awards[currentAwardIndex].title}</h4>
+                <p className="text-white/90 text-sm">{awards[currentAwardIndex].alt}</p>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
