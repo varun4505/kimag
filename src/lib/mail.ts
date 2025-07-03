@@ -20,88 +20,6 @@ export async function sendApprovalEmail({ id, approver }: { id: string; approver
   });
 }
 
-export async function sendCaseStudyAccessEmail({ 
-  email, 
-  name, 
-  caseStudyLink,
-  sector
-}: { 
-  email: string; 
-  name: string; 
-  caseStudyLink: string;
-  sector?: string;
-}) {
-  const getSectorDisplayName = (sector: string) => {
-    const sectorNames = {
-      'hospitality': 'Hospitality & Tourism',
-      'real-estate': 'Real Estate & Property',
-      'healthcare': 'Healthcare & Medical',
-      'technology': 'Technology & Software',
-      'retail': 'Retail & E-commerce',
-      'finance': 'Finance & Banking',
-      'education': 'Education & Training',
-      'other': 'General'
-    };
-    return sectorNames[sector as keyof typeof sectorNames] || 'General';
-  };
-
-  const sectorDisplayName = sector ? getSectorDisplayName(sector) : 'General';
-
-  await transporter.sendMail({
-    from: `KIMAG Team <${process.env.MAIL_USER}>`,
-    to: email,
-    subject: `${sectorDisplayName} Case Studies - Access Approved`,
-    html: `
-      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-        <div style="text-align: center; margin-bottom: 30px;">
-          <h1 style="color: #2d6389; margin: 0;">KIMAG</h1>
-          <p style="color: #666; margin: 5px 0;">Creative Agency</p>
-        </div>
-        
-        <div style="background: linear-gradient(135deg, #2d6389 0%, #348992 100%); padding: 30px; border-radius: 15px; color: white; text-align: center; margin-bottom: 30px;">
-          <h2 style="margin: 0 0 10px 0;">🎉 Access Granted!</h2>
-          <p style="margin: 0; opacity: 0.9;">Your ${sectorDisplayName} case study access request has been approved</p>
-        </div>
-        
-        <div style="padding: 20px; background: #f9f9f9; border-radius: 10px; margin-bottom: 30px;">
-          <h3 style="color: #2d6389; margin-top: 0;">Hi ${name},</h3>
-          <p style="color: #333; line-height: 1.6;">
-            Great news! We've reviewed your request and are excited to share our exclusive <strong>${sectorDisplayName}</strong> case studies with you. 
-            These detailed insights showcase our most successful projects and the strategies that drove exceptional results for our clients in your industry.
-          </p>
-          <p style="color: #333; line-height: 1.6;">
-            You now have access to:
-          </p>
-          <ul style="color: #333; line-height: 1.6;">
-            <li>Industry-specific project breakdowns and strategies</li>
-            <li>Before/after comparisons with real metrics from ${sectorDisplayName.toLowerCase()} clients</li>
-            <li>Behind-the-scenes creative processes tailored to your sector</li>
-            <li>ROI data and performance insights relevant to your industry</li>
-          </ul>
-        </div>
-        
-        <div style="text-align: center; margin: 30px 0;">
-          <a href="${caseStudyLink}" 
-             style="display: inline-block; background: linear-gradient(135deg, #2d6389 0%, #348992 100%); 
-                    color: white; text-decoration: none; padding: 15px 30px; border-radius: 8px; 
-                    font-weight: bold; font-size: 16px;">
-            🔓 Access ${sectorDisplayName} Case Studies
-          </a>
-        </div>
-        
-        <div style="border-top: 1px solid #eee; padding-top: 20px; text-align: center; color: #666; font-size: 14px;">
-          <p>This link is exclusive to you and contains ${sectorDisplayName.toLowerCase()}-specific content. Please don't share it with others.</p>
-          <p>Need help or looking for case studies from other sectors? Reply to this email and we'll be happy to assist.</p>
-          <p style="margin-top: 20px;">
-            Best regards,<br>
-            <strong style="color: #2d6389;">The KIMAG Team</strong>
-          </p>
-        </div>
-      </div>
-    `
-  });
-}
-
 export async function sendAppointmentStatusEmail({ 
   email, 
   name, 
@@ -198,6 +116,151 @@ export async function sendAppointmentStatusEmail({
         
         <div style="border-top: 1px solid #eee; padding-top: 20px; text-align: center; color: #666; font-size: 14px;">
           <p>Need help or have questions? Reply to this email and we'll get back to you shortly.</p>
+          <p style="margin-top: 20px;">
+            Best regards,<br>
+            <strong style="color: #2d6389;">The KIMAG Team</strong>
+          </p>
+        </div>
+      </div>
+    `
+  });
+}
+
+export async function sendContactFormEmail({ 
+  name, 
+  email, 
+  phone, 
+  subject, 
+  message 
+}: { 
+  name: string; 
+  email: string; 
+  phone: string; 
+  subject: string; 
+  message: string; 
+}) {
+  // Admin email address - you can change this to your preferred email
+  const adminEmail = process.env.ADMIN_EMAIL || process.env.MAIL_USER;
+  
+  await transporter.sendMail({
+    from: `Contact Form <${process.env.MAIL_USER}>`,
+    to: adminEmail,
+    subject: `New Contact Form Submission: ${subject}`,
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+        <div style="text-align: center; margin-bottom: 30px;">
+          <h1 style="color: #2d6389; margin: 0;">KIMAG</h1>
+          <p style="color: #666; margin: 5px 0;">New Contact Form Submission</p>
+        </div>
+        
+        <div style="background: linear-gradient(135deg, #2d6389 0%, #348992 100%); padding: 30px; border-radius: 15px; color: white; text-align: center; margin-bottom: 30px;">
+          <h2 style="margin: 0 0 10px 0;">📧 New Contact Message</h2>
+          <p style="margin: 0; opacity: 0.9;">Someone has submitted a message through your website</p>
+        </div>
+        
+        <div style="padding: 20px; background: #f9f9f9; border-radius: 10px; margin-bottom: 30px;">
+          <h3 style="color: #2d6389; margin-top: 0;">Contact Details:</h3>
+          <div style="background: white; padding: 20px; border-radius: 8px; border-left: 4px solid #348992;">
+            <p style="margin: 5px 0; color: #333;"><strong>Name:</strong> ${name}</p>
+            <p style="margin: 5px 0; color: #333;"><strong>Email:</strong> <a href="mailto:${email}" style="color: #348992;">${email}</a></p>
+            ${phone ? `<p style="margin: 5px 0; color: #333;"><strong>Phone:</strong> <a href="tel:${phone}" style="color: #348992;">${phone}</a></p>` : ''}
+            <p style="margin: 5px 0; color: #333;"><strong>Subject:</strong> ${subject}</p>
+          </div>
+        </div>
+        
+        <div style="padding: 20px; background: #f9f9f9; border-radius: 10px; margin-bottom: 30px;">
+          <h3 style="color: #2d6389; margin-top: 0;">Message:</h3>
+          <div style="background: white; padding: 20px; border-radius: 8px; border-left: 4px solid #d73c77;">
+            <p style="color: #333; line-height: 1.6; white-space: pre-wrap;">${message}</p>
+          </div>
+        </div>
+        
+        <div style="text-align: center; margin: 30px 0;">
+          <a href="mailto:${email}?subject=Re: ${subject}" 
+             style="display: inline-block; background: linear-gradient(135deg, #2d6389 0%, #348992 100%); 
+                    color: white; text-decoration: none; padding: 15px 30px; border-radius: 8px; 
+                    font-weight: bold; font-size: 16px;">
+            ↩️ Reply to ${name}
+          </a>
+        </div>
+        
+        <div style="border-top: 1px solid #eee; padding-top: 20px; text-align: center; color: #666; font-size: 14px;">
+          <p>This message was sent through the contact form on your KIMAG website.</p>
+          <p>Submitted on: ${new Date().toLocaleString('en-US', { 
+            weekday: 'long', 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+          })}</p>
+        </div>
+      </div>
+    `
+  });
+}
+
+export async function sendContactConfirmationEmail({ 
+  name, 
+  email, 
+  subject 
+}: { 
+  name: string; 
+  email: string; 
+  subject: string; 
+}) {
+  await transporter.sendMail({
+    from: `KIMAG Team <${process.env.MAIL_USER}>`,
+    to: email,
+    subject: `Thank you for contacting KIMAG - We received your message`,
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+        <div style="text-align: center; margin-bottom: 30px;">
+          <h1 style="color: #2d6389; margin: 0;">KIMAG</h1>
+          <p style="color: #666; margin: 5px 0;">Creative Agency</p>
+        </div>
+        
+        <div style="background: linear-gradient(135deg, #2d6389 0%, #348992 100%); padding: 30px; border-radius: 15px; color: white; text-align: center; margin-bottom: 30px;">
+          <h2 style="margin: 0 0 10px 0;">✅ Message Received!</h2>
+          <p style="margin: 0; opacity: 0.9;">Thank you for reaching out to us</p>
+        </div>
+        
+        <div style="padding: 20px; background: #f9f9f9; border-radius: 10px; margin-bottom: 30px;">
+          <h3 style="color: #2d6389; margin-top: 0;">Hi ${name},</h3>
+          <p style="color: #333; line-height: 1.6;">
+            Thank you for contacting KIMAG! We've successfully received your message regarding "<strong>${subject}</strong>" and our team will review it shortly.
+          </p>
+          <p style="color: #333; line-height: 1.6;">
+            We typically respond to all inquiries within 24 hours during business days. If your message is urgent, please don't hesitate to call us directly at <strong>+91 7032939360</strong>.
+          </p>
+          
+          <div style="background: white; padding: 20px; border-radius: 8px; border-left: 4px solid #348992; margin: 20px 0;">
+            <h4 style="margin: 0 0 15px 0; color: #2d6389;">What happens next?</h4>
+            <ul style="color: #333; line-height: 1.6; margin: 0; padding-left: 20px;">
+              <li>Our team will review your message and requirements</li>
+              <li>We'll prepare relevant information and solutions for your needs</li>
+              <li>A team member will reach out to you with next steps</li>
+              <li>We'll schedule a call or meeting if needed to discuss your project</li>
+            </ul>
+          </div>
+          
+          <p style="color: #333; line-height: 1.6;">
+            In the meantime, feel free to explore our portfolio and case studies on our website to see how we've helped other businesses achieve their communication goals.
+          </p>
+        </div>
+        
+        <div style="text-align: center; margin: 30px 0;">
+          <a href="${process.env.BASE_URL || 'https://konnectionsimag.com'}" 
+             style="display: inline-block; background: linear-gradient(135deg, #2d6389 0%, #348992 100%); 
+                    color: white; text-decoration: none; padding: 15px 30px; border-radius: 8px; 
+                    font-weight: bold; font-size: 16px;">
+            🌐 Visit Our Website
+          </a>
+        </div>
+        
+        <div style="border-top: 1px solid #eee; padding-top: 20px; text-align: center; color: #666; font-size: 14px;">
+          <p>This is an automated confirmation email. Please do not reply to this email.</p>
+          <p>If you have additional questions, please contact us at <a href="mailto:info@konnections.co.in" style="color: #348992;">info@konnections.co.in</a></p>
           <p style="margin-top: 20px;">
             Best regards,<br>
             <strong style="color: #2d6389;">The KIMAG Team</strong>

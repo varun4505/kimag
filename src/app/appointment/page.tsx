@@ -20,7 +20,7 @@ export default function AppointmentPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [errors, setErrors] = useState<{[key: string]: string}>({});
-  const [currentMonth, setCurrentMonth] = useState(new Date(2025, 5)); // June 2025
+  const [currentMonth, setCurrentMonth] = useState(new Date()); // Current month
 
   // Form validation
   const validateForm = () => {

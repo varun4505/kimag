@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { FaFacebook, FaInstagram, FaEnvelope, FaLinkedinIn, FaPhone, FaMapMarkerAlt, FaNewspaper, FaShieldAlt, FaLaptop, FaBuilding, FaUniversity, FaBullseye } from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaEnvelope, FaLinkedinIn, FaPhone, FaNewspaper, FaShieldAlt, FaLaptop, FaBuilding, FaUniversity, FaBullseye } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import { gsap } from "gsap";
 import Image from "next/image";
@@ -215,6 +215,16 @@ const MainNavbar: React.FC = () => {
       description: "Learn about our agency" 
     },
     { 
+      href: "#awards", 
+      text: "Awards", 
+      description: "Our achievements and recognition" 
+    },
+    { 
+      href: "#case-studies", 
+      text: "Case Studies", 
+      description: "Explore our successful projects" 
+    },
+    { 
       href: "#contact", 
       text: "Contact", 
       description: "Get in touch with us" 
@@ -243,10 +253,6 @@ const MainNavbar: React.FC = () => {
               <div className="flex items-center space-x-2">
                 <FaEnvelope size={14} />
                 <span>info@konnections.co.in</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <FaMapMarkerAlt size={14} />
-                <span>Banjara Hills, Hyderabad, Telangana - 500004</span>
               </div>
             </div>
             <div className="flex items-center space-x-4">
