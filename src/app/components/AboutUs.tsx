@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { useMobile } from '../../hooks/useMobile';
@@ -13,12 +13,9 @@ import {
   Award, 
   Sparkles,
   TrendingUp,
-  CheckCircle,
   Globe,
   Calendar,
-  Building,
-  ChevronLeft,
-  ChevronRight
+  Building
 } from 'lucide-react';
 
 // Counter component for animated statistics
@@ -86,8 +83,7 @@ const AboutUs: React.FC = () => {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
-        ease: "easeOut"
+        duration: 0.6
       }
     }
   };
@@ -98,10 +94,6 @@ const AboutUs: React.FC = () => {
     setCurrentAwardIndex((prev) => (prev + 1) % awards.length);
   }, [awards.length]);
 
-  const prevAward = useCallback(() => {
-    setCurrentAwardIndex((prev) => (prev - 1 + awards.length) % awards.length);
-  }, [awards.length]);
-
   // Auto-advance awards on mobile
   useEffect(() => {
     if (isMobile) {
@@ -109,35 +101,6 @@ const AboutUs: React.FC = () => {
       return () => clearInterval(interval);
     }
   }, [isMobile, nextAward]);
-
-  // Touch gesture support for mobile awards
-  const [touchStartX, setTouchStartX] = useState<number>(0);
-  const [touchEndX, setTouchEndX] = useState<number>(0);
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    setTouchStartX(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    setTouchEndX(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchEnd = () => {
-    if (!touchStartX || !touchEndX) return;
-    
-    const distance = touchStartX - touchEndX;
-    const isLeftSwipe = distance > 50;
-    const isRightSwipe = distance < -50;
-
-    if (isLeftSwipe) {
-      nextAward();
-    } else if (isRightSwipe) {
-      prevAward();
-    }
-
-    setTouchStartX(0);
-    setTouchEndX(0);
-  };
 
   return (
     <section id="about" className="relative py-20 mobile-container bg-white overflow-hidden">
