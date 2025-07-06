@@ -1,7 +1,73 @@
+import React, { useRef, useEffect } from 'react';
+import { gsap } from 'gsap';
 import CardSwap, { Card } from './CardSwap';
 
-const Hero = () => (
+const Hero = () => {
+  const heroRef = useRef<HTMLDivElement>(null);
+  const titleFirstRef = useRef<HTMLSpanElement>(null);
+  const titleSecondRef = useRef<HTMLSpanElement>(null);
+  const descriptionRef = useRef<HTMLParagraphElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const cardSwapRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Set initial states
+      gsap.set([titleFirstRef.current, titleSecondRef.current, descriptionRef.current, buttonRef.current], {
+        opacity: 0,
+        y: 50
+      });
+      
+      gsap.set(cardSwapRef.current, {
+        opacity: 0,
+        x: 100,
+        scale: 0.8
+      });
+
+      // Create timeline
+      const tl = gsap.timeline({ delay: 0.2 });
+
+      // Animate elements in sequence
+      tl.to(titleFirstRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power3.out"
+      })
+      .to(titleSecondRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power3.out"
+      }, "-=0.4")
+      .to(descriptionRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        ease: "power2.out"
+      }, "-=0.3")
+      .to(buttonRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        ease: "back.out(1.7)"
+      }, "-=0.2")
+      .to(cardSwapRef.current, {
+        opacity: 1,
+        x: 0,
+        scale: 1,
+        duration: 1,
+        ease: "power3.out"
+      }, "-=0.4");
+
+    }, heroRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  return (
   <div
+    ref={heroRef}
     style={{
       height: '600px',
       position: 'relative',
@@ -80,46 +146,50 @@ const Hero = () => (
     >
       <h1
         style={{
-          fontSize: '3.5rem',
+          fontFamily: 'Outfit, Arial, sans-serif',
+          fontSize: '4.2rem',
           fontWeight: 700,
-          color: '#fff',
+          color: '#181f2a',
           lineHeight: 1.1,
           margin: 0,
-          textShadow: '0 8px 32px rgba(44,82,130,0.18), 0 2px 8px rgba(0,0,0,0.12)',
           letterSpacing: '-0.01em',
           textAlign: 'left',
-          filter: 'drop-shadow(0 2px 16px rgba(0,0,0,0.12))',
+          filter: 'none',
+          textShadow: 'none',
         }}
       >
-        <span style={{
+        <span ref={titleFirstRef} style={{
           display: 'block',
-          fontSize: '3.5rem',
+          fontSize: '3.8rem',
           fontWeight: 700,
-          color: '#181f2a', // blackish
+          color: '#181f2a',
           lineHeight: 1.1,
           letterSpacing: '-0.01em',
           textAlign: 'left',
           marginBottom: '0.2em',
+          fontFamily: 'Outfit, Arial, sans-serif',
         }}>
           We Shape Narratives.
         </span>
-        <span style={{
+        <span ref={titleSecondRef} style={{
           display: 'block',
-          fontSize: '3.5rem',
+          fontSize: '3.8rem',
           fontWeight: 700,
           color: 'transparent',
-          background: 'linear-gradient(90deg, #14b8a6 0%, #4a90c2 50%, #b14fad 100%)',
+          background: 'linear-gradient(90deg, #14b8a6 0%, #e91e63 95%, #4a90c2 100%)',
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent',
           backgroundClip: 'text',
           lineHeight: 1,
           letterSpacing: '-0.01em',
           textAlign: 'left',
+          fontFamily: 'Outfit, Arial, sans-serif',
         }}>
           We Build Reputations.
         </span>
       </h1>
       <p
+        ref={descriptionRef}
         style={{
           fontSize: '1.3rem',
           color: '#2d3748',
@@ -129,11 +199,13 @@ const Hero = () => (
           fontWeight: 500,
           opacity: 0.95,
           textShadow: '0 1px 2px rgba(0,0,0,0.02)',
+          fontFamily: 'Outfit, Arial, sans-serif',
         }}
       >
         India's leading integrated communications agency delivering strategic PR, corporate storytelling, and crisis leadership.
       </p>
       <button
+        ref={buttonRef}
         style={{
         marginTop: 12,
           padding: '14px 36px',
@@ -157,13 +229,17 @@ const Hero = () => (
         }}
         onMouseEnter={e => {
           const btn = e.currentTarget;
-          btn.querySelector('.btn-bg').style.transform = 'translateY(0)';
-          btn.querySelector('.btn-text').style.color = '#fff';
+          const bg = btn.querySelector('.btn-bg') as HTMLElement | null;
+          const text = btn.querySelector('.btn-text') as HTMLElement | null;
+          if (bg) bg.style.transform = 'translateY(0)';
+          if (text) text.style.color = '#fff';
         }}
         onMouseLeave={e => {
           const btn = e.currentTarget;
-          btn.querySelector('.btn-bg').style.transform = 'translateY(100%)';
-          btn.querySelector('.btn-text').style.color = '#14b8a6';
+          const bg = btn.querySelector('.btn-bg') as HTMLElement | null;
+          const text = btn.querySelector('.btn-text') as HTMLElement | null;
+          if (bg) bg.style.transform = 'translateY(100%)';
+          if (text) text.style.color = '#14b8a6';
         }}
       >
         <span
@@ -199,6 +275,7 @@ const Hero = () => (
       }}
     >
       <div
+        ref={cardSwapRef}
         style={{
           position: 'relative',
           width: 640,
@@ -214,37 +291,41 @@ const Hero = () => (
           delay={5000}
           pauseOnHover={false}
         >
-          {/* Slide 1: Corporate Reputation */}
+          {/* Slide 1: Public Relations */}
           <Card style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'flex-start',background:'rgba(255,255,255,0.95)',padding:0,overflow:'hidden',boxShadow:'0 4px 20px rgba(0,0,0,0.08)'}}>
-            <div style={{width:'100%',padding:'16px 0 8px 24px',textAlign:'left',color:'#2c5282',fontWeight:700,letterSpacing:0.3,fontSize:'1.1rem'}}>🛡️ Corporate Reputation</div>
-            <img src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?auto=format&fit=crop&w=600&q=80" alt="Corporate Reputation" style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
+            <div style={{width:'100%',padding:'16px 0 8px 18px',textAlign:'left',color:'#14b8a6',fontWeight:700,letterSpacing:0.3,fontSize:'1.1rem'}}>Public Relations</div>
+            <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=600&q=80" alt="PR" style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
           </Card>
-          {/* Slide 2: Crisis Communication */}
+          {/* Slide 2: Crisis Management */}
           <Card style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'flex-start',background:'rgba(255,255,255,0.95)',padding:0,overflow:'hidden',boxShadow:'0 4px 20px rgba(0,0,0,0.08)'}}>
-            <div style={{width:'100%',padding:'16px 0 8px 24px',textAlign:'left',color:'#e91e63',fontWeight:700,letterSpacing:0.3,fontSize:'1.1rem'}}>📣 Crisis Communication</div>
-            <img src="https://images.unsplash.com/photo-1495020689067-958852a7765e?auto=format&fit=crop&w=600&q=80" alt="Crisis Communication" style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
+            <div style={{width:'100%',padding:'16px 0 8px 18px',textAlign:'left',color:'#e91e63',fontWeight:700,letterSpacing:0.3,fontSize:'1.1rem'}}>Crisis Management</div>
+            <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80" alt="Crisis Mgmt" style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
           </Card>
-          {/* Slide 3: Brand Amplification */}
+          {/* Slide 3: Corporate Communications */}
           <Card style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'flex-start',background:'rgba(255,255,255,0.95)',padding:0,overflow:'hidden',boxShadow:'0 4px 20px rgba(0,0,0,0.08)'}}>
-            <div style={{width:'100%',padding:'16px 0 8px 24px',textAlign:'left',color:'#4a90c2',fontWeight:700,letterSpacing:0.3,fontSize:'1.1rem'}}>💡 Brand Amplification</div>
-            <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80" alt="Brand Amplification" style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
+            <div style={{width:'100%',padding:'16px 0 8px 18px',textAlign:'left',color:'#4a90c2',fontWeight:700,letterSpacing:0.3,fontSize:'1.1rem'}}>Corporate Communications</div>
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80" alt="Corporate Comm" style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
           </Card>
+          {/* Slide 4: Digital Media */}
           <Card style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'flex-start',background:'rgba(255,255,255,0.95)',padding:0,overflow:'hidden',boxShadow:'0 4px 20px rgba(0,0,0,0.08)'}}>
-            <div style={{width:'100%',padding:'16px 0 8px 0',textAlign:'left',color:'#4a90c2',fontWeight:700,letterSpacing:0.3,fontSize:'1.1rem'}}>💡 Brand Amplification</div>
-            <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80" alt="Brand Amplification" style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
+            <div style={{width:'100%',padding:'16px 0 8px 18px',textAlign:'left',color:'#14b8a6',fontWeight:700,letterSpacing:0.3,fontSize:'1.1rem'}}>Digital Media</div>
+            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80" alt="DigitalM" style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
           </Card>
+          {/* Slide 5: Financial Communication */}
           <Card style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'flex-start',background:'rgba(255,255,255,0.95)',padding:0,overflow:'hidden',boxShadow:'0 4px 20px rgba(0,0,0,0.08)'}}>
-            <div style={{width:'100%',padding:'16px 0 8px 0',textAlign:'left',color:'#4a90c2',fontWeight:700,letterSpacing:0.3,fontSize:'1.1rem'}}>💡 Brand Amplification</div>
-            <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80" alt="Brand Amplification" style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
+            <div style={{width:'100%',padding:'16px 0 8px 18px',textAlign:'left',color:'#e91e63',fontWeight:700,letterSpacing:0.3,fontSize:'1.1rem'}}>Financial Communication</div>
+            <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80" alt="Fincom" style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
           </Card>
+          {/* Slide 6: Specialized Services */}
           <Card style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'flex-start',background:'rgba(255,255,255,0.95)',padding:0,overflow:'hidden',boxShadow:'0 4px 20px rgba(0,0,0,0.08)'}}>
-            <div style={{width:'100%',padding:'16px 0 8px 0',textAlign:'left',color:'#4a90c2',fontWeight:700,letterSpacing:0.3,fontSize:'1.1rem'}}>💡 Brand Amplification</div>
-            <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80" alt="Brand Amplification" style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
+            <div style={{width:'100%',padding:'16px 0 8px 18px',textAlign:'left',color:'#4a90c2',fontWeight:700,letterSpacing:0.3,fontSize:'1.1rem'}}>Specialized Services</div>
+            <img src="https://images.unsplash.com/photo-1515168833906-d2a3b82b3029?auto=format&fit=crop&w=600&q=80" alt="Specialized Services" style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
           </Card>
         </CardSwap>
       </div>
     </div>
   </div>
-);
+  );
+};
 
 export default Hero;
