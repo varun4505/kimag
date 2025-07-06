@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import CardSwap, { Card } from './CardSwap';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { FaNewspaper, FaShieldAlt, FaLaptop, FaBuilding, FaUniversity, FaBullseye } from 'react-icons/fa';
 
 const Hero = () => {
@@ -12,6 +13,7 @@ const Hero = () => {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const cardSwapRef = useRef<HTMLDivElement>(null);
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
+  const router = useRouter();
 
   useEffect(() => {
     const handleResize = () => {
@@ -223,60 +225,38 @@ const Hero = () => {
       </p>
       <button
         ref={buttonRef}
+        onClick={() => router.push('/appointment')}
         style={{
-          marginTop: windowWidth < 768 ? 20 : 12,
-          padding: windowWidth < 768 ? '16px 32px' : '14px 36px',
-          fontSize: windowWidth < 768 ? '1.05rem' : '1.15rem',
-          fontWeight: 700,
+          marginTop: windowWidth < 768 ? 24 : 20,
+          padding: windowWidth < 768 ? '12px 24px' : '14px 28px',
+          fontSize: windowWidth < 768 ? '1rem' : '1.1rem',
+          fontWeight: 500,
           color: '#14b8a6',
-          background: '#fff',
+          background: 'transparent',
           border: '2px solid #14b8a6',
-          borderRadius: '999px',
+          borderRadius: '8px',
           cursor: 'pointer',
-          boxShadow: '0 4px 16px rgba(44,82,130,0.12)',
-          position: 'relative',
-          overflow: 'hidden',
-          transition: 'color 0.3s, background 0.3s',
+          transition: 'all 0.2s ease',
           width: 'fit-content',
-          minWidth: windowWidth < 768 ? 240 : 260,
-          maxWidth: windowWidth < 768 ? 320 : 340,
-          alignItems: 'center',
-          justifyContent: 'center',
           display: 'flex',
+          alignItems: 'center',
           alignSelf: windowWidth < 768 ? 'center' : 'flex-start',
+          fontFamily: 'Outfit, Arial, sans-serif',
+          letterSpacing: '0.2px',
+          boxShadow: 'none',
         }}
         onMouseEnter={e => {
           const btn = e.currentTarget;
-          const bg = btn.querySelector('.btn-bg') as HTMLElement | null;
-          const text = btn.querySelector('.btn-text') as HTMLElement | null;
-          if (bg) bg.style.transform = 'translateY(0)';
-          if (text) text.style.color = '#fff';
+          btn.style.backgroundColor = '#14b8a6';
+          btn.style.color = '#fff';
         }}
         onMouseLeave={e => {
           const btn = e.currentTarget;
-          const bg = btn.querySelector('.btn-bg') as HTMLElement | null;
-          const text = btn.querySelector('.btn-text') as HTMLElement | null;
-          if (bg) bg.style.transform = 'translateY(100%)';
-          if (text) text.style.color = '#14b8a6';
+          btn.style.backgroundColor = 'transparent';
+          btn.style.color = '#14b8a6';
         }}
       >
-        <span
-          className="btn-bg"
-          style={{
-            position: 'absolute',
-            left: 0,
-            bottom: 0,
-            width: '100%',
-            height: '100%',
-            background: 'linear-gradient(0deg, #14b8a6 0%, #2c5282 100%)',
-            zIndex: 0,
-            transform: 'translateY(100%)',
-            transition: 'transform 0.4s cubic-bezier(0.4,0,0.2,1)',
-          }}
-        />
-        <span className="btn-text" style={{ position: 'relative', zIndex: 1, display: 'inline-flex', alignItems: 'center', color: '#14b8a6', transition: 'color 0.3s' }}>
-          Schedule a Consultation <span style={{marginLeft: 8}}>📅</span>
-        </span>
+        Book a Consultation Now
       </button>
     </div>
     {/* Right side CardSwap */}
