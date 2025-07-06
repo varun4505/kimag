@@ -83,7 +83,7 @@ const Hero = () => {
       margin: '0 auto',
       background: '#fafdff',
       overflow: 'hidden',
-      marginTop: '48px', // Reduced to move hero section up
+      marginTop: '42px', // Reduced to move hero section up
     }}
   >
     {/* Background SVG grid and circles */}
