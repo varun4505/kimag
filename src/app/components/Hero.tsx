@@ -95,12 +95,10 @@ const Hero = () => (
           display: 'block',
           fontSize: '3.5rem',
           fontWeight: 700,
-          color: '#fff',
+          color: '#181f2a', // blackish
           lineHeight: 1.1,
-          textShadow: '0 8px 32px rgba(44,82,130,0.18), 0 2px 8px rgba(0,0,0,0.12)',
           letterSpacing: '-0.01em',
           textAlign: 'left',
-          filter: 'drop-shadow(0 2px 16px rgba(0,0,0,0.12))',
           marginBottom: '0.2em',
         }}>
           We Shape Narratives.
@@ -110,15 +108,13 @@ const Hero = () => (
           fontSize: '3.5rem',
           fontWeight: 700,
           color: 'transparent',
-          background: 'linear-gradient(90deg, #1a365d 0%, #2c5282 50%, #00d2ff 100%)',
+          background: 'linear-gradient(90deg, #14b8a6 0%, #4a90c2 50%, #b14fad 100%)',
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent',
           backgroundClip: 'text',
           lineHeight: 1,
-          textShadow: '0 8px 32px rgba(44,82,130,0.18), 0 2px 8px rgba(0,0,0,0.12)',
           letterSpacing: '-0.01em',
           textAlign: 'left',
-          filter: 'drop-shadow(0 2px 16px rgba(0,0,0,0.12))',
         }}>
           We Build Reputations.
         </span>
@@ -234,15 +230,15 @@ const Hero = () => (
             <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80" alt="Brand Amplification" style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
           </Card>
           <Card style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'flex-start',background:'rgba(255,255,255,0.95)',padding:0,overflow:'hidden',boxShadow:'0 4px 20px rgba(0,0,0,0.08)'}}>
-            <div style={{width:'100%',padding:'16px 0 8px 0',textAlign:'center',color:'#4a90c2',fontWeight:700,letterSpacing:0.3,fontSize:'1.1rem'}}>💡 Brand Amplification</div>
+            <div style={{width:'100%',padding:'16px 0 8px 0',textAlign:'left',color:'#4a90c2',fontWeight:700,letterSpacing:0.3,fontSize:'1.1rem'}}>💡 Brand Amplification</div>
             <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80" alt="Brand Amplification" style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
           </Card>
           <Card style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'flex-start',background:'rgba(255,255,255,0.95)',padding:0,overflow:'hidden',boxShadow:'0 4px 20px rgba(0,0,0,0.08)'}}>
-            <div style={{width:'100%',padding:'16px 0 8px 0',textAlign:'center',color:'#4a90c2',fontWeight:700,letterSpacing:0.3,fontSize:'1.1rem'}}>💡 Brand Amplification</div>
+            <div style={{width:'100%',padding:'16px 0 8px 0',textAlign:'left',color:'#4a90c2',fontWeight:700,letterSpacing:0.3,fontSize:'1.1rem'}}>💡 Brand Amplification</div>
             <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80" alt="Brand Amplification" style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
           </Card>
           <Card style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'flex-start',background:'rgba(255,255,255,0.95)',padding:0,overflow:'hidden',boxShadow:'0 4px 20px rgba(0,0,0,0.08)'}}>
-            <div style={{width:'100%',padding:'16px 0 8px 0',textAlign:'center',color:'#4a90c2',fontWeight:700,letterSpacing:0.3,fontSize:'1.1rem'}}>💡 Brand Amplification</div>
+            <div style={{width:'100%',padding:'16px 0 8px 0',textAlign:'left',color:'#4a90c2',fontWeight:700,letterSpacing:0.3,fontSize:'1.1rem'}}>💡 Brand Amplification</div>
             <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80" alt="Brand Amplification" style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
           </Card>
         </CardSwap>
