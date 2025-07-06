@@ -109,7 +109,7 @@ const CardSwap: React.FC<CardSwapProps> = ({
   );
   const refs = useMemo<RefObject<HTMLDivElement | null>[]>(
     () => childArr.map(() => React.createRef<HTMLDivElement>()),
-    [childArr]
+    [childArr.length]
   );
 
   const order = useRef<number[]>(
