@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import CardSwap, { Card } from './CardSwap';
+import Image from 'next/image';
 
 const Hero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -202,7 +203,7 @@ const Hero = () => {
           fontFamily: 'Outfit, Arial, sans-serif',
         }}
       >
-        India's leading integrated communications agency delivering strategic PR, corporate storytelling, and crisis leadership.
+        India&apos;s leading integrated communications agency delivering strategic PR, corporate storytelling, and crisis leadership.
       </p>
       <button
         ref={buttonRef}
@@ -294,32 +295,32 @@ const Hero = () => {
           {/* Slide 1: Public Relations */}
           <Card style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'flex-start',background:'rgba(255,255,255,0.95)',padding:0,overflow:'hidden',boxShadow:'0 4px 20px rgba(0,0,0,0.08)'}}>
             <div style={{width:'100%',padding:'16px 0 8px 18px',textAlign:'left',color:'#14b8a6',fontWeight:700,letterSpacing:0.3,fontSize:'1.1rem'}}>Public Relations</div>
-            <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=600&q=80" alt="PR" style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
+            <Image src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=600&q=80" alt="PR" width={600} height={500} style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
           </Card>
           {/* Slide 2: Crisis Management */}
           <Card style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'flex-start',background:'rgba(255,255,255,0.95)',padding:0,overflow:'hidden',boxShadow:'0 4px 20px rgba(0,0,0,0.08)'}}>
             <div style={{width:'100%',padding:'16px 0 8px 18px',textAlign:'left',color:'#e91e63',fontWeight:700,letterSpacing:0.3,fontSize:'1.1rem'}}>Crisis Management</div>
-            <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80" alt="Crisis Mgmt" style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
+            <Image src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80" alt="Crisis Mgmt" width={600} height={500} style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
           </Card>
           {/* Slide 3: Corporate Communications */}
           <Card style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'flex-start',background:'rgba(255,255,255,0.95)',padding:0,overflow:'hidden',boxShadow:'0 4px 20px rgba(0,0,0,0.08)'}}>
             <div style={{width:'100%',padding:'16px 0 8px 18px',textAlign:'left',color:'#4a90c2',fontWeight:700,letterSpacing:0.3,fontSize:'1.1rem'}}>Corporate Communications</div>
-            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80" alt="Corporate Comm" style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
+            <Image src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80" alt="Corporate Comm" width={600} height={500} style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
           </Card>
           {/* Slide 4: Digital Media */}
           <Card style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'flex-start',background:'rgba(255,255,255,0.95)',padding:0,overflow:'hidden',boxShadow:'0 4px 20px rgba(0,0,0,0.08)'}}>
             <div style={{width:'100%',padding:'16px 0 8px 18px',textAlign:'left',color:'#14b8a6',fontWeight:700,letterSpacing:0.3,fontSize:'1.1rem'}}>Digital Media</div>
-            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80" alt="DigitalM" style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
+            <Image src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80" alt="DigitalM" width={600} height={500} style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
           </Card>
           {/* Slide 5: Financial Communication */}
           <Card style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'flex-start',background:'rgba(255,255,255,0.95)',padding:0,overflow:'hidden',boxShadow:'0 4px 20px rgba(0,0,0,0.08)'}}>
             <div style={{width:'100%',padding:'16px 0 8px 18px',textAlign:'left',color:'#e91e63',fontWeight:700,letterSpacing:0.3,fontSize:'1.1rem'}}>Financial Communication</div>
-            <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80" alt="Fincom" style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
+            <Image src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80" alt="Fincom" width={600} height={500} style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
           </Card>
           {/* Slide 6: Specialized Services */}
           <Card style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'flex-start',background:'rgba(255,255,255,0.95)',padding:0,overflow:'hidden',boxShadow:'0 4px 20px rgba(0,0,0,0.08)'}}>
             <div style={{width:'100%',padding:'16px 0 8px 18px',textAlign:'left',color:'#4a90c2',fontWeight:700,letterSpacing:0.3,fontSize:'1.1rem'}}>Specialized Services</div>
-            <img src="https://images.unsplash.com/photo-1515168833906-d2a3b82b3029?auto=format&fit=crop&w=600&q=80" alt="Specialized Services" style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
+            <Image src="https://images.unsplash.com/photo-1515168833906-d2a3b82b3029?auto=format&fit=crop&w=600&q=80" alt="Specialized Services" width={600} height={500} style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
           </Card>
         </CardSwap>
       </div>
