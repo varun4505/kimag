@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { useMobile } from '../../hooks/useMobile';
@@ -91,6 +91,7 @@ const AboutUs: React.FC = () => {
       }
     }
   };
+
 
   // Mobile award navigation functions
   const nextAward = useCallback(() => {
@@ -200,6 +201,7 @@ const AboutUs: React.FC = () => {
         ))}
       </div>
 
+
       <motion.div 
         className="max-w-7xl mx-auto relative z-10"
         variants={containerVariants}
@@ -224,17 +226,17 @@ const AboutUs: React.FC = () => {
                 About Konnections IMAG
               </span>
             </h2>
-            
             <p className="text-lg text-gray-600 leading-relaxed">
               At Konnections IMAG, we don&apos;t just create campaigns; we craft compelling narratives that transform brands into movements. As a premier public relations and image management consultancy, we specialize in building, protecting, and enhancing reputations across diverse industries and markets.
             </p>
-            
             <motion.div
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               transition={{ delay: 0.5, duration: 1, ease: "easeOut" }}
               className="w-24 h-1 bg-gradient-to-r from-[#2d6389] via-[#348992] to-[#d73c77] rounded-full"
             />
+
+
           </div>
 
           {/* Right Column - Enhanced Company Image */}
@@ -279,259 +281,276 @@ const AboutUs: React.FC = () => {
             />
           </motion.div>
         </motion.div>
-
-        {/* Enhanced Company Overview */}
-        <motion.div 
-          variants={itemVariants}
-          className="bg-white/70 backdrop-blur-xl p-8 md:p-16 rounded-3xl mb-16 shadow-2xl border border-white/20 relative overflow-hidden"
-        >
-          <div className="absolute inset-0 bg-gradient-to-br from-[#348992]/5 via-transparent to-[#d73c77]/5"></div>
-          <div className="relative z-10">
-            <motion.div
-              initial={{ scale: 0 }}
-              whileInView={{ scale: 1 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              className="w-16 h-16 bg-gradient-to-br from-[#348992] to-[#2d6389] rounded-2xl flex items-center justify-center mx-auto mb-8"
-            >
-              <Award className="w-8 h-8 text-white" />
-            </motion.div>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#2d6389] text-center mb-8">
-              Award-Winning Communications Excellence
-            </h2>
+        {/* Our Reach Section */}
+        <div className="bg-gradient-to-br from-[#348992]/10 to-[#d73c77]/10 p-8 rounded-2xl border border-[#348992]/20 mb-16">
+          <h3 className="text-2xl md:text-3xl font-bold text-[#2d6389] text-center mb-8">Our Reach</h3>
+          <motion.div 
+            initial={{ scaleX: 0, opacity: 0 }}
+            whileInView={{ scaleX: 1, opacity: 1 }}
+            transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
+            className="w-20 h-1 bg-gradient-to-r from-[#d73c77] to-[#2d6389] rounded-full mx-auto mb-8"
+          />
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
             <motion.div 
-              initial={{ scaleX: 0, opacity: 0 }}
-              whileInView={{ scaleX: 1, opacity: 1 }}
-              transition={{ duration: 1.2, delay: 0.3, ease: "easeOut" }}
-              className="w-24 h-1 bg-gradient-to-r from-[#348992] to-[#d73c77] rounded-full mx-auto mb-8"
-            />
-            <p className="text-lg md:text-xl text-gray-700 text-center leading-relaxed max-w-5xl mx-auto mb-12">
-              Konnections IMAG is an award-winning independent multi-disciplinary communications company 
-              offering 360-degree solutions to brands across India. Founded in 2010 and incubated at 
-              NSRCEL Indian Institute of Management, Bangalore, we have evolved into one of India&apos;s 
-              leading integrated marketing communication consultancies.
-            </p>
-            
-            {/* Awards Section - Mobile Optimized */}
-            <div id="awards" className="relative bg-gradient-to-br from-white via-white/95 to-[#348992]/5 backdrop-blur-xl p-4 sm:p-6 lg:p-8 rounded-3xl border border-[#348992]/20 mb-12 overflow-hidden shadow-2xl">
-              {/* Background decorative elements */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#348992]/10 to-[#d73c77]/10 rounded-full blur-2xl"></div>
-              <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-[#d73c77]/10 to-[#348992]/10 rounded-full blur-xl"></div>
-              
-              <div className="relative z-10">
-                {/* Awards Header */}
-                <div className="text-center mb-6">
-                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#348992]/10 to-[#d73c77]/10 rounded-full mb-4 border border-[#348992]/20">
-                    <Award className="w-4 h-4 text-[#348992]" />
-                    <span className="text-sm font-medium text-[#348992]">AWARDS & RECOGNITION</span>
-                  </div>
-                  <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
-                    Our <span className="bg-gradient-to-r from-[#348992] to-[#d73c77] bg-clip-text text-transparent">Achievements</span>
-                  </h3>
-                  <p className="text-gray-600 text-sm sm:text-base">
-                    Recognition for excellence in communication and client service
-                  </p>
-                </div>
-
-                {/* Mobile Awards Carousel */}
-                {isMobile ? (
-                  <div className="relative">
-                    {/* Mobile Single Award Display */}
-                    <motion.div
-                      key={currentAwardIndex}
-                      initial={{ opacity: 0, x: 50 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -50 }}
-                      transition={{ duration: 0.5 }}
-                      className="relative mx-auto max-w-sm mobile-award-container"
-                      onTouchStart={handleTouchStart}
-                      onTouchMove={handleTouchMove}
-                      onTouchEnd={handleTouchEnd}
-                    >
-                      <div className="relative group cursor-pointer mobile-award-card" onClick={() => setIsAwardModalOpen(true)}>
-                        <div className="w-full h-64 overflow-hidden shadow-xl rounded-2xl border-2 border-white/50">
-                          <Image 
-                            src={awards[currentAwardIndex].src}
-                            alt={awards[currentAwardIndex].alt}
-                            width={400}
-                            height={256}
-                            className="w-full h-full object-cover award-image"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                          <div className="absolute bottom-4 left-4 right-4 text-white">
-                            <h4 className="font-bold text-lg mb-1">{awards[currentAwardIndex].title}</h4>
-                          </div>
-                        </div>
-                      </div>
-                      
-                      {/* Swipe Indicator */}
-                      <div className="absolute top-4 right-4 flex items-center space-x-1 bg-black/20 backdrop-blur-sm rounded-full px-3 py-1">
-                        <span className="text-white text-xs">Swipe</span>
-                        <motion.div
-                          animate={{ x: [0, 4, 0] }}
-                          transition={{ duration: 1.5, repeat: Infinity }}
-                          className="flex space-x-1"
-                        >
-                          <div className="w-1 h-1 bg-white rounded-full opacity-60"></div>
-                          <div className="w-1 h-1 bg-white rounded-full opacity-80"></div>
-                          <div className="w-1 h-1 bg-white rounded-full"></div>
-                        </motion.div>
-                      </div>
-                    </motion.div>
-
-                    {/* Mobile Navigation */}
-                    <div className="flex justify-center items-center mt-6">
-                      <button
-                        onClick={prevAward}
-                        className="award-nav-button p-3 bg-white/90 hover:bg-white rounded-full shadow-lg border border-gray-200/50 transition-all duration-300 mobile-touch-target mobile-award-nav mr-8"
-                        aria-label="Previous award"
-                      >
-                        <ChevronLeft className="w-5 h-5 text-[#348992]" />
-                      </button>
-                      
-                      <button
-                        onClick={nextAward}
-                        className="award-nav-button p-3 bg-white/90 hover:bg-white rounded-full shadow-lg border border-gray-200/50 transition-all duration-300 mobile-touch-target mobile-award-nav"
-                        aria-label="Next award"
-                      >
-                        <ChevronRight className="w-5 h-5 text-[#348992]" />
-                      </button>
-                    </div>
-                  </div>
-                ) : (
-                  /* Desktop/Tablet Awards Carousel */
-                  <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#348992]/5 via-transparent to-[#d73c77]/5 p-6">
-                    {/* Gradient overlays for smooth edges */}
-                    <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white via-white/80 to-transparent z-10 pointer-events-none"></div>
-                    <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none"></div>
-                    
-                    <motion.div
-                      className="flex items-center gap-6 lg:gap-8"
-                      animate={{ x: ["0%", "-100%"] }}
-                      transition={{
-                        duration: 35,
-                        repeat: Infinity,
-                        ease: "linear"
-                      }}
-                      style={{ width: "200%" }}
-                    >
-                      {/* First set of awards */}
-                      {awards.map((award, index) => (
-                        <div key={`first-${index}`} className="relative group cursor-pointer">
-                          <div className="w-60 h-60 lg:w-80 lg:h-80 overflow-hidden shadow-xl group-hover:shadow-2xl transition-all duration-500 border-2 border-white/50 group-hover:border-[#348992]/30 rounded-2xl relative">
-                            <Image 
-                              src={award.src}
-                              alt={award.alt}
-                              width={320}
-                              height={320}
-                              className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                            <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                              <h4 className="font-bold text-lg mb-1">{award.title}</h4>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                      
-                      {/* Duplicate set for continuous scrolling */}
-                      {awards.map((award, index) => (
-                        <div key={`second-${index}`} className="relative group cursor-pointer">
-                          <div className="w-60 h-60 lg:w-80 lg:h-80 overflow-hidden shadow-xl group-hover:shadow-2xl transition-all duration-500 border-2 border-white/50 group-hover:border-[#348992]/30 rounded-2xl relative">
-                            <Image 
-                              src={award.src}
-                              alt={award.alt}
-                              width={320}
-                              height={320}
-                              className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                            <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                              <h4 className="font-bold text-lg mb-1">{award.title}</h4>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </motion.div>
-                  </div>
-                )}
+              className="group relative p-6 bg-white/60 backdrop-blur-sm rounded-2xl border border-white/30 shadow-lg hover:shadow-xl transition-all duration-300"
+              whileHover={{ y: -5, scale: 1.02 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+            >
+              <div className="w-12 h-12 bg-gradient-to-br from-[#2d6389] to-[#348992] rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                <Calendar className="w-6 h-6 text-white" />
               </div>
-            </div>
-            
-            {/* Our Reach Section */}
-            <div className="bg-gradient-to-br from-[#348992]/10 to-[#d73c77]/10 p-8 rounded-2xl border border-[#348992]/20">
-              <h3 className="text-2xl md:text-3xl font-bold text-[#2d6389] text-center mb-8">Our Reach</h3>
-              <motion.div 
-                initial={{ scaleX: 0, opacity: 0 }}
-                whileInView={{ scaleX: 1, opacity: 1 }}
-                transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
-                className="w-20 h-1 bg-gradient-to-r from-[#d73c77] to-[#2d6389] rounded-full mx-auto mb-8"
-              />
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
-                <motion.div 
-                  className="group relative p-6 bg-white/60 backdrop-blur-sm rounded-2xl border border-white/30 shadow-lg hover:shadow-xl transition-all duration-300"
-                  whileHover={{ y: -5, scale: 1.02 }}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 }}
-                >
-                  <div className="w-12 h-12 bg-gradient-to-br from-[#2d6389] to-[#348992] rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <Calendar className="w-6 h-6 text-white" />
-                  </div>
-                  <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#2d6389] to-[#348992] bg-clip-text text-transparent mb-2">
-                    <AnimatedCounter end={14} suffix="+" />
-                  </div>
-                  <p className="text-gray-700 font-medium">Years of Excellence</p>
-                </motion.div>
-                
-                <motion.div 
-                  className="group relative p-6 bg-white/60 backdrop-blur-sm rounded-2xl border border-white/30 shadow-lg hover:shadow-xl transition-all duration-300"
-                  whileHover={{ y: -5, scale: 1.02 }}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 }}
-                >
-                  <div className="w-12 h-12 bg-gradient-to-br from-[#348992] to-[#d73c77] rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <Building className="w-6 h-6 text-white" />
-                  </div>
-                  <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#348992] to-[#d73c77] bg-clip-text text-transparent mb-2">
-                    <AnimatedCounter end={500} suffix="+" />
-                  </div>
-                  <p className="text-gray-700 font-medium">Brands Served</p>
-                </motion.div>
-                
-                <motion.div 
-                  className="group relative p-6 bg-white/60 backdrop-blur-sm rounded-2xl border border-white/30 shadow-lg hover:shadow-xl transition-all duration-300"
-                  whileHover={{ y: -5, scale: 1.02 }}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 }}
-                >
-                  <div className="w-12 h-12 bg-gradient-to-br from-[#d73c77] to-[#2d6389] rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <TrendingUp className="w-6 h-6 text-white" />
-                  </div>
-                  <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#d73c77] to-[#2d6389] bg-clip-text text-transparent mb-2">
-                    <AnimatedCounter end={30} suffix="+" />
-                  </div>
-                  <p className="text-gray-700 font-medium">Industry Verticals</p>
-                </motion.div>
-                
-                <motion.div 
-                  className="group relative p-6 bg-white/60 backdrop-blur-sm rounded-2xl border border-white/30 shadow-lg hover:shadow-xl transition-all duration-300"
-                  whileHover={{ y: -5, scale: 1.02 }}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4 }}
-                >
-                  <div className="w-12 h-12 bg-gradient-to-br from-[#2d6389] to-[#d73c77] rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <Globe className="w-6 h-6 text-white" />
-                  </div>
-                  <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-[#2d6389] to-[#d73c77] bg-clip-text text-transparent mb-2">Pan-India</div>
-                  <p className="text-gray-700 font-medium">Presence</p>
-                </motion.div>
+              <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#2d6389] to-[#348992] bg-clip-text text-transparent mb-2">
+                <AnimatedCounter end={14} suffix="+" />
               </div>
-            </div>
+              <p className="text-gray-700 font-medium">Years of Excellence</p>
+            </motion.div>
+            
+            <motion.div 
+              className="group relative p-6 bg-white/60 backdrop-blur-sm rounded-2xl border border-white/30 shadow-lg hover:shadow-xl transition-all duration-300"
+              whileHover={{ y: -5, scale: 1.02 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+            >
+              <div className="w-12 h-12 bg-gradient-to-br from-[#348992] to-[#d73c77] rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                <Building className="w-6 h-6 text-white" />
+              </div>
+              <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#348992] to-[#d73c77] bg-clip-text text-transparent mb-2">
+                <AnimatedCounter end={500} suffix="+" />
+              </div>
+              <p className="text-gray-700 font-medium">Brands Served</p>
+            </motion.div>
+            
+            <motion.div 
+              className="group relative p-6 bg-white/60 backdrop-blur-sm rounded-2xl border border-white/30 shadow-lg hover:shadow-xl transition-all duration-300"
+              whileHover={{ y: -5, scale: 1.02 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+            >
+              <div className="w-12 h-12 bg-gradient-to-br from-[#d73c77] to-[#2d6389] rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                <TrendingUp className="w-6 h-6 text-white" />
+              </div>
+              <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#d73c77] to-[#2d6389] bg-clip-text text-transparent mb-2">
+                <AnimatedCounter end={30} suffix="+" />
+              </div>
+              <p className="text-gray-700 font-medium">Industry Verticals</p>
+            </motion.div>
+            
+            <motion.div 
+              className="group relative p-6 bg-white/60 backdrop-blur-sm rounded-2xl border border-white/30 shadow-lg hover:shadow-xl transition-all duration-300"
+              whileHover={{ y: -5, scale: 1.02 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+            >
+              <div className="w-12 h-12 bg-gradient-to-br from-[#2d6389] to-[#d73c77] rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                <Globe className="w-6 h-6 text-white" />
+              </div>
+              <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-[#2d6389] to-[#d73c77] bg-clip-text text-transparent mb-2">Pan-India</div>
+              <p className="text-gray-700 font-medium">Presence</p>
+            </motion.div>
           </div>
-        </motion.div>
+        </div>
+
+        {/* Awards Section - Mobile Optimized */}
+        <div id="awards" className="relative bg-gradient-to-br from-white via-white/95 to-[#348992]/5 backdrop-blur-xl p-4 sm:p-6 lg:p-8 rounded-3xl border border-[#348992]/20 mb-12 overflow-hidden shadow-2xl">
+          {/* Background decorative elements */}
+          <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#348992]/10 to-[#d73c77]/10 rounded-full blur-2xl"></div>
+          <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-[#d73c77]/10 to-[#348992]/10 rounded-full blur-xl"></div>
+          
+          <div className="relative z-10">
+            {/* Awards Header */}
+            <div className="text-center mb-6">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#348992]/10 to-[#d73c77]/10 rounded-full mb-4 border border-[#348992]/20">
+                <Award className="w-4 h-4 text-[#348992]" />
+                <span className="text-sm font-medium text-[#348992]">AWARDS & RECOGNITION</span>
+              </div>
+              <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
+                Our <span className="bg-gradient-to-r from-[#348992] to-[#d73c77] bg-clip-text text-transparent">Achievements</span>
+              </h3>
+              <p className="text-gray-600 text-sm sm:text-base">
+                Recognition for excellence in communication and client service
+              </p>
+            </div>
+
+            {/* Mobile Awards Carousel - Enhanced Layout */}
+            {isMobile ? (
+              <div
+                className="relative flex flex-col items-center justify-center px-2 py-4 select-none"
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
+              >
+                <div className="relative flex items-center justify-center w-full h-56" style={{ perspective: 1000 }}>
+                  {/* Previous Award (left, angled) */}
+                  <AnimatePresence initial={false}>
+                    {awards.length > 1 && (
+                      <motion.div
+                        key={`prev-${currentAwardIndex}`}
+                        initial={{ opacity: 0, x: -60, rotateY: 60, scale: 0.8 }}
+                        animate={{ opacity: 0.5, x: -60, rotateY: 60, scale: 0.8 }}
+                        exit={{ opacity: 0, x: -60, rotateY: 60, scale: 0.8 }}
+                        transition={{ duration: 0.4 }}
+                        className="absolute left-0 top-1/2 -translate-y-1/2 z-0 cursor-pointer"
+                        style={{ width: 140, height: 180 }}
+                        onClick={prevAward}
+                      >
+                        <Image
+                          src={awards[(currentAwardIndex - 1 + awards.length) % awards.length].src}
+                          alt={awards[(currentAwardIndex - 1 + awards.length) % awards.length].alt}
+                          width={140}
+                          height={180}
+                          className="rounded-xl object-cover shadow-lg border-2 border-white/40"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent rounded-xl" />
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+
+                  {/* Current Award (center, in focus) */}
+                  <AnimatePresence initial={false}>
+                    <motion.div
+                      key={`current-${currentAwardIndex}`}
+                      initial={{ opacity: 0, scale: 0.85, rotateY: 0 }}
+                      animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+                      exit={{ opacity: 0, scale: 0.85, rotateY: 0 }}
+                      transition={{ duration: 0.5 }}
+                      className="relative z-10 cursor-pointer"
+                      style={{ width: 200, height: 240 }}
+                      onClick={() => setIsAwardModalOpen(true)}
+                    >
+                      <Image
+                        src={awards[currentAwardIndex].src}
+                        alt={awards[currentAwardIndex].alt}
+                        width={200}
+                        height={240}
+                        className="rounded-2xl object-cover shadow-2xl border-2 border-[#348992]/40"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-2xl" />
+                      <div className="absolute bottom-3 left-3 right-3 text-white text-center">
+                        <h4 className="font-bold text-base mb-1 truncate drop-shadow-lg">{awards[currentAwardIndex].title}</h4>
+                      </div>
+                    </motion.div>
+                  </AnimatePresence>
+
+                  {/* Next Award (right, angled) */}
+                  <AnimatePresence initial={false}>
+                    {awards.length > 1 && (
+                      <motion.div
+                        key={`next-${currentAwardIndex}`}
+                        initial={{ opacity: 0, x: 60, rotateY: -60, scale: 0.8 }}
+                        animate={{ opacity: 0.5, x: 60, rotateY: -60, scale: 0.8 }}
+                        exit={{ opacity: 0, x: 60, rotateY: -60, scale: 0.8 }}
+                        transition={{ duration: 0.4 }}
+                        className="absolute right-0 top-1/2 -translate-y-1/2 z-0 cursor-pointer"
+                        style={{ width: 140, height: 180 }}
+                        onClick={nextAward}
+                      >
+                        <Image
+                          src={awards[(currentAwardIndex + 1) % awards.length].src}
+                          alt={awards[(currentAwardIndex + 1) % awards.length].alt}
+                          width={140}
+                          height={180}
+                          className="rounded-xl object-cover shadow-lg border-2 border-white/40"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent rounded-xl" />
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+
+                  {/* Navigation arrows */}
+                  <button
+                    aria-label="Previous award"
+                    className="absolute left-2 top-1/2 -translate-y-1/2 z-20 bg-white/80 hover:bg-white text-[#348992] rounded-full p-2 shadow-md border border-[#348992]/20 transition-all duration-200"
+                    onClick={prevAward}
+                    style={{ touchAction: 'manipulation' }}
+                  >
+                    <ChevronLeft className="w-5 h-5" />
+                  </button>
+                  <button
+                    aria-label="Next award"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 z-20 bg-white/80 hover:bg-white text-[#348992] rounded-full p-2 shadow-md border border-[#348992]/20 transition-all duration-200"
+                    onClick={nextAward}
+                    style={{ touchAction: 'manipulation' }}
+                  >
+                    <ChevronRight className="w-5 h-5" />
+                  </button>
+                </div>
+                {/* Dots navigation */}
+                <div className="flex items-center justify-center gap-2 mt-4">
+                  {awards.map((_, idx) => (
+                    <button
+                      key={idx}
+                      className={`w-2.5 h-2.5 rounded-full transition-all duration-200 border border-[#348992]/30 ${idx === currentAwardIndex ? 'bg-gradient-to-r from-[#348992] to-[#d73c77] shadow-lg' : 'bg-white/70'}`}
+                      onClick={() => setCurrentAwardIndex(idx)}
+                      aria-label={`Go to award ${idx + 1}`}
+                      style={{ outline: 'none' }}
+                    />
+                  ))}
+                </div>
+              </div>
+            ) : (
+              /* Desktop/Tablet Awards Carousel */
+              <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#348992]/5 via-transparent to-[#d73c77]/5 p-6">
+                {/* Gradient overlays for smooth edges */}
+                <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white via-white/80 to-transparent z-10 pointer-events-none"></div>
+                <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none"></div>
+                
+                <motion.div
+                  className="flex items-center gap-6 lg:gap-8"
+                  animate={{ x: ["0%", "-100%"] }}
+                  transition={{
+                    duration: 35,
+                    repeat: Infinity,
+                    ease: "linear"
+                  }}
+                  style={{ width: "200%" }}
+                >
+                  {/* First set of awards */}
+                  {awards.map((award, index) => (
+                    <div key={`first-${index}`} className="relative group cursor-pointer">
+                      <div className="w-60 h-60 lg:w-80 lg:h-80 overflow-hidden shadow-xl group-hover:shadow-2xl transition-all duration-500 border-2 border-white/50 group-hover:border-[#348992]/30 rounded-2xl relative">
+                        <Image 
+                          src={award.src}
+                          alt={award.alt}
+                          width={320}
+                          height={320}
+                          className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                          <h4 className="font-bold text-lg mb-1">{award.title}</h4>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                  
+                  {/* Duplicate set for continuous scrolling */}
+                  {awards.map((award, index) => (
+                    <div key={`second-${index}`} className="relative group cursor-pointer">
+                      <div className="w-60 h-60 lg:w-80 lg:h-80 overflow-hidden shadow-xl group-hover:shadow-2xl transition-all duration-500 border-2 border-white/50 group-hover:border-[#348992]/30 rounded-2xl relative">
+                        <Image 
+                          src={award.src}
+                          alt={award.alt}
+                          width={320}
+                          height={320}
+                          className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                          <h4 className="font-bold text-lg mb-1">{award.title}</h4>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </motion.div>
+              </div>
+            )}
+          </div>
+        </div>
 
         {/* Enhanced Mission, Vision, Philosophy Section */}
         <motion.div 
@@ -720,84 +739,7 @@ const AboutUs: React.FC = () => {
           </motion.div>
         </motion.div>
         
-        {/* Enhanced Core Values */}
-        <motion.div 
-          variants={itemVariants}
-          className="bg-white/70 backdrop-blur-xl p-8 md:p-16 rounded-3xl shadow-2xl border border-white/20 relative overflow-hidden"
-        >
-          <div className="absolute inset-0 bg-gradient-to-br from-[#348992]/5 via-transparent to-[#d73c77]/5"></div>
-          <div className="relative z-10">
-            <motion.div
-              initial={{ scale: 0 }}
-              whileInView={{ scale: 1 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              className="w-16 h-16 bg-gradient-to-br from-[#d73c77] to-[#348992] rounded-2xl flex items-center justify-center mx-auto mb-8"
-            >
-              <Heart className="w-8 h-8 text-white" />
-            </motion.div>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#2d6389] text-center mb-12">
-              Our Core Values
-            </h2>
-            <motion.div 
-              initial={{ scaleX: 0, opacity: 0 }}
-              whileInView={{ scaleX: 1, opacity: 1 }}
-              transition={{ duration: 1.2, delay: 0.3, ease: "easeOut" }}
-              className="w-24 h-1 bg-gradient-to-r from-[#d73c77] to-[#348992] rounded-full mx-auto mb-12"
-            />
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {[
-                { 
-                  title: 'Integrity', 
-                  desc: 'We believe in honest, trustworthy, and ethical communication services',
-                  icon: <CheckCircle className="w-6 h-6" />,
-                  gradient: 'from-[#2d6389] to-[#348992]'
-                },
-                { 
-                  title: 'Innovation', 
-                  desc: 'We relentlessly focus on bringing creativity and innovation to all our work',
-                  icon: <Zap className="w-6 h-6" />,
-                  gradient: 'from-[#348992] to-[#d73c77]'
-                },
-                { 
-                  title: 'Impact', 
-                  desc: 'We drive real business results for our clients through strategic communication',
-                  icon: <TrendingUp className="w-6 h-6" />,
-                  gradient: 'from-[#d73c77] to-[#2d6389]'
-                },
-                { 
-                  title: 'Excellence', 
-                  desc: 'We maintain the highest standards in everything we deliver',
-                  icon: <Award className="w-6 h-6" />,
-                  gradient: 'from-[#2d6389] to-[#d73c77]'
-                }
-              ].map((value, index) => (
-                <motion.div 
-                  key={index}
-                  className={`bg-gradient-to-br ${value.gradient} p-6 rounded-2xl text-white text-center group cursor-pointer relative overflow-hidden`}
-                  whileHover={{ 
-                    scale: 1.05,
-                    y: -5
-                  }}
-                  transition={{ duration: 0.3 }}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                >
-                  <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <motion.div
-                    whileHover={{ rotate: 360 }}
-                    transition={{ duration: 0.6 }}
-                    className="relative z-10 flex justify-center mb-4"
-                  >
-                    {value.icon}
-                  </motion.div>
-                  <h4 className="relative z-10 text-xl font-bold mb-4">{value.title}</h4>
-                  <p className="relative z-10 text-sm leading-relaxed opacity-90">{value.desc}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </motion.div>
+        {/* Removed Our Core Values section */}
 
         {/* Why Choose Us Section */}
         <motion.div 
