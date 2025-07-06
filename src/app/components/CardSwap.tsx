@@ -9,6 +9,7 @@ import React, {
   useEffect,
   useMemo,
   useRef,
+  useState,
 } from "react";
 import gsap from "gsap";
 
@@ -234,11 +235,32 @@ const CardSwap: React.FC<CardSwapProps> = ({
       : child
   );
 
+  // SSR-safe mobile detection and transform
+  const [mobileTransform, setMobileTransform] = useState<string | undefined>(undefined);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768 && childArr.length > 1) {
+        const offset = ((childArr.length - 1) / 2) * (verticalDistance ?? 70);
+        setMobileTransform(`translateY(-${offset}px)`);
+      } else {
+        setMobileTransform(undefined);
+      }
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [childArr.length, verticalDistance]);
+
   return (
     <div
       ref={container}
-      className="absolute bottom-0 right-0 transform translate-x-[5%] translate-y-[20%] origin-bottom-right perspective-[900px] overflow-visible max-[768px]:translate-x-[25%] max-[768px]:translate-y-[25%] max-[768px]:scale-[0.75] max-[480px]:translate-x-[25%] max-[480px]:translate-y-[25%] max-[480px]:scale-[0.55]"
-      style={{ width, height }}
+      className="md:absolute md:bottom-0 md:right-0 md:transform md:translate-x-[5%] md:translate-y-[20%] md:origin-bottom-right perspective-[900px] overflow-visible relative"
+      style={{
+        width,
+        height,
+        transform: mobileTransform,
+      }}
     >
       {rendered}
     </div>

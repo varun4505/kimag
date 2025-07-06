@@ -91,15 +91,15 @@ const Hero = () => {
     ref={heroRef}
     style={{
       height: isMobile ? 'auto' : '600px',
-      minHeight: isMobile ? '100vh' : '600px',
+      minHeight: isMobile ? 'auto' : '600px',
       position: 'relative',
       display: 'flex',
       flexDirection: isMobile ? 'column' : 'row',
       alignItems: 'center',
       justifyContent: isMobile ? 'center' : 'space-between',
-      padding: isMobile ? '60px 16px 40px 16px' : '0 4vw',
+      padding: isMobile ? '60px 16px 60px 16px' : '0 4vw',
       boxSizing: 'border-box',
-      gap: isMobile ? 32 : 0,
+      gap: isMobile ? 60 : 0,
       width: '100%',
       maxWidth: '1600px',
       margin: '0 auto',
@@ -159,7 +159,7 @@ const Hero = () => {
         padding: '0 0 0 0',
         display: 'flex',
         flexDirection: 'column',
-        gap: isMobile ? 20 : 16,
+        gap: isMobile ? 16 : 16,
         position: 'relative',
         overflow: 'visible',
         justifyContent: 'center',
@@ -236,7 +236,7 @@ const Hero = () => {
         ref={buttonRef}
         onClick={() => router.push('/appointment')}
         style={{
-          marginTop: isMobile ? 24 : 20,
+          marginTop: isMobile ? 16 : 20,
           padding: isMobile ? '12px 24px' : '14px 28px',
           fontSize: isMobile ? '1rem' : '1.1rem',
           fontWeight: 500,
@@ -299,23 +299,24 @@ const Hero = () => {
         alignItems: 'center',
         height: isMobile ? 'auto' : '100%',
         overflow: 'visible',
+        marginTop: isMobile ? '40px' : '0',
       }}
     >
       <div
         ref={cardSwapRef}
         style={{
           position: 'relative',
-          width: isMobile ? 240 : windowWidth < 1024 ? 480 : 640,
-          height: isMobile ? 240 : windowWidth < 1024 ? 480 : 640,
-          maxWidth: isMobile ? '240px' : '100%',
-          maxHeight: isMobile ? '240px' : '100%',
+          width: isMobile ? 280 : windowWidth < 1024 ? 480 : 640,
+          height: isMobile ? 280 : windowWidth < 1024 ? 480 : 640,
+          maxWidth: isMobile ? '280px' : '100%',
+          maxHeight: isMobile ? '280px' : '100%',
           marginTop: isMobile ? 0 : -70,
           margin: isMobile ? '0 auto' : 'auto',
         }}
       >
         <CardSwap
-          cardDistance={isMobile ? 25 : 60}
-          verticalDistance={isMobile ? 30 : 70}
+          cardDistance={isMobile ? 30 : 60}
+          verticalDistance={isMobile ? 35 : 70}
           delay={5000}
           pauseOnHover={false}
         >
