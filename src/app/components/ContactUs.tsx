@@ -117,7 +117,7 @@ const ContactUs: React.FC = () => {
   ];
 
   return (
-    <section id="contact" className="relative min-h-screen overflow-hidden mobile-container py-20 bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/30">
+    <section id="contact" className="relative min-h-[0] overflow-hidden mobile-container py-10 md:py-16 bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/30">
       {/* Enhanced Background Elements */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-20 w-72 h-72 bg-gradient-to-br from-[#348992]/10 to-[#d73c77]/5 rounded-full blur-3xl"></div>
