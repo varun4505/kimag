@@ -302,7 +302,7 @@ const AboutUs: React.FC = () => {
                 <Calendar className="w-6 h-6 text-white" />
               </div>
               <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#2d6389] to-[#348992] bg-clip-text text-transparent mb-2">
-                <AnimatedCounter end={14} suffix="+" />
+                <AnimatedCounter end={15} suffix="+" />
               </div>
               <p className="text-gray-700 font-medium">Years of Excellence</p>
             </motion.div>
@@ -360,7 +360,7 @@ const AboutUs: React.FC = () => {
           {/* Background decorative elements */}
           <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#348992]/10 to-[#d73c77]/10 rounded-full blur-2xl"></div>
           <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-[#d73c77]/10 to-[#348992]/10 rounded-full blur-xl"></div>
-          
+
           <div className="relative z-10">
             {/* Awards Header */}
             <div className="text-center mb-6">
@@ -376,120 +376,27 @@ const AboutUs: React.FC = () => {
               </p>
             </div>
 
-            {/* Mobile Awards Carousel - Enhanced Layout */}
+            {/* Mobile Awards - Improved Grid Layout */}
             {isMobile ? (
-              <div
-                className="relative flex flex-col items-center justify-center px-2 py-4 select-none"
-                onTouchStart={handleTouchStart}
-                onTouchMove={handleTouchMove}
-                onTouchEnd={handleTouchEnd}
-              >
-                <div className="relative flex items-center justify-center w-full h-56" style={{ perspective: 1000 }}>
-                  {/* Previous Award (left, angled) */}
-                  <AnimatePresence initial={false}>
-                    {awards.length > 1 && (
-                      <motion.div
-                        key={`prev-${currentAwardIndex}`}
-                        initial={{ opacity: 0, x: -60, rotateY: 60, scale: 0.8 }}
-                        animate={{ opacity: 0.5, x: -60, rotateY: 60, scale: 0.8 }}
-                        exit={{ opacity: 0, x: -60, rotateY: 60, scale: 0.8 }}
-                        transition={{ duration: 0.4 }}
-                        className="absolute left-0 top-1/2 -translate-y-1/2 z-0 cursor-pointer"
-                        style={{ width: 140, height: 180 }}
-                        onClick={prevAward}
-                      >
-                        <Image
-                          src={awards[(currentAwardIndex - 1 + awards.length) % awards.length].src}
-                          alt={awards[(currentAwardIndex - 1 + awards.length) % awards.length].alt}
-                          width={140}
-                          height={180}
-                          className="rounded-xl object-cover shadow-lg border-2 border-white/40"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent rounded-xl" />
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-
-                  {/* Current Award (center, in focus) */}
-                  <AnimatePresence initial={false}>
-                    <motion.div
-                      key={`current-${currentAwardIndex}`}
-                      initial={{ opacity: 0, scale: 0.85, rotateY: 0 }}
-                      animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-                      exit={{ opacity: 0, scale: 0.85, rotateY: 0 }}
-                      transition={{ duration: 0.5 }}
-                      className="relative z-10 cursor-pointer"
-                      style={{ width: 200, height: 240 }}
+              <div className="flex flex-col items-center justify-center px-0 py-4 select-none w-full">
+                <div className="flex flex-col items-center w-full mx-auto">
+                  <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden mb-3 bg-white/80 shadow-lg border border-[#348992]/10 relative" style={{ minHeight: 260 }}>
+                    <Image
+                      src={awards[currentAwardIndex].src}
+                      alt={awards[currentAwardIndex].alt}
+                      fill
+                      sizes="75vw"
+                      className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
                       onClick={() => setIsAwardModalOpen(true)}
-                    >
-                      <Image
-                        src={awards[currentAwardIndex].src}
-                        alt={awards[currentAwardIndex].alt}
-                        width={200}
-                        height={240}
-                        className="rounded-2xl object-cover shadow-2xl border-2 border-[#348992]/40"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-2xl" />
-                      <div className="absolute bottom-3 left-3 right-3 text-white text-center">
-                        <h4 className="font-bold text-base mb-1 truncate drop-shadow-lg">{awards[currentAwardIndex].title}</h4>
-                      </div>
-                    </motion.div>
-                  </AnimatePresence>
-
-                  {/* Next Award (right, angled) */}
-                  <AnimatePresence initial={false}>
-                    {awards.length > 1 && (
-                      <motion.div
-                        key={`next-${currentAwardIndex}`}
-                        initial={{ opacity: 0, x: 60, rotateY: -60, scale: 0.8 }}
-                        animate={{ opacity: 0.5, x: 60, rotateY: -60, scale: 0.8 }}
-                        exit={{ opacity: 0, x: 60, rotateY: -60, scale: 0.8 }}
-                        transition={{ duration: 0.4 }}
-                        className="absolute right-0 top-1/2 -translate-y-1/2 z-0 cursor-pointer"
-                        style={{ width: 140, height: 180 }}
-                        onClick={nextAward}
-                      >
-                        <Image
-                          src={awards[(currentAwardIndex + 1) % awards.length].src}
-                          alt={awards[(currentAwardIndex + 1) % awards.length].alt}
-                          width={140}
-                          height={180}
-                          className="rounded-xl object-cover shadow-lg border-2 border-white/40"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent rounded-xl" />
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-
-                  {/* Navigation arrows */}
-                  <button
-                    aria-label="Previous award"
-                    className="absolute left-2 top-1/2 -translate-y-1/2 z-20 bg-white/80 hover:bg-white text-[#348992] rounded-full p-2 shadow-md border border-[#348992]/20 transition-all duration-200"
-                    onClick={prevAward}
-                    style={{ touchAction: 'manipulation' }}
-                  >
-                    <ChevronLeft className="w-5 h-5" />
-                  </button>
-                  <button
-                    aria-label="Next award"
-                    className="absolute right-2 top-1/2 -translate-y-1/2 z-20 bg-white/80 hover:bg-white text-[#348992] rounded-full p-2 shadow-md border border-[#348992]/20 transition-all duration-200"
-                    onClick={nextAward}
-                    style={{ touchAction: 'manipulation' }}
-                  >
-                    <ChevronRight className="w-5 h-5" />
-                  </button>
-                </div>
-                {/* Dots navigation */}
-                <div className="flex items-center justify-center gap-2 mt-4">
-                  {awards.map((_, idx) => (
-                    <button
-                      key={idx}
-                      className={`w-2.5 h-2.5 rounded-full transition-all duration-200 border border-[#348992]/30 ${idx === currentAwardIndex ? 'bg-gradient-to-r from-[#348992] to-[#d73c77] shadow-lg' : 'bg-white/70'}`}
-                      onClick={() => setCurrentAwardIndex(idx)}
-                      aria-label={`Go to award ${idx + 1}`}
-                      style={{ outline: 'none' }}
+                      style={{ objectFit: 'cover', width: '100%', height: '100%', position: 'absolute', left: 0, top: 0 }}
                     />
-                  ))}
+                    {/* Title overlay */}
+                    <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 via-black/40 to-transparent px-4 py-3">
+                      <div className="text-base font-semibold text-white text-center truncate w-full drop-shadow-md" title={awards[currentAwardIndex].title}>
+                        {awards[currentAwardIndex].title}
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             ) : (
@@ -787,7 +694,7 @@ const AboutUs: React.FC = () => {
                 },
                 {
                   title: "Strategic Partnerships",
-                  desc: "Strong relationships with media, influencers, and stakeholders built over 14+ years",
+                  desc: "Strong relationships with media, influencers, and stakeholders built over 15+ years",
                   icon: <Heart className="w-6 h-6" />,
                   gradient: "from-[#2d6389] to-[#d73c77]"
                 },
@@ -852,30 +759,24 @@ const AboutUs: React.FC = () => {
             />
           </motion.div>
           
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
             {[
               { 
                 label: "IIM Bangalore", 
-                subtext: "Incubated", 
+                subtext: "Recognised", 
                 color: "from-[#2d6389] to-[#348992]",
                 image: "/iimbang.png"
               },
               { 
                 label: "NSRCEL", 
-                subtext: "Certified", 
+                subtext: "Incubated", 
                 color: "from-[#348992] to-[#d73c77]",
                 image: "/nsrcel.png"
               },
               { 
-                label: "ISO Certified", 
-                subtext: "Quality", 
+                label: "PRCI", 
+                subtext: "Awarded", 
                 color: "from-[#d73c77] to-[#2d6389]",
-                image: "/iso.png"
-              },
-              { 
-                label: "Award Winner", 
-                subtext: "Excellence", 
-                color: "from-[#2d6389] to-[#d73c77]",
                 image: "/prci.png"
               }
             ].map((achievement, index) => (

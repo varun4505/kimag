@@ -25,7 +25,6 @@ const ContactUs: React.FC = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    phone: '',
     subject: '',
     message: ''
   });
@@ -61,9 +60,7 @@ const ContactUs: React.FC = () => {
 
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
     setFormStatus('submitting');
-    
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
@@ -72,24 +69,18 @@ const ContactUs: React.FC = () => {
         },
         body: JSON.stringify(formData),
       });
-
       const data = await response.json();
-
       if (response.ok) {
         setFormStatus('success');
-        setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
-        
-        // Reset success message after 5 seconds
-        setTimeout(() => {
-          setFormStatus('idle');
-        }, 5000);
+        setFormData({ name: '', email: '', subject: '', message: '' });
+        setTimeout(() => setFormStatus('idle'), 5000);
       } else {
         setFormStatus('error');
         console.error('Error submitting form:', data.message);
       }
     } catch (error) {
-      console.error('Error submitting form:', error);
       setFormStatus('error');
+      console.error('Error submitting form:', error);
     }
   };
 
@@ -223,17 +214,15 @@ const ContactUs: React.FC = () => {
         {/* Contact Form and Map Section */}
         <motion.div 
           variants={itemVariants}
-          className="grid md:grid-cols-5 gap-8 mb-16"
+          className="grid md:grid-cols-2 gap-8 mb-16"
         >
-          {/* Contact Form */}
-          <div className="md:col-span-3 bg-white/70 backdrop-blur-xl p-8 rounded-3xl shadow-xl border border-white/20 relative overflow-hidden">
+          {/* Modern Contact Form */}
+          <div className="bg-white/70 backdrop-blur-xl p-8 rounded-3xl shadow-xl border border-white/20 flex flex-col justify-between h-full">
             <div className="absolute inset-0 bg-gradient-to-br from-[#348992]/5 via-transparent to-[#d73c77]/5"></div>
-            <div className="relative z-10">
+            <div className="relative z-10 flex flex-col h-full">
               <h2 className="text-2xl font-bold text-[#2d6389] mb-6">
                 Send Us a Message
               </h2>
-
-              {/* Form Status Message */}
               {formStatus === 'success' && (
                 <motion.div 
                   initial={{ opacity: 0, y: -20 }}
@@ -245,7 +234,6 @@ const ContactUs: React.FC = () => {
                   <p>Your message has been sent successfully! We&apos;ll get back to you soon.</p>
                 </motion.div>
               )}
-
               {formStatus === 'error' && (
                 <motion.div 
                   initial={{ opacity: 0, y: -20 }}
@@ -257,11 +245,10 @@ const ContactUs: React.FC = () => {
                   <p>There was an error sending your message. Please try again later.</p>
                 </motion.div>
               )}
-
-              <form onSubmit={handleFormSubmit}>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <form onSubmit={handleFormSubmit} className="space-y-6 flex-1 flex flex-col justify-between">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Your Name *</label>
+                    <label htmlFor="name" className="block text-sm font-medium text-[#2d6389] mb-1">Your Name *</label>
                     <input
                       id="name"
                       name="name"
@@ -270,11 +257,11 @@ const ContactUs: React.FC = () => {
                       value={formData.name}
                       onChange={handleInputChange}
                       placeholder="John Doe"
-                      className="w-full px-4 py-3 bg-white/50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#348992]/20 focus:border-[#348992] transition-colors outline-none"
+                      className="w-full px-4 py-3 bg-gradient-to-r from-[#f8fafc] to-[#e0e7ff] border border-[#348992]/20 rounded-xl focus:ring-2 focus:ring-[#348992]/20 focus:border-[#348992] transition-colors outline-none text-[#2d6389] placeholder:text-gray-400 shadow-sm"
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email Address *</label>
+                    <label htmlFor="email" className="block text-sm font-medium text-[#2d6389] mb-1">Email Address *</label>
                     <input
                       id="email"
                       name="email"
@@ -283,43 +270,30 @@ const ContactUs: React.FC = () => {
                       value={formData.email}
                       onChange={handleInputChange}
                       placeholder="john@example.com"
-                      className="w-full px-4 py-3 bg-white/50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#348992]/20 focus:border-[#348992] transition-colors outline-none"
+                      className="w-full px-4 py-3 bg-gradient-to-r from-[#f8fafc] to-[#e0e7ff] border border-[#348992]/20 rounded-xl focus:ring-2 focus:ring-[#348992]/20 focus:border-[#348992] transition-colors outline-none text-[#2d6389] placeholder:text-gray-400 shadow-sm"
                     />
-                  </div>
-                  <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
-                    <input
-                      id="phone"
-                      name="phone"
-                      type="tel"
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                      placeholder="+91 1234567890"
-                      className="w-full px-4 py-3 bg-white/50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#348992]/20 focus:border-[#348992] transition-colors outline-none"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">Subject *</label>
-                    <select
-                      id="subject"
-                      name="subject"
-                      required
-                      value={formData.subject}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 bg-white/50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#348992]/20 focus:border-[#348992] transition-colors outline-none appearance-none"
-                      style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='none' d='M0 0h24v24H0z'/%3E%3Cpath d='M12 15l-4.243-4.243 1.415-1.414L12 12.172l2.828-2.829 1.415 1.414z' fill='%232d6389'/%3E%3C/svg%3E")`, backgroundPosition: 'right 1rem center', backgroundRepeat: 'no-repeat', paddingRight: '3rem' }}
-                    >
-                      <option value="">Select a subject</option>
-                      <option value="General Inquiry">General Inquiry</option>
-                      <option value="New Project">New Project</option>
-                      <option value="Partnership">Partnership</option>
-                      <option value="Career">Career Opportunity</option>
-                      <option value="Support">Support</option>
-                    </select>
                   </div>
                 </div>
-                <div className="mb-6">
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">Your Message *</label>
+                <div>
+                  <label htmlFor="subject" className="block text-sm font-medium text-[#2d6389] mb-1">Subject *</label>
+                  <select
+                    id="subject"
+                    name="subject"
+                    required
+                    value={formData.subject}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 bg-gradient-to-r from-[#f8fafc] to-[#e0e7ff] border border-[#348992]/20 rounded-xl focus:ring-2 focus:ring-[#348992]/20 focus:border-[#348992] transition-colors outline-none appearance-none text-[#2d6389] placeholder:text-gray-400 shadow-sm"
+                  >
+                    <option value="">Select a subject</option>
+                    <option value="General Inquiry">General Inquiry</option>
+                    <option value="New Project">New Project</option>
+                    <option value="Partnership">Partnership</option>
+                    <option value="Career">Career Opportunity</option>
+                    <option value="Support">Support</option>
+                  </select>
+                </div>
+                <div className="flex-1 flex flex-col">
+                  <label htmlFor="message" className="block text-sm font-medium text-[#2d6389] mb-1">Your Message *</label>
                   <textarea
                     id="message"
                     name="message"
@@ -328,10 +302,10 @@ const ContactUs: React.FC = () => {
                     onChange={handleInputChange}
                     rows={5}
                     placeholder="Tell us about your project or inquiry..."
-                    className="w-full px-4 py-3 bg-white/50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#348992]/20 focus:border-[#348992] transition-colors outline-none resize-none"
+                    className="w-full px-4 py-3 bg-gradient-to-r from-[#f8fafc] to-[#e0e7ff] border border-[#348992]/20 rounded-xl focus:ring-2 focus:ring-[#348992]/20 focus:border-[#348992] transition-colors outline-none resize-none text-[#2d6389] placeholder:text-gray-400 shadow-sm flex-1"
                   ></textarea>
                 </div>
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between mt-4">
                   <p className="text-sm text-gray-500">* Required fields</p>
                   <motion.button
                     type="submit"
@@ -359,16 +333,16 @@ const ContactUs: React.FC = () => {
           </div>
 
           {/* Map and Social Media */}
-          <div className="md:col-span-2 space-y-8">
+          <div className="flex flex-col gap-8 h-full">
             {/* Map */}
-            <div className="bg-white/70 backdrop-blur-xl p-4 rounded-3xl shadow-xl border border-white/20 relative overflow-hidden h-80">
+            <div className="bg-white/70 backdrop-blur-xl p-4 rounded-3xl shadow-xl border border-white/20 relative overflow-hidden flex-1 min-h-[320px] flex flex-col justify-between">
               <div className="absolute inset-0 bg-gradient-to-br from-[#348992]/5 via-transparent to-[#d73c77]/5"></div>
-              <div className="relative z-10 h-full">
+              <div className="relative z-10 h-full flex-1">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.8948880316625!2d78.44935877421022!3d17.41683130195812!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb9a0e6555554f%3A0x3b469d80bb33445f!2sKonnections%20IMAG!5e0!3m2!1sen!2sin!4v1751519166835!5m2!1sen!2sin"
                   width="100%"
                   height="100%"
-                  style={{ border: 0, borderRadius: '1rem' }}
+                  style={{ border: 0, borderRadius: '1rem', minHeight: '220px' }}
                   allowFullScreen={false}
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
@@ -376,9 +350,8 @@ const ContactUs: React.FC = () => {
                 ></iframe>
               </div>
             </div>
-            
             {/* Social Media Links */}
-            <div className="bg-white/70 backdrop-blur-xl p-6 rounded-3xl shadow-xl border border-white/20 relative overflow-hidden">
+            <div className="bg-white/70 backdrop-blur-xl p-6 rounded-3xl shadow-xl border border-white/20 relative overflow-hidden flex flex-col justify-center">
               <div className="absolute inset-0 bg-gradient-to-br from-[#348992]/5 via-transparent to-[#d73c77]/5"></div>
               <div className="relative z-10">
                 <h3 className="text-lg font-bold text-[#2d6389] mb-6 text-center">Connect With Us</h3>
@@ -416,30 +389,53 @@ const ContactUs: React.FC = () => {
           <div className="relative z-10">
             <h2 className="text-2xl font-bold text-[#2d6389] mb-8 text-center">Frequently Asked Questions</h2>
             
-            <div className="max-w-3xl mx-auto space-y-4">
-              {faqs.map((faq, index) => (
-                <motion.div
-                  key={index}
-                  className="border border-gray-200 rounded-2xl overflow-hidden"
-                  initial={false}
-                  animate={{ height: activeFaq === index ? 'auto' : '60px' }}
-                  transition={{ duration: 0.3, ease: "easeInOut" }}
+          <div className="max-w-3xl mx-auto space-y-4 px-2 sm:px-0">
+            {faqs.map((faq, index) => (
+              <div
+                key={index}
+                className={`border-2 rounded-2xl overflow-hidden shadow-lg transition-all duration-300 ${activeFaq === index ? 'border-[#348992] bg-gradient-to-br from-[#e0f7fa]/60 to-[#fce4ec]/60' : 'border-gray-200 bg-white/80'}`}
+                data-gsap-faq={activeFaq === index}
+              >
+                <button
+                  onClick={() => toggleFaq(index)}
+                  className={`w-full flex items-center justify-between px-4 sm:px-6 py-4 text-left font-semibold text-base sm:text-lg focus:outline-none transition-colors duration-300 ${activeFaq === index ? 'text-[#348992]' : 'text-[#2d6389]'}`}
+                  style={{ minHeight: 56 }}
                 >
-                  <button
-                    onClick={() => toggleFaq(index)}
-                    className="w-full flex items-center justify-between px-6 py-4 text-left text-[#2d6389] font-medium focus:outline-none"
-                  >
-                    <span>{faq.question}</span>
-                    <ChevronDown 
-                      className={`w-5 h-5 text-[#348992] transition-transform duration-300 ${activeFaq === index ? 'transform rotate-180' : ''}`} 
-                    />
-                  </button>
-                  <div className={`px-6 pb-6 ${activeFaq === index ? 'block' : 'hidden'}`}>
-                    <p className="text-gray-600">{faq.answer}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+                  <span className="flex items-center gap-2">
+                    <MessageCircle className={`w-5 h-5 ${activeFaq === index ? 'text-[#348992]' : 'text-[#d73c77]'}`} />
+                    {faq.question}
+                  </span>
+                  <ChevronDown 
+                    className={`w-6 h-6 transition-transform duration-300 ${activeFaq === index ? 'rotate-180 text-[#348992]' : 'text-[#d73c77]'}`} 
+                  />
+                </button>
+                <div
+                  className={`px-4 sm:px-6 pb-6 transition-all duration-500 ease-in-out faq-answer ${activeFaq === index ? 'block' : 'hidden'}`}
+                  style={{
+                    maxHeight: activeFaq === index ? 500 : 0,
+                    opacity: activeFaq === index ? 1 : 0,
+                    transform: activeFaq === index ? 'translateY(0)' : 'translateY(10px)',
+                    transition: 'all 0.5s cubic-bezier(0.4,0,0.2,1)'
+                  }}
+                  id={`faq-answer-${index}`}
+                >
+                  <p className="text-gray-700 text-base leading-relaxed">{faq.answer}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          {/* GSAP Animation for FAQ */}
+          <script suppressHydrationWarning>{`
+            if (typeof window !== 'undefined' && window.gsap && document.querySelectorAll) {
+              const gsap = window.gsap;
+              document.querySelectorAll('[data-gsap-faq] .faq-answer').forEach(el => {
+                gsap.set(el, { opacity: 0, y: 10 });
+              });
+              document.querySelectorAll('[data-gsap-faq="true"] .faq-answer').forEach(el => {
+                gsap.to(el, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' });
+              });
+            }
+          `}</script>
           </div>
         </motion.div>
 
