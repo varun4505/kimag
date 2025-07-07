@@ -3,7 +3,7 @@ import { gsap } from 'gsap';
 import CardSwap, { Card } from './CardSwap';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { FaNewspaper, FaShieldAlt, FaLaptop, FaBuilding, FaUniversity, FaBullseye } from 'react-icons/fa';
+import { FaNewspaper, FaShieldAlt, FaLaptop, FaBuilding, FaBullseye } from 'react-icons/fa';
 
 const Hero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -19,7 +19,6 @@ const Hero = () => {
   useEffect(() => {
     setIsMounted(true);
     setWindowWidth(window.innerWidth);
-    
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
     };
