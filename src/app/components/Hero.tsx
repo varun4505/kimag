@@ -325,42 +325,35 @@ const Hero = () => {
             <div style={{width:'100%',padding: isMobile ? '12px 0 6px 14px' : '16px 0 8px 18px',textAlign:'left',color:'#348992',fontWeight:700,letterSpacing:0.3,fontSize: isMobile ? '0.95rem' : '1.1rem',display:'flex',alignItems:'center',gap: isMobile ? 8 : 10}}>
               <FaNewspaper style={{color:'#348992',fontSize: isMobile ? '1.1em' : '1.3em'}} /> Public Relations
             </div>
-            <Image src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=600&q=80" alt="PR" width={600} height={500} style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
+            <Image src="/hero/PR.png" alt="PR" width={600} height={500} style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
           </Card>
           {/* Slide 2: Crisis Management */}
           <Card style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'flex-start',background:'rgba(255,255,255,0.95)',padding:0,overflow:'hidden',boxShadow:'0 4px 20px rgba(0,0,0,0.08)'}}>
             <div style={{width:'100%',padding: isMobile ? '12px 0 6px 14px' : '16px 0 8px 18px',textAlign:'left',color:'#348992',fontWeight:700,letterSpacing:0.3,fontSize: isMobile ? '0.95rem' : '1.1rem',display:'flex',alignItems:'center',gap: isMobile ? 8 : 10}}>
               <FaShieldAlt style={{color:'#348992',fontSize: isMobile ? '1.1em' : '1.3em'}} /> Crisis Management
             </div>
-            <Image src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80" alt="Crisis Mgmt" width={600} height={500} style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
+            <Image src="/hero/crisis.png" alt="Crisis Mgmt" width={600} height={500} style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
           </Card>
           {/* Slide 3: Corporate Communications */}
           <Card style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'flex-start',background:'rgba(255,255,255,0.95)',padding:0,overflow:'hidden',boxShadow:'0 4px 20px rgba(0,0,0,0.08)'}}>
             <div style={{width:'100%',padding: isMobile ? '12px 0 6px 14px' : '16px 0 8px 18px',textAlign:'left',color:'#348992',fontWeight:700,letterSpacing:0.3,fontSize: isMobile ? '0.95rem' : '1.1rem',display:'flex',alignItems:'center',gap: isMobile ? 8 : 10}}>
               <FaBuilding style={{color:'#348992',fontSize: isMobile ? '1.1em' : '1.3em'}} /> Corporate Communications
             </div>
-            <Image src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80" alt="Corporate Comm" width={600} height={500} style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
+            <Image src="/hero/corporate.png" alt="Corporate Comm" width={600} height={500} style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
           </Card>
           {/* Slide 4: Digital Media */}
           <Card style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'flex-start',background:'rgba(255,255,255,0.95)',padding:0,overflow:'hidden',boxShadow:'0 4px 20px rgba(0,0,0,0.08)'}}>
             <div style={{width:'100%',padding: isMobile ? '12px 0 6px 14px' : '16px 0 8px 18px',textAlign:'left',color:'#348992',fontWeight:700,letterSpacing:0.3,fontSize: isMobile ? '0.95rem' : '1.1rem',display:'flex',alignItems:'center',gap: isMobile ? 8 : 10}}>
               <FaLaptop style={{color:'#348992',fontSize: isMobile ? '1.1em' : '1.3em'}} /> Digital Media
             </div>
-            <Image src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80" alt="DigitalM" width={600} height={500} style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
+            <Image src="/hero/digital.png" alt="Digital Media" width={600} height={500} style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
           </Card>
-          {/* Slide 5: Financial Communication */}
-          <Card style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'flex-start',background:'rgba(255,255,255,0.95)',padding:0,overflow:'hidden',boxShadow:'0 4px 20px rgba(0,0,0,0.08)'}}>
-            <div style={{width:'100%',padding: isMobile ? '12px 0 6px 14px' : '16px 0 8px 18px',textAlign:'left',color:'#348992',fontWeight:700,letterSpacing:0.3,fontSize: isMobile ? '0.95rem' : '1.1rem',display:'flex',alignItems:'center',gap: isMobile ? 8 : 10}}>
-              <FaUniversity style={{color:'#348992',fontSize: isMobile ? '1.1em' : '1.3em'}} /> Financial Communication
-            </div>
-            <Image src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80" alt="Fincom" width={600} height={500} style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
-          </Card>
-          {/* Slide 6: Specialized Services */}
+          {/* Slide 5: Specialized Services */}
           <Card style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'flex-start',background:'rgba(255,255,255,0.95)',padding:0,overflow:'hidden',boxShadow:'0 4px 20px rgba(0,0,0,0.08)'}}>
             <div style={{width:'100%',padding: isMobile ? '12px 0 6px 14px' : '16px 0 8px 18px',textAlign:'left',color:'#348992',fontWeight:700,letterSpacing:0.3,fontSize: isMobile ? '0.95rem' : '1.1rem',display:'flex',alignItems:'center',gap: isMobile ? 8 : 10}}>
               <FaBullseye style={{color:'#348992',fontSize: isMobile ? '1.1em' : '1.3em'}} /> Specialized Services
             </div>
-            <Image src="https://images.unsplash.com/photo-1515168833906-d2a3b82b3029?auto=format&fit=crop&w=600&q=80" alt="Specialized Services" width={600} height={500} style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
+            <Image src="/hero/spl.png" alt="Specialized Services" width={600} height={500} style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
           </Card>
         </CardSwap>
       </div>
