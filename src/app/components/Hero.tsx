@@ -320,88 +320,38 @@ const Hero = () => {
           pauseOnHover={false}
         >
           {/* Slide 1: Public Relations */}
-          <Card 
-            href="/services/public-relations"
-            style={{
-              display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'flex-start',background:'rgba(255,255,255,0.97)',padding:0,overflow:'hidden',boxShadow:'0 4px 24px rgba(52,137,146,0.12)',transition:'transform 0.2s, box-shadow 0.2s',cursor:'pointer'
-            }}
-            onMouseEnter={e => {e.currentTarget.style.transform='scale(1.045)';e.currentTarget.style.boxShadow='0 8px 32px rgba(52,137,146,0.18)';}}
-            onMouseLeave={e => {e.currentTarget.style.transform='scale(1)';e.currentTarget.style.boxShadow='0 4px 24px rgba(52,137,146,0.12)';}}
-            onTouchStart={e => {e.currentTarget.style.transform='scale(1.045)';e.currentTarget.style.boxShadow='0 8px 32px rgba(52,137,146,0.18)';}}
-            onTouchEnd={e => {e.currentTarget.style.transform='scale(1)';e.currentTarget.style.boxShadow='0 4px 24px rgba(52,137,146,0.12)';}}
-          >
-            <div style={{width:'100%',padding: isMobile ? '14px 0 6px 14px' : '18px 0 8px 18px',textAlign:'left',color:'#348992',fontWeight:700,letterSpacing:0.3,fontSize: isMobile ? '1.1rem' : '1.25rem',display:'flex',alignItems:'center',gap: isMobile ? 8 : 10}}>
-              <FaNewspaper style={{color:'#348992',fontSize: isMobile ? '1.3em' : '1.5em'}} /> Earned Media
+          <Card href="/services/public-relations" style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'flex-start',background:'rgba(255,255,255,0.95)',padding:0,overflow:'hidden',boxShadow:'0 4px 20px rgba(0,0,0,0.08)'}}>
+            <div style={{width:'100%',padding: isMobile ? '12px 0 6px 14px' : '16px 0 8px 18px',textAlign:'left',color:'#348992',fontWeight:700,letterSpacing:0.3,fontSize: isMobile ? '0.95rem' : '1.1rem',display:'flex',alignItems:'center',gap: isMobile ? 8 : 10}}>
+              <FaNewspaper style={{color:'#348992',fontSize: isMobile ? '1.1em' : '1.3em'}} /> Public Relations
             </div>
-            <div style={{width:'100%',paddingLeft:'18px',paddingBottom:'4px',fontSize:'0.95em',color:'#2d6389',fontWeight:500,opacity:0.85}}>Real Impact</div>
             <Image src="/hero/PR.png" alt="PR" width={600} height={500} style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
           </Card>
           {/* Slide 2: Crisis Management */}
-          <Card 
-            href="/services/crisis-management"
-            style={{
-              display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'flex-start',background:'rgba(255,255,255,0.97)',padding:0,overflow:'hidden',boxShadow:'0 4px 24px rgba(52,137,146,0.12)',transition:'transform 0.2s, box-shadow 0.2s',cursor:'pointer'
-            }}
-            onMouseEnter={e => {e.currentTarget.style.transform='scale(1.045)';e.currentTarget.style.boxShadow='0 8px 32px rgba(52,137,146,0.18)';}}
-            onMouseLeave={e => {e.currentTarget.style.transform='scale(1)';e.currentTarget.style.boxShadow='0 4px 24px rgba(52,137,146,0.12)';}}
-            onTouchStart={e => {e.currentTarget.style.transform='scale(1.045)';e.currentTarget.style.boxShadow='0 8px 32px rgba(52,137,146,0.18)';}}
-            onTouchEnd={e => {e.currentTarget.style.transform='scale(1)';e.currentTarget.style.boxShadow='0 4px 24px rgba(52,137,146,0.12)';}}
-          >
-            <div style={{width:'100%',padding: isMobile ? '14px 0 6px 14px' : '18px 0 8px 18px',textAlign:'left',color:'#348992',fontWeight:700,letterSpacing:0.3,fontSize: isMobile ? '1.1rem' : '1.25rem',display:'flex',alignItems:'center',gap: isMobile ? 8 : 10}}>
-              <FaShieldAlt style={{color:'#348992',fontSize: isMobile ? '1.3em' : '1.5em'}} /> Crisis Ready
+          <Card href="/services/crisis-management" style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'flex-start',background:'rgba(255,255,255,0.95)',padding:0,overflow:'hidden',boxShadow:'0 4px 20px rgba(0,0,0,0.08)'}}>
+            <div style={{width:'100%',padding: isMobile ? '12px 0 6px 14px' : '16px 0 8px 18px',textAlign:'left',color:'#348992',fontWeight:700,letterSpacing:0.3,fontSize: isMobile ? '0.95rem' : '1.1rem',display:'flex',alignItems:'center',gap: isMobile ? 8 : 10}}>
+              <FaShieldAlt style={{color:'#348992',fontSize: isMobile ? '1.1em' : '1.3em'}} /> Crisis Management
             </div>
-            <div style={{width:'100%',paddingLeft:'18px',paddingBottom:'4px',fontSize:'0.95em',color:'#2d6389',fontWeight:500,opacity:0.85}}>24/7 Response</div>
             <Image src="/hero/crisis.png" alt="Crisis Mgmt" width={600} height={500} style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
           </Card>
           {/* Slide 3: Corporate Communications */}
-          <Card 
-            href="/services/corporate-communications"
-            style={{
-              display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'flex-start',background:'rgba(255,255,255,0.97)',padding:0,overflow:'hidden',boxShadow:'0 4px 24px rgba(52,137,146,0.12)',transition:'transform 0.2s, box-shadow 0.2s',cursor:'pointer'
-            }}
-            onMouseEnter={e => {e.currentTarget.style.transform='scale(1.045)';e.currentTarget.style.boxShadow='0 8px 32px rgba(52,137,146,0.18)';}}
-            onMouseLeave={e => {e.currentTarget.style.transform='scale(1)';e.currentTarget.style.boxShadow='0 4px 24px rgba(52,137,146,0.12)';}}
-            onTouchStart={e => {e.currentTarget.style.transform='scale(1.045)';e.currentTarget.style.boxShadow='0 8px 32px rgba(52,137,146,0.18)';}}
-            onTouchEnd={e => {e.currentTarget.style.transform='scale(1)';e.currentTarget.style.boxShadow='0 4px 24px rgba(52,137,146,0.12)';}}
-          >
-            <div style={{width:'100%',padding: isMobile ? '14px 0 6px 14px' : '18px 0 8px 18px',textAlign:'left',color:'#348992',fontWeight:700,letterSpacing:0.3,fontSize: isMobile ? '1.1rem' : '1.25rem',display:'flex',alignItems:'center',gap: isMobile ? 8 : 10}}>
-              <FaBuilding style={{color:'#348992',fontSize: isMobile ? '1.3em' : '1.5em'}} /> Brand Voice
+          <Card href="/services/corporate-communications" style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'flex-start',background:'rgba(255,255,255,0.95)',padding:0,overflow:'hidden',boxShadow:'0 4px 20px rgba(0,0,0,0.08)'}}>
+            <div style={{width:'100%',padding: isMobile ? '12px 0 6px 14px' : '16px 0 8px 18px',textAlign:'left',color:'#348992',fontWeight:700,letterSpacing:0.3,fontSize: isMobile ? '0.95rem' : '1.1rem',display:'flex',alignItems:'center',gap: isMobile ? 8 : 10}}>
+              <FaBuilding style={{color:'#348992',fontSize: isMobile ? '1.1em' : '1.3em'}} /> Corporate Communications
             </div>
-            <div style={{width:'100%',paddingLeft:'18px',paddingBottom:'4px',fontSize:'0.95em',color:'#2d6389',fontWeight:500,opacity:0.85}}>Internal Impact</div>
             <Image src="/hero/corporate.png" alt="Corporate Comm" width={600} height={500} style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
           </Card>
           {/* Slide 4: Influencer Management */}
-          <Card 
-            href="/services/digital-media"
-            style={{
-              display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'flex-start',background:'rgba(255,255,255,0.97)',padding:0,overflow:'hidden',boxShadow:'0 4px 24px rgba(52,137,146,0.12)',transition:'transform 0.2s, box-shadow 0.2s',cursor:'pointer'
-            }}
-            onMouseEnter={e => {e.currentTarget.style.transform='scale(1.045)';e.currentTarget.style.boxShadow='0 8px 32px rgba(52,137,146,0.18)';}}
-            onMouseLeave={e => {e.currentTarget.style.transform='scale(1)';e.currentTarget.style.boxShadow='0 4px 24px rgba(52,137,146,0.12)';}}
-            onTouchStart={e => {e.currentTarget.style.transform='scale(1.045)';e.currentTarget.style.boxShadow='0 8px 32px rgba(52,137,146,0.18)';}}
-            onTouchEnd={e => {e.currentTarget.style.transform='scale(1)';e.currentTarget.style.boxShadow='0 4px 24px rgba(52,137,146,0.12)';}}
-          >
-            <div style={{width:'100%',padding: isMobile ? '14px 0 6px 14px' : '18px 0 8px 18px',textAlign:'left',color:'#348992',fontWeight:700,letterSpacing:0.3,fontSize: isMobile ? '1.1rem' : '1.25rem',display:'flex',alignItems:'center',gap: isMobile ? 8 : 10}}>
-              <FaLaptop style={{color:'#348992',fontSize: isMobile ? '1.3em' : '1.5em'}} /> Digital Reach
+          <Card href="/services/digital-media" style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'flex-start',background:'rgba(255,255,255,0.95)',padding:0,overflow:'hidden',boxShadow:'0 4px 20px rgba(0,0,0,0.08)'}}>
+            <div style={{width:'100%',padding: isMobile ? '12px 0 6px 14px' : '16px 0 8px 18px',textAlign:'left',color:'#348992',fontWeight:700,letterSpacing:0.3,fontSize: isMobile ? '0.95rem' : '1.1rem',display:'flex',alignItems:'center',gap: isMobile ? 8 : 10}}>
+              <FaLaptop style={{color:'#348992',fontSize: isMobile ? '1.1em' : '1.3em'}} /> Influencer Management
             </div>
-            <div style={{width:'100%',paddingLeft:'18px',paddingBottom:'4px',fontSize:'0.95em',color:'#2d6389',fontWeight:500,opacity:0.85}}>Influencer Power</div>
             <Image src="/hero/digital.png" alt="Influencer Management" width={600} height={500} style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
           </Card>
           {/* Slide 5: Specialized Services */}
-          <Card 
-            href="/services/specialized-services"
-            style={{
-              display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'flex-start',background:'rgba(255,255,255,0.97)',padding:0,overflow:'hidden',boxShadow:'0 4px 24px rgba(52,137,146,0.12)',transition:'transform 0.2s, box-shadow 0.2s',cursor:'pointer'
-            }}
-            onMouseEnter={e => {e.currentTarget.style.transform='scale(1.045)';e.currentTarget.style.boxShadow='0 8px 32px rgba(52,137,146,0.18)';}}
-            onMouseLeave={e => {e.currentTarget.style.transform='scale(1)';e.currentTarget.style.boxShadow='0 4px 24px rgba(52,137,146,0.12)';}}
-            onTouchStart={e => {e.currentTarget.style.transform='scale(1.045)';e.currentTarget.style.boxShadow='0 8px 32px rgba(52,137,146,0.18)';}}
-            onTouchEnd={e => {e.currentTarget.style.transform='scale(1)';e.currentTarget.style.boxShadow='0 4px 24px rgba(52,137,146,0.12)';}}
-          >
-            <div style={{width:'100%',padding: isMobile ? '14px 0 6px 14px' : '18px 0 8px 18px',textAlign:'left',color:'#348992',fontWeight:700,letterSpacing:0.3,fontSize: isMobile ? '1.1rem' : '1.25rem',display:'flex',alignItems:'center',gap: isMobile ? 8 : 10}}>
-              <FaBullseye style={{color:'#348992',fontSize: isMobile ? '1.3em' : '1.5em'}} /> Consulting
+          <Card href="/services/specialized-services" style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'flex-start',background:'rgba(255,255,255,0.95)',padding:0,overflow:'hidden',boxShadow:'0 4px 20px rgba(0,0,0,0.08)'}}>
+            <div style={{width:'100%',padding: isMobile ? '12px 0 6px 14px' : '16px 0 8px 18px',textAlign:'left',color:'#348992',fontWeight:700,letterSpacing:0.3,fontSize: isMobile ? '0.95rem' : '1.1rem',display:'flex',alignItems:'center',gap: isMobile ? 8 : 10}}>
+              <FaBullseye style={{color:'#348992',fontSize: isMobile ? '1.1em' : '1.3em'}} /> Specialized Services
             </div>
-            <div style={{width:'100%',paddingLeft:'18px',paddingBottom:'4px',fontSize:'0.95em',color:'#2d6389',fontWeight:500,opacity:0.85}}>Strategy First</div>
             <Image src="/hero/spl.png" alt="Specialized Services" width={600} height={500} style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
           </Card>
         </CardSwap>
