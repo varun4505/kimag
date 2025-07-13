@@ -320,35 +320,35 @@ const Hero = () => {
           pauseOnHover={false}
         >
           {/* Slide 1: Public Relations */}
-          <Card style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'flex-start',background:'rgba(255,255,255,0.95)',padding:0,overflow:'hidden',boxShadow:'0 4px 20px rgba(0,0,0,0.08)'}}>
+          <Card href="/services/public-relations" style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'flex-start',background:'rgba(255,255,255,0.95)',padding:0,overflow:'hidden',boxShadow:'0 4px 20px rgba(0,0,0,0.08)'}}>
             <div style={{width:'100%',padding: isMobile ? '12px 0 6px 14px' : '16px 0 8px 18px',textAlign:'left',color:'#348992',fontWeight:700,letterSpacing:0.3,fontSize: isMobile ? '0.95rem' : '1.1rem',display:'flex',alignItems:'center',gap: isMobile ? 8 : 10}}>
               <FaNewspaper style={{color:'#348992',fontSize: isMobile ? '1.1em' : '1.3em'}} /> Public Relations
             </div>
             <Image src="/hero/PR.png" alt="PR" width={600} height={500} style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
           </Card>
           {/* Slide 2: Crisis Management */}
-          <Card style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'flex-start',background:'rgba(255,255,255,0.95)',padding:0,overflow:'hidden',boxShadow:'0 4px 20px rgba(0,0,0,0.08)'}}>
+          <Card href="/services/crisis-management" style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'flex-start',background:'rgba(255,255,255,0.95)',padding:0,overflow:'hidden',boxShadow:'0 4px 20px rgba(0,0,0,0.08)'}}>
             <div style={{width:'100%',padding: isMobile ? '12px 0 6px 14px' : '16px 0 8px 18px',textAlign:'left',color:'#348992',fontWeight:700,letterSpacing:0.3,fontSize: isMobile ? '0.95rem' : '1.1rem',display:'flex',alignItems:'center',gap: isMobile ? 8 : 10}}>
               <FaShieldAlt style={{color:'#348992',fontSize: isMobile ? '1.1em' : '1.3em'}} /> Crisis Management
             </div>
             <Image src="/hero/crisis.png" alt="Crisis Mgmt" width={600} height={500} style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
           </Card>
           {/* Slide 3: Corporate Communications */}
-          <Card style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'flex-start',background:'rgba(255,255,255,0.95)',padding:0,overflow:'hidden',boxShadow:'0 4px 20px rgba(0,0,0,0.08)'}}>
+          <Card href="/services/corporate-communications" style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'flex-start',background:'rgba(255,255,255,0.95)',padding:0,overflow:'hidden',boxShadow:'0 4px 20px rgba(0,0,0,0.08)'}}>
             <div style={{width:'100%',padding: isMobile ? '12px 0 6px 14px' : '16px 0 8px 18px',textAlign:'left',color:'#348992',fontWeight:700,letterSpacing:0.3,fontSize: isMobile ? '0.95rem' : '1.1rem',display:'flex',alignItems:'center',gap: isMobile ? 8 : 10}}>
               <FaBuilding style={{color:'#348992',fontSize: isMobile ? '1.1em' : '1.3em'}} /> Corporate Communications
             </div>
             <Image src="/hero/corporate.png" alt="Corporate Comm" width={600} height={500} style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
           </Card>
           {/* Slide 4: Influencer Management */}
-          <Card style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'flex-start',background:'rgba(255,255,255,0.95)',padding:0,overflow:'hidden',boxShadow:'0 4px 20px rgba(0,0,0,0.08)'}}>
+          <Card href="/services/digital-media" style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'flex-start',background:'rgba(255,255,255,0.95)',padding:0,overflow:'hidden',boxShadow:'0 4px 20px rgba(0,0,0,0.08)'}}>
             <div style={{width:'100%',padding: isMobile ? '12px 0 6px 14px' : '16px 0 8px 18px',textAlign:'left',color:'#348992',fontWeight:700,letterSpacing:0.3,fontSize: isMobile ? '0.95rem' : '1.1rem',display:'flex',alignItems:'center',gap: isMobile ? 8 : 10}}>
               <FaLaptop style={{color:'#348992',fontSize: isMobile ? '1.1em' : '1.3em'}} /> Influencer Management
             </div>
             <Image src="/hero/digital.png" alt="Influencer Management" width={600} height={500} style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
           </Card>
           {/* Slide 5: Specialized Services */}
-          <Card style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'flex-start',background:'rgba(255,255,255,0.95)',padding:0,overflow:'hidden',boxShadow:'0 4px 20px rgba(0,0,0,0.08)'}}>
+          <Card href="/services/specialized-services" style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'flex-start',background:'rgba(255,255,255,0.95)',padding:0,overflow:'hidden',boxShadow:'0 4px 20px rgba(0,0,0,0.08)'}}>
             <div style={{width:'100%',padding: isMobile ? '12px 0 6px 14px' : '16px 0 8px 18px',textAlign:'left',color:'#348992',fontWeight:700,letterSpacing:0.3,fontSize: isMobile ? '0.95rem' : '1.1rem',display:'flex',alignItems:'center',gap: isMobile ? 8 : 10}}>
               <FaBullseye style={{color:'#348992',fontSize: isMobile ? '1.1em' : '1.3em'}} /> Specialized Services
             </div>

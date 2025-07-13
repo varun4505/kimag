@@ -28,7 +28,9 @@ export interface CardSwapProps {
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   customClass?: string;
+  href?: string;
 }
+import { useRouter } from "next/navigation";
 
 export const Card = forwardRef<HTMLDivElement, CardProps>(
   ({ customClass, ...rest }, ref) => (
@@ -85,6 +87,7 @@ const CardSwap: React.FC<CardSwapProps> = ({
   easing = "elastic",
   children,
 }) => {
+  const router = useRouter();
   const config =
     easing === "elastic"
       ? {
@@ -230,6 +233,9 @@ const CardSwap: React.FC<CardSwapProps> = ({
           onClick: (e) => {
             child.props.onClick?.(e as React.MouseEvent<HTMLDivElement>);
             onCardClick?.(i);
+            if (child.props.href) {
+              router.push(child.props.href);
+            }
           },
         } as CardProps & React.RefAttributes<HTMLDivElement>)
       : child
