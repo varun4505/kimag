@@ -125,9 +125,6 @@ const CardSwap: React.FC<CardSwapProps> = ({
   const intervalRef = useRef<number | undefined>(undefined);
   const container = useRef<HTMLDivElement>(null);
 
-  // Track hovered card index
-  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
-
   useEffect(() => {
     const total = refs.length;
     refs.forEach((r, i) => {
@@ -248,7 +245,6 @@ const CardSwap: React.FC<CardSwapProps> = ({
             }
           },
           onMouseEnter: () => {
-            setHoveredIdx(i);
             const el = refs[i].current;
             if (el) {
               gsap.to(el, {
@@ -261,7 +257,6 @@ const CardSwap: React.FC<CardSwapProps> = ({
             }
           },
           onMouseLeave: () => {
-            setHoveredIdx(null);
             const el = refs[i].current;
             if (el) {
               gsap.to(el, {
