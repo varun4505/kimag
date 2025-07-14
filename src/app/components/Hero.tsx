@@ -298,7 +298,7 @@ const Hero = () => {
         alignItems: 'center',
         height: isMobile ? 'auto' : '100%',
         overflow: 'visible',
-        marginTop: isMobile ? '80px' : '-80px',
+        marginTop: isMobile ? '120px' : '-80px',
       }}
     >
       <div

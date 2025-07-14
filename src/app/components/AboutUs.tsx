@@ -202,7 +202,7 @@ const AboutUs: React.FC = () => {
 
           </div>
 
-          {/* Right Column - Enhanced Company Image */}
+          {/* Right Column*/}
           <motion.div 
             className="relative"
             initial={{ opacity: 0, scale: 0.8 }}
@@ -210,7 +210,6 @@ const AboutUs: React.FC = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <div className="aspect-square rounded-xl overflow-hidden shadow-2xl border border-white/20 relative group">
-              {/* Image with enhanced effects */}
               <motion.img 
                 src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
                 alt="Professional business meeting with diverse team discussing strategy in modern corporate environment"
@@ -220,11 +219,8 @@ const AboutUs: React.FC = () => {
                 animate={{ scale: 1, filter: "blur(0px)" }}
                 transition={{ duration: 1.2 }}
               />
-              {/* Enhanced overlay gradient */}
               <div className="absolute inset-0 bg-gradient-to-tr from-[#348992]/20 via-transparent to-[#d73c77]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             </div>
-            
-            {/* Enhanced decorative elements */}
             <motion.div 
               className="absolute -top-4 -right-4 w-8 h-8 bg-[#348992]/20 rounded-full"
               animate={{ scale: [1, 1.2, 1], rotate: [0, 180, 360] }}
@@ -235,8 +231,6 @@ const AboutUs: React.FC = () => {
               animate={{ scale: [1, 0.8, 1], rotate: [0, -180, -360] }}
               transition={{ duration: 5, repeat: Infinity }}
             />
-            
-            {/* Additional floating elements */}
             <motion.div 
               className="absolute top-1/2 -left-6 w-4 h-4 bg-[#348992]/30 rounded-full"
               animate={{ y: [0, -10, 0], opacity: [0.3, 0.7, 0.3] }}

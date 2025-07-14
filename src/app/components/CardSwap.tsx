@@ -87,6 +87,7 @@ const CardSwap: React.FC<CardSwapProps> = ({
   easing = "elastic",
   children,
 }) => {
+
   const router = useRouter();
   const config =
     easing === "elastic"
@@ -123,6 +124,9 @@ const CardSwap: React.FC<CardSwapProps> = ({
   const tlRef = useRef<gsap.core.Timeline | null>(null);
   const intervalRef = useRef<number | undefined>(undefined);
   const container = useRef<HTMLDivElement>(null);
+
+  // Track hovered card index
+  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
 
   useEffect(() => {
     const total = refs.length;
@@ -229,12 +233,44 @@ const CardSwap: React.FC<CardSwapProps> = ({
       ? cloneElement(child, {
           key: i,
           ref: refs[i],
-          style: { width, height, ...(child.props.style ?? {}) },
+          style: {
+            width,
+            height,
+            userSelect: 'none',
+            cursor: 'pointer',
+            ...(child.props.style ?? {})
+          },
           onClick: (e) => {
             child.props.onClick?.(e as React.MouseEvent<HTMLDivElement>);
             onCardClick?.(i);
             if (child.props.href) {
               router.push(child.props.href);
+            }
+          },
+          onMouseEnter: () => {
+            setHoveredIdx(i);
+            const el = refs[i].current;
+            if (el) {
+              gsap.to(el, {
+                y: '+=-32',
+                scale: 1.08,
+                boxShadow: '0 12px 40px rgba(20,184,166,0.22)',
+                duration: 0.7,
+                ease: 'elastic.out(1, 0.6)',
+              });
+            }
+          },
+          onMouseLeave: () => {
+            setHoveredIdx(null);
+            const el = refs[i].current;
+            if (el) {
+              gsap.to(el, {
+                y: '+=32',
+                scale: 1,
+                boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
+                duration: 0.6,
+                ease: 'elastic.out(1, 0.6)',
+              });
             }
           },
         } as CardProps & React.RefAttributes<HTMLDivElement>)
