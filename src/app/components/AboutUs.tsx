@@ -211,7 +211,7 @@ const AboutUs: React.FC = () => {
           >
             <div className="aspect-square rounded-xl overflow-hidden shadow-2xl border border-white/20 relative group">
               <motion.img 
-                src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=80"
                 alt="Professional business meeting with diverse team discussing strategy in modern corporate environment"
                 className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
                 loading="lazy"
