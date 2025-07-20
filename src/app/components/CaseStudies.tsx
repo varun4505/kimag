@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { 
   BarChart3, 
@@ -20,9 +20,8 @@ import {
 } from "lucide-react";
 
 export default function CaseStudies() {
-  const [isHovering, setIsHovering] = useState(false);
   const controls = useAnimation();
-  
+
   const industries = [
     { name: 'Hospitality', icon: Building2 },
     { name: 'Healthcare', icon: Heart },
@@ -33,26 +32,20 @@ export default function CaseStudies() {
     { name: 'Real Estate', icon: Home },
     { name: 'Manufacturing', icon: Factory }
   ];
-
-  // Auto-scroll effect for carousel - Optimized speed
   useEffect(() => {
-    if (!isHovering) {
-      const autoScroll = async () => {
-        await controls.start({
-          x: '-50%',
-          transition: {
-            duration: 20, // Faster: reduced from 30 to 20 seconds
-            ease: "linear",
-            repeat: Infinity,
-            repeatType: "loop"
-          }
-        });
-      };
-      autoScroll();
-    } else {
-      controls.stop();
-    }
-  }, [isHovering, controls]);
+    const autoScroll = async () => {
+      await controls.start({
+        x: '-50%',
+        transition: {
+          duration: 10, 
+          ease: "linear",
+          repeat: Infinity,
+          repeatType: "loop"
+        }
+      });
+    };
+    autoScroll();
+  }, [controls]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -116,8 +109,6 @@ export default function CaseStudies() {
           <h3 className="text-center text-xl font-semibold text-gray-800 mb-6">Industries We Serve</h3>
           <div 
             className="relative overflow-hidden"
-            onMouseEnter={() => setIsHovering(true)}
-            onMouseLeave={() => setIsHovering(false)}
           >
             <motion.div 
               className="flex gap-6"
