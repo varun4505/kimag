@@ -209,18 +209,14 @@ const AboutUs: React.FC = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <div className="aspect-square rounded-xl overflow-hidden shadow-2xl border border-white/20 relative group">
-              <motion.img 
-                src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=80"
-                alt="Professional business meeting with diverse team discussing strategy in modern corporate environment"
-                className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
-                loading="lazy"
-                initial={{ scale: 1.1, filter: "blur(10px)" }}
-                animate={{ scale: 1, filter: "blur(0px)" }}
-                transition={{ duration: 1.2 }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-tr from-[#348992]/20 via-transparent to-[#d73c77]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            </div>
+            {/* Direct SVG illustration, no background or extra container */}
+            <img 
+              src="/illustration.svg"
+              alt="Konnections IMAG Illustration"
+              className="w-full h-full object-contain mt-12"
+              loading="lazy"
+              draggable={false}
+            />
             <motion.div 
               className="absolute -top-4 -right-4 w-8 h-8 bg-[#348992]/20 rounded-full"
               animate={{ scale: [1, 1.2, 1], rotate: [0, 180, 360] }}

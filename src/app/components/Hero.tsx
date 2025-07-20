@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { gsap } from 'gsap';
+import { motion } from 'framer-motion';
 import CardSwap, { Card } from './CardSwap';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -7,6 +8,7 @@ import { FaNewspaper, FaShieldAlt, FaLaptop, FaBuilding, FaBullseye } from 'reac
 
 const Hero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
+  const particlesRef = useRef<HTMLDivElement>(null);
   const titleFirstRef = useRef<HTMLSpanElement>(null);
   const titleSecondRef = useRef<HTMLSpanElement>(null);
   const descriptionRef = useRef<HTMLParagraphElement>(null);
@@ -107,7 +109,169 @@ const Hero = () => {
       marginTop: isMobile ? '0px' : '42px',
     }}
   >
+    {/* Decorative Triangles in Blank Space */}
+    <div style={{position:'absolute',left:isMobile?'10%':'7%',top:isMobile?'32%':'28%',zIndex:2,pointerEvents:'none'}}>
+      <svg width="38" height="34" viewBox="0 0 38 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="19,0 38,34 0,34" fill="#348992" fillOpacity="0.13" />
+      </svg>
+    </div>
+    <div style={{position:'absolute',left:isMobile?'18%':'13%',top:isMobile?'44%':'38%',zIndex:2,pointerEvents:'none'}}>
+      <svg width="24" height="22" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="12,0 24,22 0,22" fill="#d73c77" fillOpacity="0.11" />
+      </svg>
+    </div>
+    <div style={{position:'absolute',left:isMobile?'7%':'4%',top:isMobile?'60%':'54%',zIndex:2,pointerEvents:'none'}}>
+      <svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="9,0 18,16 0,16" fill="#2d6389" fillOpacity="0.10" />
+      </svg>
+    </div>
     {/* Background SVG grid and circles */}
+    <svg
+      width="100%"
+      height="100%"
+      style={{
+        position: 'absolute',
+        left: 0,
+        top: 0,
+        width: '100%',
+        height: '100%',
+        zIndex: 0,
+        pointerEvents: 'none',
+      }}
+      viewBox="0 0 1600 600"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      {/* Grid */}
+      <defs>
+        <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+          <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#e3eef7" strokeWidth="1" />
+        </pattern>
+        <radialGradient id="radial1" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+          <stop offset="0%" stopColor="#00d2ff" stopOpacity="0.10" />
+          <stop offset="100%" stopColor="#fff" stopOpacity="0" />
+        </radialGradient>
+        <radialGradient id="radial2" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+          <stop offset="0%" stopColor="#ff7eb3" stopOpacity="0.10" />
+          <stop offset="100%" stopColor="#fff" stopOpacity="0" />
+        </radialGradient>
+      </defs>
+      <rect width="1600" height="600" fill="url(#grid)" />
+      {/* Radial circles */}
+      <circle cx="1200" cy="300" r="220" fill="url(#radial1)" />
+      <circle cx="1200" cy="300" r="120" fill="url(#radial2)" />
+      <circle cx="400" cy="100" r="120" fill="url(#radial1)" />
+    </svg>
+    {/* Modern Floating Particles */}
+  <div ref={particlesRef} className="absolute inset-0 pointer-events-none" style={{zIndex: 1}}>
+
+      {/* Triangle Particles - Increased and Varied */}
+      <motion.div 
+        className="absolute top-[20%] left-[15%]"
+        animate={{ 
+          y: [0, -20, 0],
+          rotate: [0, 120, 240],
+          scale: [1, 1.1, 1]
+        }}
+        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <div className="w-0 h-0 border-l-[20px] border-r-[20px] border-b-[35px] border-l-transparent border-r-transparent border-b-[#2d6389]/20 filter drop-shadow-lg"></div>
+      </motion.div>
+
+      <motion.div 
+        className="absolute top-[10%] left-[30%]"
+        animate={{ 
+          y: [0, -30, 0],
+          rotate: [0, 180, 360],
+          scale: [1, 1.15, 1]
+        }}
+        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+      >
+        <div className="w-0 h-0 border-l-[16px] border-r-[16px] border-b-[28px] border-l-transparent border-r-transparent border-b-[#d73c77]/20 filter drop-shadow-lg"></div>
+      </motion.div>
+
+      <motion.div 
+        className="absolute top-[35%] left-[10%]"
+        animate={{ 
+          y: [0, -18, 0],
+          rotate: [0, 90, 180],
+          scale: [1, 1.08, 1]
+        }}
+        transition={{ duration: 13, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+      >
+        <div className="w-0 h-0 border-l-[12px] border-r-[12px] border-b-[20px] border-l-transparent border-r-transparent border-b-[#348992]/20 filter drop-shadow-lg"></div>
+      </motion.div>
+
+      <motion.div 
+        className="absolute bottom-[10%] left-[20%]"
+        animate={{ 
+          y: [0, 22, 0],
+          rotate: [0, 60, 120],
+          scale: [1, 1.12, 1]
+        }}
+        transition={{ duration: 17, repeat: Infinity, ease: "easeInOut", delay: 3 }}
+      >
+        <div className="w-0 h-0 border-l-[18px] border-r-[18px] border-b-[30px] border-l-transparent border-r-transparent border-b-[#2d6389]/15 filter drop-shadow-lg"></div>
+      </motion.div>
+
+      <motion.div 
+        className="absolute top-[30%] right-[20%]"
+        animate={{ 
+          y: [0, 30, 0],
+          rotate: [0, -90, -180],
+          scale: [1, 0.8, 1]
+        }}
+        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <div className="w-6 h-6 bg-gradient-to-br from-[#d73c77]/30 to-[#348992]/30 rotate-45 rounded-sm filter drop-shadow-lg"></div>
+      </motion.div>
+
+      <motion.div 
+        className="absolute bottom-[25%] left-[25%]"
+        animate={{ 
+          y: [0, -25, 0],
+          x: [0, 15, 0],
+          rotate: [0, 180, 360]
+        }}
+        transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <div className="w-8 h-8 bg-gradient-to-tr from-[#348992]/25 to-[#2d6389]/25 rounded-full filter drop-shadow-lg"></div>
+      </motion.div>
+
+      <motion.div 
+        className="absolute bottom-[35%] right-[15%]"
+        animate={{ 
+          y: [0, 20, 0],
+          x: [0, -10, 0],
+          scale: [1, 1.3, 1]
+        }}
+        transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <div className="w-0 h-0 border-l-[15px] border-r-[15px] border-b-[25px] border-l-transparent border-r-transparent border-b-[#d73c77]/20 filter drop-shadow-lg"></div>
+      </motion.div>
+
+      <motion.div 
+        className="absolute top-[50%] left-[40%]"
+        animate={{ 
+          y: [0, -15, 0],
+          rotate: [0, 60, 120]
+        }}
+        transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <div className="w-4 h-4 bg-gradient-to-bl from-[#2d6389]/30 to-[#d73c77]/30 rotate-45 filter drop-shadow-lg"></div>
+      </motion.div>
+
+      <motion.div 
+        className="absolute top-[70%] right-[30%]"
+        animate={{ 
+          y: [0, 25, 0],
+          rotate: [0, -45, -90]
+        }}
+        transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <div className="w-5 h-5 bg-gradient-to-tl from-[#348992]/25 to-[#2d6389]/25 rounded-sm filter drop-shadow-lg"></div>
+      </motion.div>
+    </div>
     <svg
       width="100%"
       height="100%"
@@ -299,6 +463,7 @@ const Hero = () => {
         height: isMobile ? 'auto' : '100%',
         overflow: 'visible',
         marginTop: isMobile ? '120px' : '-80px',
+        zIndex: 2,
       }}
     >
       <div
@@ -324,35 +489,35 @@ const Hero = () => {
             <div style={{width:'100%',padding: isMobile ? '12px 0 6px 14px' : '16px 0 8px 18px',textAlign:'left',color:'#348992',fontWeight:700,letterSpacing:0.3,fontSize: isMobile ? '0.95rem' : '1.1rem',display:'flex',alignItems:'center',gap: isMobile ? 8 : 10}}>
               <FaNewspaper style={{color:'#348992',fontSize: isMobile ? '1.1em' : '1.3em'}} /> Public Relations
             </div>
-            <Image src="/hero/PR.png" alt="PR" width={600} height={500} style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
+            <Image src="/hero/PR.png" alt="PR" width={600} height={500} style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} draggable={false} />
           </Card>
           {/* Slide 2: Crisis Management */}
           <Card href="/services/crisis-management" style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'flex-start',background:'rgba(255,255,255,0.95)',padding:0,overflow:'hidden',boxShadow:'0 4px 20px rgba(0,0,0,0.08)'}}>
             <div style={{width:'100%',padding: isMobile ? '12px 0 6px 14px' : '16px 0 8px 18px',textAlign:'left',color:'#348992',fontWeight:700,letterSpacing:0.3,fontSize: isMobile ? '0.95rem' : '1.1rem',display:'flex',alignItems:'center',gap: isMobile ? 8 : 10}}>
               <FaShieldAlt style={{color:'#348992',fontSize: isMobile ? '1.1em' : '1.3em'}} /> Crisis Management
             </div>
-            <Image src="/hero/crisis.png" alt="Crisis Mgmt" width={600} height={500} style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
+            <Image src="/hero/crisis.png" alt="Crisis Mgmt" width={600} height={500} style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} draggable={false} />
           </Card>
           {/* Slide 3: Corporate Communications */}
           <Card href="/services/corporate-communications" style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'flex-start',background:'rgba(255,255,255,0.95)',padding:0,overflow:'hidden',boxShadow:'0 4px 20px rgba(0,0,0,0.08)'}}>
             <div style={{width:'100%',padding: isMobile ? '12px 0 6px 14px' : '16px 0 8px 18px',textAlign:'left',color:'#348992',fontWeight:700,letterSpacing:0.3,fontSize: isMobile ? '0.95rem' : '1.1rem',display:'flex',alignItems:'center',gap: isMobile ? 8 : 10}}>
               <FaBuilding style={{color:'#348992',fontSize: isMobile ? '1.1em' : '1.3em'}} /> Corporate Communications
             </div>
-            <Image src="/hero/corporate.png" alt="Corporate Comm" width={600} height={500} style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
+            <Image src="/hero/corporate.png" alt="Corporate Comm" width={600} height={500} style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} draggable={false} />
           </Card>
           {/* Slide 4: Influencer Management */}
           <Card href="/services/digital-media" style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'flex-start',background:'rgba(255,255,255,0.95)',padding:0,overflow:'hidden',boxShadow:'0 4px 20px rgba(0,0,0,0.08)'}}>
             <div style={{width:'100%',padding: isMobile ? '12px 0 6px 14px' : '16px 0 8px 18px',textAlign:'left',color:'#348992',fontWeight:700,letterSpacing:0.3,fontSize: isMobile ? '0.95rem' : '1.1rem',display:'flex',alignItems:'center',gap: isMobile ? 8 : 10}}>
               <FaLaptop style={{color:'#348992',fontSize: isMobile ? '1.1em' : '1.3em'}} /> Influencer Management
             </div>
-            <Image src="/hero/digital.png" alt="Influencer Management" width={600} height={500} style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
+            <Image src="/hero/digital.png" alt="Influencer Management" width={600} height={500} style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} draggable={false} />
           </Card>
           {/* Slide 5: Specialized Services */}
           <Card href="/services/specialized-services" style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'flex-start',background:'rgba(255,255,255,0.95)',padding:0,overflow:'hidden',boxShadow:'0 4px 20px rgba(0,0,0,0.08)'}}>
             <div style={{width:'100%',padding: isMobile ? '12px 0 6px 14px' : '16px 0 8px 18px',textAlign:'left',color:'#348992',fontWeight:700,letterSpacing:0.3,fontSize: isMobile ? '0.95rem' : '1.1rem',display:'flex',alignItems:'center',gap: isMobile ? 8 : 10}}>
               <FaBullseye style={{color:'#348992',fontSize: isMobile ? '1.1em' : '1.3em'}} /> Specialized Services
             </div>
-            <Image src="/hero/spl.png" alt="Specialized Services" width={600} height={500} style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} />
+            <Image src="/hero/spl.png" alt="Specialized Services" width={600} height={500} style={{width:'100%',height:'78%',objectFit:'cover',borderRadius:'0 0 18px 18px',marginTop:0}} draggable={false} />
           </Card>
         </CardSwap>
       </div>

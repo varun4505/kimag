@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { scrollToTop } from "@/lib/smoothScroll";
 import Link from "next/link";
 import { Facebook, Instagram, Linkedin, Mail, Phone, MapPin } from "lucide-react";
 

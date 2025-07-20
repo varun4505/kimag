@@ -48,7 +48,7 @@ export async function sendAppointmentStatusEmail({
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
         <div style="text-align: center; margin-bottom: 30px;">
           <h1 style="color: #2d6389; margin: 0;">KIMAG</h1>
-          <p style="color: #666; margin: 5px 0;">Creative Agency</p>
+          <p style="color: #666; margin: 5px 0;">Integrated Marketing and Communications Agency</p>
         </div>
         
         <div style="background: ${statusColor}; padding: 30px; border-radius: 15px; color: white; text-align: center; margin-bottom: 30px;">
@@ -217,7 +217,7 @@ export async function sendContactConfirmationEmail({
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
         <div style="text-align: center; margin-bottom: 30px;">
           <h1 style="color: #2d6389; margin: 0;">KIMAG</h1>
-          <p style="color: #666; margin: 5px 0;">Creative Agency</p>
+          <p style="color: #666; margin: 5px 0;">Integrated Marketing and Communications Agency</p>
         </div>
         
         <div style="background: linear-gradient(135deg, #2d6389 0%, #348992 100%); padding: 30px; border-radius: 15px; color: white; text-align: center; margin-bottom: 30px;">

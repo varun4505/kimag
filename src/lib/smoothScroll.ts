@@ -1,3 +1,10 @@
+export const scrollToTop = () => {
+  smoothScrollTo(0, { duration: 1.5 });
+};
+
+export const scrollToSection = (sectionId: string, offset: number = 0) => {
+  smoothScrollTo(`#${sectionId}`, { offset });
+};
 import Lenis from 'lenis';
 
 export const smoothScrollTo = (target: string | HTMLElement | number, options?: {
@@ -31,10 +38,4 @@ export const smoothScrollTo = (target: string | HTMLElement | number, options?: 
   }
 };
 
-export const scrollToTop = () => {
-  smoothScrollTo(0, { duration: 1.5 });
-};
-
-export const scrollToSection = (sectionId: string, offset: number = 0) => {
-  smoothScrollTo(`#${sectionId}`, { offset });
-};
+// Removed unused scrollToTop and scrollToSection exports
