@@ -37,7 +37,7 @@ export default function CaseStudies() {
       await controls.start({
         x: '-50%',
         transition: {
-          duration: 10, 
+          duration: 30, 
           ease: "linear",
           repeat: Infinity,
           repeatType: "loop"
