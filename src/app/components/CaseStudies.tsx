@@ -84,7 +84,6 @@ export default function CaseStudies() {
         whileInView="visible"
         viewport={{ once: true, margin: "-50px" }}
       >
-        {/* Clean Header */}
         <motion.div 
           variants={itemVariants}
           className="text-center mb-12"
